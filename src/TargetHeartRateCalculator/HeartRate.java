@@ -1,18 +1,31 @@
 package TargetHeartRateCalculator;
 
+
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.List;
+
 public class HeartRate {
     private String firstName;
     private String lastName;
     private int dayOfBirth;
     private String monthOfBirth;
     private int yearOfBirth;
+    Calendar currentDate = Calendar.getInstance();
+    int currentYear = currentDate.get(Calendar.YEAR);
 
     public HeartRate(String firstName, String lastName) {
+        if ((firstName == null) && (lastName == null)){
+            System.out.println("Invalid inputs");
+        }
         this.firstName = firstName;
         this.lastName = lastName;
     }
 
     public void updateFirstName(String firstName) {
+        if ((firstName == null) && (lastName == null)){
+            System.out.println("Invalid input");
+        }
         this.firstName = firstName;
     }
 
@@ -21,7 +34,7 @@ public class HeartRate {
     }
 
     public void updateLastName() {
-        this.lastName = lastName;
+            System.out.println("Invalid input");
     }
 
     public String getLastName() {
@@ -29,7 +42,7 @@ public class HeartRate {
     }
 
     public void setDayOfBirth(int dayInMonth) {
-        this.dayOfBirth = dayInMonth;
+            this.dayOfBirth = dayInMonth;
     }
 
     public int getDayOfBirth() {
@@ -37,7 +50,7 @@ public class HeartRate {
     }
 
     public void setMonthOfBirth(String monthInString) {
-        this.monthOfBirth = monthInString;
+            this.monthOfBirth = monthInString;
     }
 
     public String getMonthOfBirth() {
@@ -45,11 +58,27 @@ public class HeartRate {
     }
 
     public void setYearOfBirth(int year) {
-        this.yearOfBirth = year;
+            this.yearOfBirth = year;
     }
 
 
     public int getYearOfBirth() {
         return yearOfBirth;
     }
+
+    public int calculateAge(int yearOfBirth) {
+        return (currentYear - yearOfBirth);
+    }
+
+    public int calculateMaxHeartRate(int age) {
+        return (220 - age);
+    }
+
+
+    public List<Double> calculateTargetHeartRate(int maxHeartRate) {
+        double lowerBound = Math.ceil(0.5 * maxHeartRate);
+        double upperBound = Math.ceil(0.85 * maxHeartRate);
+        return Arrays.asList(lowerBound, upperBound);
+    }
+
 }
