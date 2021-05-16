@@ -68,7 +68,7 @@ class BikeSpecification {
 
     @Test
     @DisplayName(" can change from lower to higher gear")
-    void bikeCanChangeFromParkedToGearOne() {
+    void bikeCanGearUpFromParkedToGearOne() {
         Bike superBike = new Bike();
         String gearStatus = "P";
         superBike.setGear(gearStatus);
@@ -79,11 +79,30 @@ class BikeSpecification {
 
     @Test
     @DisplayName(" can change from lower to higher gear")
-    void bikeCanChangeFromGearOneToGearTwo() {
+    void bikeCanGearUpGearTwoToGear3() {
+        Bike superBike = new Bike();
+        String gearStatus = "2";
+        superBike.setGear(gearStatus);
+        superBike.gearUp();
+        assertEquals("3", superBike.getGearStatus());
+    }
+
+    @Test
+    @DisplayName(" can change from higher to lower gear")
+    void bikeCanGearDownFromGearOneToParked() {
         Bike superBike = new Bike();
         String gearStatus = "1";
         superBike.setGear(gearStatus);
-        superBike.gearUp();
-        assertEquals("2", superBike.getGearStatus());
+        superBike.gearDown();
+        assertEquals("P", superBike.getGearStatus());
+    }
+    @Test
+    @DisplayName(" can change from higher to lower gear")
+    void bikeCanGearDownFromGearTwoToGearOne() {
+        Bike superBike = new Bike();
+        String gearStatus = "2";
+        superBike.setGear(gearStatus);
+        superBike.gearDown();
+        assertEquals("1", superBike.getGearStatus());
     }
 }

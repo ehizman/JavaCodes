@@ -48,4 +48,15 @@ public class Bike {
             setGear(currentGear);
         }
     }
+
+    public void gearDown() {
+        String currentGear = getGearStatus();
+        if (currentGear.equals("1")) {
+            setGear("P");
+        }
+        else{
+            currentGear = (Integer.parseInt(currentGear) - 1) + "";
+            setGear(currentGear);
+        }
+    }
 }
