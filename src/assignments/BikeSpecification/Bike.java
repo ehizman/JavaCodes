@@ -7,6 +7,7 @@ public class Bike {
     private int powerStatus;
     private String gearShifter;
     private final ArrayList<String> gearList = new ArrayList<>(Arrays.asList("1", "2", "3", "4", "N"));
+    private int speed;
 
     public int getPowerStatus() { //getter
        return powerStatus;
@@ -41,29 +42,46 @@ public class Bike {
 
     public void shiftUp() {
         String currentGear = getGearStatus();
-        if (currentGear.equals("N")){
-            setGear("2");
-        }
-        else if (currentGear.equals("1")){
-            setGear("N");
-        }
-        else {
-            currentGear = (Integer.parseInt(currentGear) + 1) + "";
-            setGear(currentGear);
+        if (currentGear != null){
+            if (currentGear.equals("N")){
+                setGear("2");
+            }
+            else if (currentGear.equals("1")){
+                setGear("N");
+            }
+            else {
+                currentGear = (Integer.parseInt(currentGear) + 1) + "";
+                setGear(currentGear);
+            }
         }
     }
 
     public void shiftDown() {
         String currentGear = getGearStatus();
-        if (currentGear.equals("2")) {
-            setGear("N");
+        if (currentGear != null){
+            if (currentGear.equals("2")) {
+                setGear("N");
+            }
+            else if (currentGear.equals("N")){
+                setGear("1");
+            }
+            else{
+                currentGear = (Integer.parseInt(currentGear) - 1) + "";
+                setGear(currentGear);
+            }
         }
-        else if (currentGear.equals("N")){
-            setGear("1");
+    }
+
+    public void move() {
+        if (getGearStatus().equals("1")){
+            speed = 5;
         }
-        else{
-            currentGear = (Integer.parseInt(currentGear) - 1) + "";
-            setGear(currentGear);
+        if (getGearStatus().equals("2")){
+            speed = 15;
         }
+    }
+
+    public int checkSpeedometer() {
+        return speed;
     }
 }

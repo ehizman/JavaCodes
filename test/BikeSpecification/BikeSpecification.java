@@ -77,7 +77,7 @@ class BikeSpecification {
 
     /*
      * As a user,
-     * i want bike to be set automatically to neutral when turned on
+     * i want bike to be set to neutral when turned
      *  */
     @Test
     @DisplayName(" is set to Neutral when turning on for the first time")
@@ -97,7 +97,9 @@ class BikeSpecification {
         superBike.shiftUp();
         assertEquals("2", superBike.getGearStatus());
     }
-
+    /*As a user,
+    * i want to gear change from lower to higher gear
+    */
     @Test
     @DisplayName(" can change from lower to higher gear")
     void bikeCanShiftUpFromGearOneToNeutral() {
@@ -121,9 +123,60 @@ class BikeSpecification {
     @DisplayName(" can change from higher to lower gear")
     void bikeCanGearDownFromGearThreeToGearTwo() {
         Bike superBike = new Bike();
-        String gearStatus = "2";
+        String gearStatus = "3";
         superBike.setGear(gearStatus);
         superBike.shiftDown();
-        assertEquals("N", superBike.getGearStatus());
+        assertEquals("2", superBike.getGearStatus());
     }
+    @Test
+    @DisplayName(" cannot shift gear at initial state")
+    void bikeCannotShiftUpAtInitialState() {
+        Bike superBike = new Bike();
+        superBike.shiftUp();
+        assertNull(null, superBike.getGearStatus());
+    }
+    @Test
+    @DisplayName(" cannot shift gear at initial state")
+    void bikeCannotShiftDownAtInitialState() {
+        Bike superBike = new Bike();
+        superBike.shiftDown();
+        assertNull(null, superBike.getGearStatus());
+    }
+
+    @Test
+    @DisplayName(" move with a steady speed of 5km/hr when on and in gear one")
+    void bikeCanMoveWithSteadySpeedOf5kmPerHrWhenOnAndWhenInGearOne(){
+        Bike superBike = new Bike();
+        superBike.setOn();
+        superBike.setGear("1");
+        superBike.move();
+        assertEquals(5, superBike.checkSpeedometer());
+    }
+
+    @Test
+    @DisplayName(" does not move with a steady speed of 5km/hr when on and in Neutral")
+    void bikeCannotMoveWhenInNeutral(){
+        Bike superBike = new Bike();
+        superBike.setOn();
+        superBike.move();
+        assertEquals(0, superBike.checkSpeedometer());
+    }
+    @Test
+    @DisplayName(" move with a steady speed of 15km/hr when on and in gear two")
+    void bikeCanMoveWithSteadySpeedOf5kmPerHrWhenOnAndWhenInGearTwo(){
+        Bike superBike = new Bike();
+        superBike.setOn();
+        superBike.shiftUp();
+        superBike.move();
+        assertEquals(15, superBike.checkSpeedometer());
+    }
+
+//    @Test
+//    @DisplayName(" can accelerate at rate of 20km/hr when throttle is pressed")
+//    void bikeCanAccelerateAtRateOf20kmPerHrWhenThrottleIsPressed(){
+//        Bike superBike = new Bike();
+//        superBike.setOn();
+//        superBike.move();
+//        assertEquals(0);
+//    }
 }
