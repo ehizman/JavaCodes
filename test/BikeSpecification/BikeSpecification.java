@@ -166,33 +166,62 @@ class BikeSpecification {
 
     }
 
-//    @Test
-//    @DisplayName(" can accelerate to maximum speed of 15km/hr when on and in gear one and when throttle is on")
-//    void bikeCanAccelerateToAMaximumSpeedOf15kmPerHrWhenOnAndWhenToggleIsOnAndWhenInGearOne(){
-//        Bike superBike = new Bike();
-//        superBike.setOn();
-//        superBike.setGear("1");
-//        superBike.move();
-//        assertEquals(5, superBike.checkSpeedometer());
-//    }
-//
-//    @Test
-//    @DisplayName(" does not move in Neutral")
-//    void bikeCannotMoveWhenInNeutral(){
-//        Bike superBike = new Bike();
-//        superBike.setOn();
-//        superBike.move();
-//        assertEquals(0, superBike.checkSpeedometer());
-//    }
-//    @Test
-//    @DisplayName(" moves with a steady speed of 15km/hr when on and in gear two")
-//    void bikeCanMoveWithSteadySpeedOf5kmPerHrWhenOnAndWhenInGearTwo(){
-//        Bike superBike = new Bike();
-//        superBike.setOn();
-//        superBike.shiftUp();
-//        superBike.move();
-//        assertEquals(15, superBike.checkSpeedometer());
-//    }
+    @Test
+    @DisplayName(" can accelerate to maximum speed of 15km/hr when on and in gear1 and when throttle is on")
+    /* bike accelerates at a steady rate of 5km/hr */
+    void bikeCanAccelerateToAMaximumSpeedOf15kmPerHrWhenOnAndWhenToggleIsOnAndWhenInGearOne(){
+        Bike superBike = new Bike();
+        superBike.setOn();
+        superBike.shiftDown();
+        superBike.setThrottle();
+        superBike.accelerate();
+        superBike.accelerate();
+        superBike.accelerate();
+        superBike.accelerate();
+        assertEquals(15, superBike.checkSpeedometer());
+    }
+
+    @Test
+    @DisplayName(" can accelerate to maximum speed of 30km/hr when on and in gear2 and when throttle is on")
+    void bike_Can_Accelerate_To_A_Maximum_Speed_Of_30km_Per_Hr_When_On_And_When_Throttle_Is_On_And_When_In_Gear_Two(){
+        Bike superBike = new Bike();
+        superBike.setOn();
+        superBike.shiftUp();
+        superBike.setThrottle();
+        for (int counter = 0; counter < 7; counter++ ){
+            superBike.accelerate();
+        }
+        assertEquals(30, superBike.checkSpeedometer());
+    }
+
+    @Test
+    @DisplayName(" can accelerate to maximum speed of 45km/hr when on and in gear3 and when throttle is on")
+    void bike_Can_Accelerate_To_A_Maximum_Speed_Of_45km_Per_Hr_When_On_And_When_Throttle_Is_On_And_When_In_Gear_Three(){
+        Bike superBike = new Bike();
+        superBike.setOn();
+        superBike.shiftUp();
+        superBike.shiftUp();
+        superBike.setThrottle();
+        for (int counter = 0; counter < 9; counter++ ){
+            superBike.accelerate();
+        }
+        assertEquals(45, superBike.checkSpeedometer());
+    }
+
+    @Test
+    @DisplayName(" can accelerate to maximum speed of 45km/hr when on and in gear3 and when throttle is on")
+    void bike_Can_Accelerate_To_A_Maximum_Speed_Of_60km_Per_Hr_When_On_And_When_Throttle_Is_On_And_When_In_Gear_Four(){
+        Bike superBike = new Bike();
+        superBike.setOn();
+        superBike.shiftUp();
+        superBike.shiftUp();
+        superBike.shiftUp();
+        superBike.setThrottle();
+        for (int counter = 0; counter < 12; counter++ ){
+            superBike.accelerate();
+        }
+        assertEquals(60, superBike.checkSpeedometer());
+    }
 //
 //    @Test
 //    @DisplayName(" moves with a steady speed of 25km/hr when on and in gear three")

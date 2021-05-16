@@ -95,9 +95,36 @@ public class Bike {
     }
 
     public void accelerate() {
-        int accelerationRate = 15;
-        if ((throttleIsPressed) && (!getGearStatus().equals("N"))){
-            speed = speed + accelerationRate;
+        int accelerationRate = 5;
+        String currentGear = getGearStatus();
+        if ((throttleIsPressed) && (!currentGear.equals("N"))){
+            if(currentGear.equals("1")){
+                int maxSpeed = 15;
+                if (speed < maxSpeed) {
+                    speed = speed + accelerationRate;
+                }
+            }
+            if(currentGear.equals("2")){
+                int maxSpeed = 30;
+                if (speed < maxSpeed) {
+                    speed = speed + accelerationRate;
+                }
+            }
+
+            if(currentGear.equals("3")){
+                int maxSpeed = 45;
+                if (speed < maxSpeed) {
+                    speed = speed + accelerationRate;
+                }
+            }
+
+            if(currentGear.equals("4")){
+                int maxSpeed = 60;
+                if (speed < maxSpeed) {
+                    speed = speed + accelerationRate;
+                }
+            }
         }
+
     }
 }
