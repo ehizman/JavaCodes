@@ -76,8 +76,8 @@ public class HeartRate {
 
 
     public List<Double> calculateTargetHeartRate(int maxHeartRate) {
-        double lowerBound = Math.ceil(0.5 * maxHeartRate);
-        double upperBound = Math.ceil(0.85 * maxHeartRate);
+        double lowerBound = (0.5 * maxHeartRate);
+        double upperBound = (0.85 * maxHeartRate);
         return Arrays.asList(lowerBound, upperBound);
     }
 

@@ -1,7 +1,12 @@
 package assignments.BikeSpecification;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class Bike {
     private int powerStatus;
+    private String gearStatus;
+    private final ArrayList<String> gearList = new ArrayList<>(Arrays.asList("1", "2", "3", "4", "P"));
 
     public int getPowerStatus() { //getter
        return powerStatus;
@@ -19,4 +24,13 @@ public class Bike {
         }
     }
 
+    public String getGearStatus() {
+        return gearStatus;
+    }
+
+    public void setGear(String gearStatus) {
+        if (gearList.contains(gearStatus)){
+            this.gearStatus = gearStatus;
+        }
+    }
 }

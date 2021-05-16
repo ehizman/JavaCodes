@@ -15,7 +15,7 @@ class BikeSpecification {
     so that I can keep track of the state of the bike
     * */
     @Test
-    @DisplayName(" is off before power on")
+    @DisplayName(" is off at Initial")
     void bikeIsOffBeforePoweredOn(){
         Bike superBike = new Bike();
         assertEquals(0, superBike.getPowerStatus());
@@ -49,6 +49,25 @@ class BikeSpecification {
         powerStatus = superBike.getPowerStatus();
         assertEquals(0, powerStatus);
     }
+
+    @Test
+    @DisplayName(" can be set on only gear 1, 2, 3, 4 & P(park)")
+    void bikeCanSelectGear() {
+        Bike superBike = new Bike();
+        String gearStatus = "5";
+        superBike.setGear(gearStatus);
+        assertNull(superBike.getGearStatus(), () -> "Gear status cannot be set to 5");
+    }
+
+//    @Test
+//    @DisplayName(" can accelerate only when on and when gear is not on park")
+//    void bike_Can_Accelerate_Only_When_On_And_When_Gear_Is_Not_Set_To_Park() {
+//        Bike superBike = new Bike();
+//        superBike.setOn();
+//        assertEquals(1, superBike.getPowerStatus());
+//        assertEquals("P", superBike.getGearStatus(), () -> "Gear is not yet set on park");
+//
+//    }
 
 
 }
