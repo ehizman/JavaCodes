@@ -8,6 +8,7 @@ public class Bike {
     private String gearShifter;
     private final ArrayList<String> gearList = new ArrayList<>(Arrays.asList("1", "2", "3", "4", "N"));
     private int speed;
+    private boolean throttleIsPressed;
 
     public int getPowerStatus() { //getter
        return powerStatus;
@@ -72,16 +73,31 @@ public class Bike {
         }
     }
 
-    public void move() {
-        if (getGearStatus().equals("1")){
-            speed = 5;
-        }
-        if (getGearStatus().equals("2")){
-            speed = 15;
-        }
-    }
+//    public void move() {
+//        if (getGearStatus().equals("1")){
+//            speed = 5;
+//        }
+//        if (getGearStatus().equals("2")){
+//            speed = 15;
+//        }
+//    }
 
     public int checkSpeedometer() {
         return speed;
+    }
+
+    public void setThrottle() {
+        throttleIsPressed = true;
+    }
+
+    public boolean isThrottlePressed() {
+        return throttleIsPressed;
+    }
+
+    public void accelerate() {
+        int accelerationRate = 15;
+        if ((throttleIsPressed) && (!getGearStatus().equals("N"))){
+            speed = speed + accelerationRate;
+        }
     }
 }

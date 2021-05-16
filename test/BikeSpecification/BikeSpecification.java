@@ -1,6 +1,7 @@
 package BikeSpecification;
 
 import assignments.BikeSpecification.Bike;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -143,33 +144,66 @@ class BikeSpecification {
         assertNull(null, superBike.getGearStatus());
     }
 
+    /** bike accelerates at a steady rate of 5km/hr each in one hour time throttle is pressed **/
     @Test
-    @DisplayName(" move with a steady speed of 5km/hr when on and in gear one")
-    void bikeCanMoveWithSteadySpeedOf5kmPerHrWhenOnAndWhenInGearOne(){
+    @DisplayName("cannot accelerate when throttle is on and gear is set on neutral")
+    void bikeCannotAccelerateWhenThrottleIsOnAndOnNeutral() {
         Bike superBike = new Bike();
         superBike.setOn();
-        superBike.setGear("1");
-        superBike.move();
-        assertEquals(5, superBike.checkSpeedometer());
+        superBike.setThrottle();
+        superBike.accelerate();
+        assertEquals(0, superBike.checkSpeedometer());
     }
 
     @Test
-    @DisplayName(" does not move with a steady speed of 5km/hr when on and in Neutral")
-    void bikeCannotMoveWhenInNeutral(){
+    @DisplayName(" cannot accelerate when throttle is not pressed")
+    void bikeCannotAccelerateWhenThrottleIsNotPressed(){
         Bike superBike = new Bike();
         superBike.setOn();
-        superBike.move();
+        superBike.shiftDown();
+        superBike.accelerate();
         assertEquals(0, superBike.checkSpeedometer());
+
     }
-    @Test
-    @DisplayName(" move with a steady speed of 15km/hr when on and in gear two")
-    void bikeCanMoveWithSteadySpeedOf5kmPerHrWhenOnAndWhenInGearTwo(){
-        Bike superBike = new Bike();
-        superBike.setOn();
-        superBike.shiftUp();
-        superBike.move();
-        assertEquals(15, superBike.checkSpeedometer());
-    }
+
+//    @Test
+//    @DisplayName(" can accelerate to maximum speed of 15km/hr when on and in gear one and when throttle is on")
+//    void bikeCanAccelerateToAMaximumSpeedOf15kmPerHrWhenOnAndWhenToggleIsOnAndWhenInGearOne(){
+//        Bike superBike = new Bike();
+//        superBike.setOn();
+//        superBike.setGear("1");
+//        superBike.move();
+//        assertEquals(5, superBike.checkSpeedometer());
+//    }
+//
+//    @Test
+//    @DisplayName(" does not move in Neutral")
+//    void bikeCannotMoveWhenInNeutral(){
+//        Bike superBike = new Bike();
+//        superBike.setOn();
+//        superBike.move();
+//        assertEquals(0, superBike.checkSpeedometer());
+//    }
+//    @Test
+//    @DisplayName(" moves with a steady speed of 15km/hr when on and in gear two")
+//    void bikeCanMoveWithSteadySpeedOf5kmPerHrWhenOnAndWhenInGearTwo(){
+//        Bike superBike = new Bike();
+//        superBike.setOn();
+//        superBike.shiftUp();
+//        superBike.move();
+//        assertEquals(15, superBike.checkSpeedometer());
+//    }
+//
+//    @Test
+//    @DisplayName(" moves with a steady speed of 25km/hr when on and in gear three")
+//    void bikeCanMoveWithSteadySpeedOf5kmPerHrWhenOnAndWhenInGearThree(){
+//        Bike superBike = new Bike();
+//        superBike.setOn();
+//        superBike.shiftUp();
+//        superBike.shiftUp();
+//        superBike.move();
+//        assertEquals(15, superBike.checkSpeedometer());
+//    }
 
 //    @Test
 //    @DisplayName(" can accelerate at rate of 20km/hr when throttle is pressed")
