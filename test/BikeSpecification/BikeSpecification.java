@@ -49,60 +49,81 @@ class BikeSpecification {
         powerStatus = superBike.getPowerStatus();
         assertEquals(0, powerStatus);
     }
-
+    /*
+    * As a user,
+    * i want bike to have only 5 gears arranged as follows- 4, 3, 2, N, 1
+    * Neutral should be between gear 1 and gear 2
+     */
     @Test
-    @DisplayName(" is set to Park initial")
-    void bikeIsSetToParkAtInitial() {
-        Bike superBike = new Bike();
-        assertEquals("P",superBike.getGearStatus());
-    }
-
-    @Test
-    @DisplayName(" can be set to only gear 1, 2, 3, 4 & P(park)")
+    @DisplayName(" can be set to only gear 1, 2, 3, 4 & N(neutral)")
     void bikeCanSelectGear() {
         Bike superBike = new Bike();
         String gearStatus = "5";
         superBike.setGear(gearStatus);
         assertNull(superBike.getGearStatus());
     }
-
+    /*
+    * As a user,
+    * i want bike to be set automatically to neutral when turned off
+    *  */
     @Test
-    @DisplayName(" can change from lower to higher gear")
-    void bikeCanGearUpFromParkedToGearOne() {
+    @DisplayName(" is set to Neutral when turning off")
+    void bikeIsSetToNeutralWhenTurnedOff() {
         Bike superBike = new Bike();
-        String gearStatus = "P";
-        superBike.setGear(gearStatus);
-        assertEquals("P", superBike.getGearStatus());
-        superBike.gearUp();
-        assertEquals("1", superBike.getGearStatus());
+        superBike.setOn();
+        superBike.setOff();
+        assertEquals("N",superBike.getGearStatus());
+    }
+
+    /*
+     * As a user,
+     * i want bike to be set automatically to neutral when turned on
+     *  */
+    @Test
+    @DisplayName(" is set to Neutral when turning on for the first time")
+    void bikeIsSetToNeutralWhenTurnedOnForTheFirstTime() {
+        Bike superBike = new Bike();
+        superBike.setOn();
+        assertEquals("N",superBike.getGearStatus());
     }
 
     @Test
     @DisplayName(" can change from lower to higher gear")
-    void bikeCanGearUpGearTwoToGear3() {
+    void bikeCanGearUpFromNeutralToGearTwo() {
         Bike superBike = new Bike();
-        String gearStatus = "2";
+        String gearStatus = "N";
         superBike.setGear(gearStatus);
-        superBike.gearUp();
-        assertEquals("3", superBike.getGearStatus());
+        assertEquals("N", superBike.getGearStatus());
+        superBike.shiftUp();
+        assertEquals("2", superBike.getGearStatus());
     }
 
     @Test
-    @DisplayName(" can change from higher to lower gear")
-    void bikeCanGearDownFromGearOneToParked() {
+    @DisplayName(" can change from lower to higher gear")
+    void bikeCanShiftUpFromGearOneToNeutral() {
         Bike superBike = new Bike();
         String gearStatus = "1";
         superBike.setGear(gearStatus);
-        superBike.gearDown();
-        assertEquals("P", superBike.getGearStatus());
+        superBike.shiftUp();
+        assertEquals("N", superBike.getGearStatus());
     }
+
     @Test
     @DisplayName(" can change from higher to lower gear")
-    void bikeCanGearDownFromGearTwoToGearOne() {
+    void bikeCanGearDownFromGearTwoToNeutral() {
         Bike superBike = new Bike();
         String gearStatus = "2";
         superBike.setGear(gearStatus);
-        superBike.gearDown();
-        assertEquals("1", superBike.getGearStatus());
+        superBike.shiftDown();
+        assertEquals("N", superBike.getGearStatus());
+    }
+    @Test
+    @DisplayName(" can change from higher to lower gear")
+    void bikeCanGearDownFromGearThreeToGearTwo() {
+        Bike superBike = new Bike();
+        String gearStatus = "2";
+        superBike.setGear(gearStatus);
+        superBike.shiftDown();
+        assertEquals("N", superBike.getGearStatus());
     }
 }

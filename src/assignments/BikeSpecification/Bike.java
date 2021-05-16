@@ -5,8 +5,8 @@ import java.util.Arrays;
 
 public class Bike {
     private int powerStatus;
-    private String currentGear = "P";
-    private final ArrayList<String> gearList = new ArrayList<>(Arrays.asList("1", "2", "3", "4", "P"));
+    private String gearShifter;
+    private final ArrayList<String> gearList = new ArrayList<>(Arrays.asList("1", "2", "3", "4", "N"));
 
     public int getPowerStatus() { //getter
        return powerStatus;
@@ -15,33 +15,37 @@ public class Bike {
     public void setOn() { //setter
         if (powerStatus == 0) {
             powerStatus = 1;
-            setGear("P");
+            setGear("N");
         }
     }
 
     public void setOff() {
         if (powerStatus == 1) {
             powerStatus = 0;
+            setGear("N");
         }
     }
 
     public String getGearStatus() {
-        return currentGear;
+        return gearShifter;
     }
 
     public void setGear(String gearStatus) {
         if (gearList.contains(gearStatus)){
-            currentGear = gearStatus;
+            gearShifter = gearStatus;
         }
         else{
-            currentGear = null;
+            gearShifter = null;
         }
     }
 
-    public void gearUp() {
+    public void shiftUp() {
         String currentGear = getGearStatus();
-        if (currentGear.equals("P")){
-            setGear("1");
+        if (currentGear.equals("N")){
+            setGear("2");
+        }
+        else if (currentGear.equals("1")){
+            setGear("N");
         }
         else {
             currentGear = (Integer.parseInt(currentGear) + 1) + "";
@@ -49,10 +53,13 @@ public class Bike {
         }
     }
 
-    public void gearDown() {
+    public void shiftDown() {
         String currentGear = getGearStatus();
-        if (currentGear.equals("1")) {
-            setGear("P");
+        if (currentGear.equals("2")) {
+            setGear("N");
+        }
+        else if (currentGear.equals("N")){
+            setGear("1");
         }
         else{
             currentGear = (Integer.parseInt(currentGear) - 1) + "";
