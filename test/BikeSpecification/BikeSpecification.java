@@ -51,23 +51,39 @@ class BikeSpecification {
     }
 
     @Test
-    @DisplayName(" can be set on only gear 1, 2, 3, 4 & P(park)")
+    @DisplayName(" is set to Park initial")
+    void bikeIsSetToParkAtInitial() {
+        Bike superBike = new Bike();
+        assertEquals("P",superBike.getGearStatus());
+    }
+
+    @Test
+    @DisplayName(" can be set to only gear 1, 2, 3, 4 & P(park)")
     void bikeCanSelectGear() {
         Bike superBike = new Bike();
         String gearStatus = "5";
         superBike.setGear(gearStatus);
-        assertNull(superBike.getGearStatus(), () -> "Gear status cannot be set to 5");
+        assertNull(superBike.getGearStatus());
     }
 
-//    @Test
-//    @DisplayName(" can accelerate only when on and when gear is not on park")
-//    void bike_Can_Accelerate_Only_When_On_And_When_Gear_Is_Not_Set_To_Park() {
-//        Bike superBike = new Bike();
-//        superBike.setOn();
-//        assertEquals(1, superBike.getPowerStatus());
-//        assertEquals("P", superBike.getGearStatus(), () -> "Gear is not yet set on park");
-//
-//    }
+    @Test
+    @DisplayName(" can change from lower to higher gear")
+    void bikeCanChangeFromParkedToGearOne() {
+        Bike superBike = new Bike();
+        String gearStatus = "P";
+        superBike.setGear(gearStatus);
+        assertEquals("P", superBike.getGearStatus());
+        superBike.gearUp();
+        assertEquals("1", superBike.getGearStatus());
+    }
 
-
+    @Test
+    @DisplayName(" can change from lower to higher gear")
+    void bikeCanChangeFromGearOneToGearTwo() {
+        Bike superBike = new Bike();
+        String gearStatus = "1";
+        superBike.setGear(gearStatus);
+        superBike.gearUp();
+        assertEquals("2", superBike.getGearStatus());
+    }
 }

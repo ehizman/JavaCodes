@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 public class Bike {
     private int powerStatus;
-    private String gearStatus;
+    private String currentGear = "P";
     private final ArrayList<String> gearList = new ArrayList<>(Arrays.asList("1", "2", "3", "4", "P"));
 
     public int getPowerStatus() { //getter
@@ -15,6 +15,7 @@ public class Bike {
     public void setOn() { //setter
         if (powerStatus == 0) {
             powerStatus = 1;
+            setGear("P");
         }
     }
 
@@ -25,12 +26,26 @@ public class Bike {
     }
 
     public String getGearStatus() {
-        return gearStatus;
+        return currentGear;
     }
 
     public void setGear(String gearStatus) {
         if (gearList.contains(gearStatus)){
-            this.gearStatus = gearStatus;
+            currentGear = gearStatus;
+        }
+        else{
+            currentGear = null;
+        }
+    }
+
+    public void gearUp() {
+        String currentGear = getGearStatus();
+        if (currentGear.equals("P")){
+            setGear("1");
+        }
+        else {
+            currentGear = (Integer.parseInt(currentGear) + 1) + "";
+            setGear(currentGear);
         }
     }
 }
