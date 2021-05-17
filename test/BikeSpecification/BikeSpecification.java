@@ -273,4 +273,17 @@ class BikeSpecification {
         superBike.decelerate();
         assertEquals(0, superBike.checkSpeedometer());
     }
+
+    @Test
+    @DisplayName("bike can decelerate only when clutch is pressed on")
+    void bikeCanDecelerateWhenClutchIsPressedOn(){
+        Bike superBike = new Bike();
+        superBike.setOn();
+        superBike.setThrottle();
+        superBike.shiftDown();
+        superBike.accelerate();
+        superBike.setClutch();
+        superBike.decelerate();
+        assertEquals(0, superBike.checkSpeedometer());
+    }
 }

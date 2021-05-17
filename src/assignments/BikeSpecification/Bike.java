@@ -5,6 +5,7 @@ public class Bike {
     private String gearStatus;
     private int speed;
     private boolean throttleIsPressed;
+    private boolean clutchIsPressed;
 
     public int getPowerStatus() { //getter
        return powerStatus;
@@ -125,6 +126,18 @@ public class Bike {
 
     public void decelerate() {
         int decelerationRate = 5;
-        speed = checkSpeedometer() - decelerationRate;
+        if (isClutchPressed()){
+            speed = checkSpeedometer() - decelerationRate;
+        }
+
     }
+
+    private boolean isClutchPressed() {
+        return clutchIsPressed;
+    }
+
+    public void setClutch() {
+        clutchIsPressed = true;
+    }
+
 }
