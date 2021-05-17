@@ -14,8 +14,12 @@ public class AC {
         return temperature;
     }
 
-    public String getName() {
-        return productName;
+    public String displayName() {
+        boolean powerState = isOn();
+        if (powerState){
+            return productName;
+        }
+        return "";
     }
 
     public void powerOn() {

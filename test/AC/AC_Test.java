@@ -8,15 +8,17 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @DisplayName("An AC")
 public class AC_Test {
+// test commented out because requirement is that AC should not be able to display name
+    //when off. At initial state of creation AC is off
 
-    @Test
-    @DisplayName(" has a name")
-    void AC_Has_Name_Upon_Creation(){
-        String name = "iCool By Ehizman";
-        int initialTemperature = 16;
-        AC newAC = new AC(name, initialTemperature);
-        assertEquals(name, newAC.getName());
-    }
+//    @Test
+//    @DisplayName(" has a name")
+//    void AC_Has_Name_Upon_Creation(){
+//        String name = "iCool By Ehizman";
+//        int initialTemperature = 16;
+//        AC newAC = new AC(name, initialTemperature);
+//        assertEquals(name, newAC.displayName());
+//    }
 
     @Test
     @DisplayName(" has an initial temperature upon creation")
@@ -68,4 +70,25 @@ public class AC_Test {
         iCool.powerOn();
         assertTrue(iCool.isOn());
     }
+    @Test
+    @DisplayName(" that AC does not display 'iCool By Ehizman' when off")
+    void AC_CanNotDisplayProductNameWhenOff(){
+        String name = "iCool By Ehizman";
+        int temperature = 16;
+        AC iCool = new AC(name, temperature);
+        iCool.powerOn();
+        iCool.powerOff();
+        assertEquals("", iCool.displayName());
+    }
+    @Test
+    @DisplayName(" that AC displays 'iCool By Ehizman' when on")
+    void AC_CanDisplayProductNameWhenOn() {
+        String name = "iCool By Ehizman";
+        int temperature = 16;
+        AC iCool = new AC(name, temperature);
+        iCool.powerOn();
+        assertEquals("iCool By Ehizman", iCool.displayName());
+    }
+
+    @
 }
