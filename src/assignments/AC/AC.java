@@ -2,12 +2,11 @@ package assignments.AC;
 
 public class AC {
     private final String productName;
-    private final int temperature;
+    private int temperature;
     private boolean isOn;
 
-    public AC(String productName, int initialTemperature) {
+    public AC(String productName) {
         this.productName = productName;
-        this.temperature = initialTemperature;
     }
 
     public int getInitialTemperature() {

@@ -21,20 +21,10 @@ public class AC_Test {
 //    }
 
     @Test
-    @DisplayName(" has an initial temperature upon creation")
-    void AC_Has_Initial_Temp_Upon_Creation(){
-        String name = "iCool By Ehizman";
-        int initialTemperature = 16;
-        AC iCool = new AC(name,initialTemperature);
-        assertEquals(initialTemperature, iCool.getInitialTemperature());
-    }
-
-    @Test
     @DisplayName(" that AC can be set On")
     void ACCanBeSetOn(){
         String name = "iCool By Ehizman";
-        int initialTemperature = 16;
-        AC iCool = new AC(name,initialTemperature);
+        AC iCool = new AC(name);
         iCool.powerOn();
         assertTrue(iCool.isOn());
     }
@@ -43,8 +33,7 @@ public class AC_Test {
     @DisplayName(" that AC is set off initially upon creation")
     void AC_IsSetOffInitiallyUponCreation(){
         String name = "iCool By Ehizman";
-        int temperature = 16;
-        AC iCool = new AC(name,temperature);
+        AC iCool = new AC(name);
         assertFalse(iCool.isOn());
     }
 
@@ -52,8 +41,7 @@ public class AC_Test {
     @DisplayName(" that AC can be set off after previously being on")
     void AC_canBeSetOffAfterPreviouslyBeingOn() {
         String name = "iCool By Ehizman";
-        int temperature = 16;
-        AC iCool = new AC(name, temperature);
+        AC iCool = new AC(name);
         iCool.powerOn();
         iCool.powerOff();
         assertFalse(iCool.isOn(), "AC is not off");
@@ -63,8 +51,7 @@ public class AC_Test {
     @DisplayName(" that AC can be set on for the second time after being set off")
     void AC_CanBeSetOn_For_The_SecondTimeAfterBeingSetOff() {
         String name = "iCool By Ehizman";
-        int temperature = 16;
-        AC iCool = new AC(name, temperature);
+        AC iCool = new AC(name);
         iCool.powerOn();
         iCool.powerOff();
         iCool.powerOn();
@@ -74,8 +61,7 @@ public class AC_Test {
     @DisplayName(" that AC does not display 'iCool By Ehizman' when off")
     void AC_CanNotDisplayProductNameWhenOff(){
         String name = "iCool By Ehizman";
-        int temperature = 16;
-        AC iCool = new AC(name, temperature);
+        AC iCool = new AC(name);
         iCool.powerOn();
         iCool.powerOff();
         assertEquals("", iCool.displayName());
@@ -84,11 +70,14 @@ public class AC_Test {
     @DisplayName(" that AC displays 'iCool By Ehizman' when on")
     void AC_CanDisplayProductNameWhenOn() {
         String name = "iCool By Ehizman";
-        int temperature = 16;
-        AC iCool = new AC(name, temperature);
+        AC iCool = new AC(name);
         iCool.powerOn();
         assertEquals("iCool By Ehizman", iCool.displayName());
     }
 
-    @
+    @Test
+    @DisplayName(" that AC is set to initial temperature of 16 when turned on for the first time")
+    void AC_SetsInitialTemperatureToSixTeenDegreesWhenTurnedOnForTheFirstTime(){
+
+    }
 }
