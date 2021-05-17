@@ -1,12 +1,8 @@
 package assignments.BikeSpecification;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 public class Bike {
     private int powerStatus;
-    private String gearShifter;
-    private final ArrayList<String> gearList = new ArrayList<>(Arrays.asList("1", "2", "3", "4", "N"));
+    private String gearStatus;
     private int speed;
     private boolean throttleIsPressed;
 
@@ -29,15 +25,15 @@ public class Bike {
     }
 
     public String getGearStatus() {
-        return gearShifter;
+        return gearStatus;
     }
 
     public void setGear(String gearStatus) {
-        if (gearList.contains(gearStatus)){
-            gearShifter = gearStatus;
+        if ((gearStatus.equals("1")) || (gearStatus.equals("2")) || (gearStatus.equals("3")) || (gearStatus.equals("4")) || (gearStatus.equals("N"))){
+            this.gearStatus = gearStatus;
         }
         else{
-            gearShifter = null;
+            this.gearStatus = null;
         }
     }
 

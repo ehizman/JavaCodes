@@ -243,7 +243,7 @@ class BikeSpecification {
 
     @Test
     @DisplayName(" cannot change from a higher to a lower gear without first reducing speed")
-    void bike_Cannot_Change_From_Gear3_To_Gear2_When_Moving_At_A_Speed_Beyound_30_Km_Per_Hour_Without_First_Reducing_Speed(){
+    void bike_Cannot_Change_From_Gear3_To_Gear2_When_Moving_At_A_Speed_Beyond_30_Km_Per_Hour_Without_First_Reducing_Speed(){
         Bike superBike = new Bike();
         superBike.setOn();
         superBike.shiftUp();
