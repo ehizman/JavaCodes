@@ -286,4 +286,5 @@ class BikeSpecification {
         superBike.decelerate();
         assertEquals(0, superBike.checkSpeedometer());
     }
+    //test that bike cannot accelerate or decelerate when both clutch and throttle is pressed
 }

@@ -1,4 +1,4 @@
-//package AirConditioner;
+//package assignments.AirConditioner;
 //
 //public class AirConditioner {
 //
@@ -6,7 +6,7 @@
 //    private String productName;
 //    private int temperature;
 //
-//    public AirConditioner (String) {
+//    public AirConditioner (String productName) {
 //
 //    }
 //
