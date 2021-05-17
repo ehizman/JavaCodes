@@ -1,7 +1,6 @@
 package BikeSpecification;
 
 import assignments.BikeSpecification.Bike;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -173,12 +172,13 @@ class BikeSpecification {
         Bike superBike = new Bike();
         superBike.setOn();
         superBike.shiftDown();
+        int maxSpeed = 15;
         superBike.setThrottle();
         superBike.accelerate();
         superBike.accelerate();
         superBike.accelerate();
         superBike.accelerate();
-        assertEquals(15, superBike.checkSpeedometer());
+        assertFalse(superBike.checkSpeedometer() > maxSpeed);
     }
 
     @Test
@@ -186,12 +186,13 @@ class BikeSpecification {
     void bike_Can_Accelerate_To_A_Maximum_Speed_Of_30km_Per_Hr_When_On_And_When_Throttle_Is_On_And_When_In_Gear_Two(){
         Bike superBike = new Bike();
         superBike.setOn();
+        int maxSpeed = 30;
         superBike.shiftUp();
         superBike.setThrottle();
         for (int counter = 0; counter < 7; counter++ ){
             superBike.accelerate();
         }
-        assertEquals(30, superBike.checkSpeedometer());
+        assertFalse(superBike.checkSpeedometer() > maxSpeed );
     }
 
     @Test
@@ -201,11 +202,12 @@ class BikeSpecification {
         superBike.setOn();
         superBike.shiftUp();
         superBike.shiftUp();
+        int maxSpeed = 45;
         superBike.setThrottle();
         for (int counter = 0; counter < 9; counter++ ){
             superBike.accelerate();
         }
-        assertEquals(45, superBike.checkSpeedometer());
+        assertFalse(superBike.checkSpeedometer() > maxSpeed, "speed is greater than maximum speed");
     }
 
     @Test
@@ -216,30 +218,47 @@ class BikeSpecification {
         superBike.shiftUp();
         superBike.shiftUp();
         superBike.shiftUp();
+        int maxSpeed = 60;
         superBike.setThrottle();
         for (int counter = 0; counter < 12; counter++ ){
             superBike.accelerate();
         }
-        assertEquals(60, superBike.checkSpeedometer());
+        assertFalse(superBike.checkSpeedometer() > maxSpeed);
     }
-//
-//    @Test
-//    @DisplayName(" moves with a steady speed of 25km/hr when on and in gear three")
-//    void bikeCanMoveWithSteadySpeedOf5kmPerHrWhenOnAndWhenInGearThree(){
-//        Bike superBike = new Bike();
-//        superBike.setOn();
-//        superBike.shiftUp();
-//        superBike.shiftUp();
-//        superBike.move();
-//        assertEquals(15, superBike.checkSpeedometer());
-//    }
 
-//    @Test
-//    @DisplayName(" can accelerate at rate of 20km/hr when throttle is pressed")
-//    void bikeCanAccelerateAtRateOf20kmPerHrWhenThrottleIsPressed(){
-//        Bike superBike = new Bike();
-//        superBike.setOn();
-//        superBike.move();
-//        assertEquals(0);
-//    }
+    @Test
+    @DisplayName(" cannot change from a higher to a lower gear without first reducing speed")
+    void bike_Cannot_Change_From_Gear2_To_Neutral_Without_First_Reducing_Speed(){
+        Bike superBike = new Bike();
+        superBike.setOn();
+        superBike.shiftUp();
+        superBike.setThrottle();
+        superBike.accelerate();
+        superBike.accelerate();
+        superBike.accelerate();
+        String currentGear = superBike.getGearStatus();
+        superBike.shiftDown();
+        assertEquals(currentGear, superBike.getGearStatus());
+    }
+
+    @Test
+    @DisplayName(" cannot change from a higher to a lower gear without first reducing speed")
+    void bike_Cannot_Change_From_Gear3_To_Gear2_When_Moving_At_A_Speed_Beyound_30_Km_Per_Hour_Without_First_Reducing_Speed(){
+        Bike superBike = new Bike();
+        superBike.setOn();
+        superBike.shiftUp();
+        superBike.shiftUp();
+        superBike.setThrottle();
+        superBike.accelerate();
+        superBike.accelerate();
+        superBike.accelerate();
+        superBike.accelerate();
+        superBike.accelerate();
+        superBike.accelerate();
+        superBike.accelerate();
+        String currentGear = superBike.getGearStatus();
+        superBike.shiftDown();
+        assertEquals(currentGear, superBike.getGearStatus(),"Cannot change gear from 3 to 2 when moving at a speed " +
+                "beyond 30km per hour");
+    }
 }

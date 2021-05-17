@@ -61,26 +61,25 @@ public class Bike {
         String currentGear = getGearStatus();
         if (currentGear != null){
             if (currentGear.equals("2")) {
-                setGear("N");
+                if (checkSpeedometer() == 0) {
+                    setGear("N");
+                }
             }
             else if (currentGear.equals("N")){
                 setGear("1");
             }
-            else{
-                currentGear = (Integer.parseInt(currentGear) - 1) + "";
-                setGear(currentGear);
+            else if(currentGear.equals("3")) {
+                if (checkSpeedometer() < 30){
+                    setGear("2");
+                }
+            }
+            else if (currentGear.equals("4")){
+                if (checkSpeedometer() < 45) {
+                    setGear("2");
+                }
             }
         }
     }
-
-//    public void move() {
-//        if (getGearStatus().equals("1")){
-//            speed = 5;
-//        }
-//        if (getGearStatus().equals("2")){
-//            speed = 15;
-//        }
-//    }
 
     public int checkSpeedometer() {
         return speed;
@@ -97,7 +96,7 @@ public class Bike {
     public void accelerate() {
         int accelerationRate = 5;
         String currentGear = getGearStatus();
-        if ((throttleIsPressed) && (!currentGear.equals("N"))){
+        if ((isThrottlePressed()) && (!currentGear.equals("N"))){
             if(currentGear.equals("1")){
                 int maxSpeed = 15;
                 if (speed < maxSpeed) {
