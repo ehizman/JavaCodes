@@ -1,19 +1,32 @@
 package assignments.AC;
 
 public class AC {
-    String productName;
-    int initialTemperature;
+    private final String productName;
+    private final int temperature;
+    private boolean isOn;
 
     public AC(String productName, int initialTemperature) {
         this.productName = productName;
-        this.initialTemperature = initialTemperature;
+        this.temperature = initialTemperature;
     }
 
     public int getInitialTemperature() {
-        return initialTemperature;
+        return temperature;
     }
 
     public String getName() {
         return productName;
+    }
+
+    public void setOn() {
+        isOn = true;
+    }
+
+    public boolean isOn() {
+        return isOn;
+    }
+
+    public void setOff() {
+        isOn = false;
     }
 }
