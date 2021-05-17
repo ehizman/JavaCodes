@@ -2,15 +2,19 @@ package assignments.AC;
 
 public class AC {
     private final String productName;
-    private int temperature;
+    private String temperature;
     private boolean isOn;
 
     public AC(String productName) {
         this.productName = productName;
     }
 
-    public int getInitialTemperature() {
-        return temperature;
+    public String getTemperature() {
+        boolean powerState = isOn();
+        if (powerState){
+            return temperature;
+        }
+        return null;
     }
 
     public String displayName() {
@@ -22,6 +26,7 @@ public class AC {
     }
 
     public void powerOn() {
+        temperature = "16";
         isOn = true;
     }
 
@@ -31,5 +36,12 @@ public class AC {
 
     public void powerOff() {
         isOn = false;
+    }
+
+    public void setTemperature(String temperature) {
+        boolean powerState = isOn();
+        if (powerState) {
+            this.temperature = temperature;
+        }
     }
 }

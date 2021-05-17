@@ -78,6 +78,32 @@ public class AC_Test {
     @Test
     @DisplayName(" that AC is set to initial temperature of 16 when turned on for the first time")
     void AC_SetsInitialTemperatureToSixTeenDegreesWhenTurnedOnForTheFirstTime(){
+        String name = "iCool By Ehizman";
+        AC iCool = new AC(name);
+        iCool.powerOn();
+        assertEquals("16", iCool.getTemperature());
+    }
 
+    @Test
+    @DisplayName(" that AC set temperature when powered on")
+    void AC_CanSetTemperatureWhenPoweredOn(){
+        String name = "iCool By Ehizman";
+        AC iCool = new AC(name);
+        iCool.powerOn();
+        String temperature = "18";
+        iCool.setTemperature(temperature);
+        assertEquals("18", iCool.getTemperature());
+    }
+
+    @Test
+    @DisplayName(" that AC cannot set temperature when powered off")
+    void AC_CannotSetTemperatureWhenPoweredOff(){
+        String name = "iCool By Ehizman";
+        AC iCool = new AC(name);
+        iCool.powerOn();
+        iCool.powerOff();
+        String temperature = "18";
+        iCool.setTemperature(temperature);
+        assertNull(iCool.getTemperature());
     }
 }
