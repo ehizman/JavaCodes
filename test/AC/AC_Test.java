@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@DisplayName("An AC")
+@DisplayName("AC")
 public class AC_Test {
 // test commented out because requirement is that AC should not be able to display name
     //when off. At initial state of creation AC is off
@@ -21,7 +21,7 @@ public class AC_Test {
 //    }
 
     @Test
-    @DisplayName(" that AC can be set On")
+    @DisplayName(" can be set On")
     void ACCanBeSetOn(){
         String name = "iCool By Ehizman";
         AC iCool = new AC(name);
@@ -30,7 +30,7 @@ public class AC_Test {
     }
 
     @Test
-    @DisplayName(" that AC is set off initially upon creation")
+    @DisplayName(" is set off initially upon creation")
     void AC_IsSetOffInitiallyUponCreation(){
         String name = "iCool By Ehizman";
         AC iCool = new AC(name);
@@ -38,7 +38,7 @@ public class AC_Test {
     }
 
     @Test
-    @DisplayName(" that AC can be set off after previously being on")
+    @DisplayName(" can be set off after previously being on")
     void AC_canBeSetOffAfterPreviouslyBeingOn() {
         String name = "iCool By Ehizman";
         AC iCool = new AC(name);
@@ -48,7 +48,7 @@ public class AC_Test {
     }
 
     @Test
-    @DisplayName(" that AC can be set on for the second time after being set off")
+    @DisplayName(" can be set on for the second time after being set off")
     void AC_CanBeSetOn_For_The_SecondTimeAfterBeingSetOff() {
         String name = "iCool By Ehizman";
         AC iCool = new AC(name);
@@ -58,7 +58,7 @@ public class AC_Test {
         assertTrue(iCool.isOn());
     }
     @Test
-    @DisplayName(" that AC does not display 'iCool By Ehizman' when off")
+    @DisplayName(" does not display 'iCool By Ehizman' when off")
     void AC_CanNotDisplayProductNameWhenOff(){
         String name = "iCool By Ehizman";
         AC iCool = new AC(name);
@@ -67,7 +67,7 @@ public class AC_Test {
         assertEquals("", iCool.displayName());
     }
     @Test
-    @DisplayName(" that AC displays 'iCool By Ehizman' when on")
+    @DisplayName(" displays 'iCool By Ehizman' when on")
     void AC_CanDisplayProductNameWhenOn() {
         String name = "iCool By Ehizman";
         AC iCool = new AC(name);
@@ -76,7 +76,7 @@ public class AC_Test {
     }
 
     @Test
-    @DisplayName(" that AC is set to initial temperature of 16 when turned on for the first time")
+    @DisplayName(" is set to initial temperature of 16 when turned on for the first time")
     void AC_SetsInitialTemperatureToSixTeenDegreesWhenTurnedOnForTheFirstTime(){
         String name = "iCool By Ehizman";
         AC iCool = new AC(name);
@@ -85,7 +85,7 @@ public class AC_Test {
     }
 
     @Test
-    @DisplayName(" that AC set temperature when powered on")
+    @DisplayName(" can set temperature when powered on")
     void AC_CanSetTemperatureWhenPoweredOn(){
         String name = "iCool By Ehizman";
         AC iCool = new AC(name);
@@ -96,7 +96,7 @@ public class AC_Test {
     }
 
     @Test
-    @DisplayName(" that AC cannot set temperature when powered off")
+    @DisplayName(" cannot set temperature when powered off")
     void AC_CannotSetTemperatureWhenPoweredOff(){
         String name = "iCool By Ehizman";
         AC iCool = new AC(name);
@@ -108,7 +108,7 @@ public class AC_Test {
     }
 
     @Test
-    @DisplayName(" that AC can set temperature more than once")
+    @DisplayName(" can set temperature more than once")
     void AC_CanSetTemperatureMoreThanOnce(){
         String name = "iCool By Ehizman";
         AC iCool = new AC(name);
@@ -120,7 +120,7 @@ public class AC_Test {
         assertEquals("20", iCool.getTemperature());
     }
     @Test
-    @DisplayName(" that AC stores set temperature when powered off")
+    @DisplayName(" stores set temperature when powered off")
     void thatAC_StoresSetTemperatureWhenPoweredOff() {
         String name = "iCool By Ehizman";
         AC iCool = new AC(name);
@@ -131,7 +131,7 @@ public class AC_Test {
         assertEquals("18", iCool.getPreviousTemperature());
     }
     @Test
-    @DisplayName(" that AC remembers previously set temperature when powered on for the second time")
+    @DisplayName(" remembers previously set temperature when powered on for the second time")
     void AC_RemembersPreviouslySetTemperature() {
         String name = "iCool By Ehizman";
         AC iCool = new AC(name);
@@ -141,5 +141,36 @@ public class AC_Test {
         iCool.powerOff();
         iCool.powerOn();
         assertEquals("18", iCool.getTemperature());
+    }
+
+    @Test
+    @DisplayName(" remembers previously set temperature when powered on and temperature has been set multiple" +
+            " times")
+    void AC_RemembersPreviouslySetTemperatureAfterBeingPoweredOnAndAfterTemperatureHasBeenSetMultipleTimes() {
+        String name = "iCool By Ehizman";
+        AC iCool = new AC(name);
+        iCool.powerOn();
+        String temperature = "18";
+        iCool.setTemperature(temperature);
+        iCool.powerOff();
+        iCool.powerOn();
+        temperature = "20";
+        iCool.setTemperature(temperature);
+        temperature = "25";
+        iCool.setTemperature(temperature);
+        iCool.powerOff();
+        iCool.powerOn();
+        assertEquals("25", iCool.getTemperature());
+    }
+
+    @Test
+    @DisplayName(" cannot be set to a temperature lower than 16 degrees after it has been set for only the first time")
+    void AC_CannotSetToTemperatureLowerThanSixteenDegreesAfterItHasBeenSetOnlyTheFirstTime(){
+        String name = "iCool By Ehizman";
+        AC iCool = new AC(name);
+        iCool.powerOn();
+        String temperature = "15";
+        iCool.setTemperature(temperature);
+        assertEquals("16", iCool.getTemperature());
     }
 }

@@ -50,7 +50,9 @@ public class AC {
     public void setTemperature(String temperature) {
         boolean powerState = isOn();
         if (powerState) {
-            this.temperature = temperature;
+            if (Integer.parseInt(temperature) >= 16) {
+                this.temperature = temperature;
+            }
         }
     }
 
