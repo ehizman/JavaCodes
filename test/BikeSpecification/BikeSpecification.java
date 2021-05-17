@@ -261,4 +261,16 @@ class BikeSpecification {
         assertEquals(currentGear, superBike.getGearStatus(),"Cannot change gear from 3 to 2 when moving at a speed " +
                 "beyond 30km per hour");
     }
+
+    @Test
+    @DisplayName("bike can decelerate")
+    void bikeCanDecelerate(){
+        Bike superBike = new Bike();
+        superBike.setOn();
+        superBike.setThrottle();
+        superBike.shiftDown();
+        superBike.accelerate();
+        superBike.decelerate();
+        assertEquals(0, superBike.checkSpeedometer());
+    }
 }

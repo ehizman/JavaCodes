@@ -122,4 +122,9 @@ public class Bike {
         }
 
     }
+
+    public void decelerate() {
+        int decelerationRate = 5;
+        speed = checkSpeedometer() - decelerationRate;
+    }
 }
