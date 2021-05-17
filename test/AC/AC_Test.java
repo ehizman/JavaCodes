@@ -106,4 +106,40 @@ public class AC_Test {
         iCool.setTemperature(temperature);
         assertNull(iCool.getTemperature());
     }
+
+    @Test
+    @DisplayName(" that AC can set temperature more than once")
+    void AC_CanSetTemperatureMoreThanOnce(){
+        String name = "iCool By Ehizman";
+        AC iCool = new AC(name);
+        iCool.powerOn();
+        String temperature = "18";
+        iCool.setTemperature(temperature);
+        temperature = "20";
+        iCool.setTemperature(temperature);
+        assertEquals("20", iCool.getTemperature());
+    }
+    @Test
+    @DisplayName(" that AC stores set temperature when powered off")
+    void thatAC_StoresSetTemperatureWhenPoweredOff() {
+        String name = "iCool By Ehizman";
+        AC iCool = new AC(name);
+        iCool.powerOn();
+        String temperature = "18";
+        iCool.setTemperature(temperature);
+        iCool.powerOff();
+        assertEquals("18", iCool.getPreviousTemperature());
+    }
+    @Test
+    @DisplayName(" that AC remembers previously set temperature when powered on for the second time")
+    void AC_RemembersPreviouslySetTemperature() {
+        String name = "iCool By Ehizman";
+        AC iCool = new AC(name);
+        iCool.powerOn();
+        String temperature = "18";
+        iCool.setTemperature(temperature);
+        iCool.powerOff();
+        iCool.powerOn();
+        assertEquals("18", iCool.getTemperature());
+    }
 }

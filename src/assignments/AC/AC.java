@@ -3,6 +3,7 @@ package assignments.AC;
 public class AC {
     private final String productName;
     private String temperature;
+    private String previousTemperature;
     private boolean isOn;
 
     public AC(String productName) {
@@ -26,8 +27,15 @@ public class AC {
     }
 
     public void powerOn() {
-        temperature = "16";
         isOn = true;
+//        System.out.println(temperature);
+        if (getPreviousTemperature() == null){
+            String initialTemperature = "16";
+            setTemperature(initialTemperature);
+        }
+        else{
+            setTemperature(getPreviousTemperature());
+        }
     }
 
     public boolean isOn() {
@@ -35,6 +43,7 @@ public class AC {
     }
 
     public void powerOff() {
+        setPreviousTemperature(getTemperature());
         isOn = false;
     }
 
@@ -43,5 +52,13 @@ public class AC {
         if (powerState) {
             this.temperature = temperature;
         }
+    }
+
+    public void setPreviousTemperature(String temperature) {
+        previousTemperature = getTemperature();
+    }
+
+    public String getPreviousTemperature() {
+        return previousTemperature;
     }
 }
