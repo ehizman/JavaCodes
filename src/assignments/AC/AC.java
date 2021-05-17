@@ -18,7 +18,7 @@ public class AC {
         return productName;
     }
 
-    public void setOn() {
+    public void powerOn() {
         isOn = true;
     }
 
@@ -26,7 +26,7 @@ public class AC {
         return isOn;
     }
 
-    public void setOff() {
+    public void powerOff() {
         isOn = false;
     }
 }

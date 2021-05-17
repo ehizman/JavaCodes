@@ -30,7 +30,7 @@
 //
 //    }
 //
-//    public void setOn(boolean) {
+//    public void powerOn(boolean) {
 //
 //    }
 //

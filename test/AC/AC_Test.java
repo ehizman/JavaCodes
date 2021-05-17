@@ -33,7 +33,7 @@ public class AC_Test {
         String name = "iCool By Ehizman";
         int initialTemperature = 16;
         AC iCool = new AC(name,initialTemperature);
-        iCool.setOn();
+        iCool.powerOn();
         assertTrue(iCool.isOn());
     }
 
@@ -52,8 +52,8 @@ public class AC_Test {
         String name = "iCool By Ehizman";
         int temperature = 16;
         AC iCool = new AC(name, temperature);
-        iCool.setOn();
-        iCool.setOff();
+        iCool.powerOn();
+        iCool.powerOff();
         assertFalse(iCool.isOn(), "AC is not off");
     }
 
@@ -63,9 +63,9 @@ public class AC_Test {
         String name = "iCool By Ehizman";
         int temperature = 16;
         AC iCool = new AC(name, temperature);
-        iCool.setOn();
-        iCool.setOff();
-        iCool.setOn();
+        iCool.powerOn();
+        iCool.powerOff();
+        iCool.powerOn();
         assertTrue(iCool.isOn());
     }
 }
