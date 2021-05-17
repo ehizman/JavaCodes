@@ -43,20 +43,20 @@ public class AC {
     }
 
     public void powerOff() {
-        setPreviousTemperature(getTemperature());
+        setPreviousTemperature();
         isOn = false;
     }
 
     public void setTemperature(String temperature) {
         boolean powerState = isOn();
         if (powerState) {
-            if (Integer.parseInt(temperature) >= 16) {
+            if ((Integer.parseInt(temperature) >= 16) && (Integer.parseInt(temperature) <= 30)) {
                 this.temperature = temperature;
             }
         }
     }
 
-    public void setPreviousTemperature(String temperature) {
+    public void setPreviousTemperature() {
         previousTemperature = getTemperature();
     }
 
