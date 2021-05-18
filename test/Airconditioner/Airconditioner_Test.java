@@ -59,6 +59,29 @@ public class Airconditioner_Test {
         newAC.setTemperature(20);
         //assert
         assertEquals(20, newAC.getTemperature());
+    }
 
+    @Test
+    void testThatAcCannotDisplayTemperatureWhenOff(){
+        //given
+        Airconditioner newAC;
+        //when
+        newAC = new Airconditioner("iCool By Ehizman");
+        newAC.setOn(true);
+        newAC.setOn(false);
+        assertEquals(0, newAC.getTemperature());
+    }
+
+    @Test
+    void testThatAcCannotSetTemperatureWhenOff() {
+        //given
+        Airconditioner newAC;
+        //when
+        newAC = new Airconditioner("iCool By Ehizman");
+        newAC.setOn(true);
+        newAC.setTemperature(20);
+        newAC.setOn(false);
+        newAC.setTemperature(16);
+        assertEquals(0, newAC.getTemperature());
     }
 }

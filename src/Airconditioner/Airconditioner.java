@@ -3,7 +3,7 @@ package Airconditioner;
 public class Airconditioner {
     private String productName;
     private boolean isOn;
-    private int temperature;
+    private int temperature = 16;
 
     public Airconditioner(String productName) {
         this.productName = productName;
@@ -14,8 +14,10 @@ public class Airconditioner {
     }
 
     public void setOn(boolean condition) {
-        setTemperature(16);
         isOn = condition;
+        if (!isOn) {
+            setTemperature(0);
+        }
     }
 
     public boolean isOn() {
@@ -27,6 +29,13 @@ public class Airconditioner {
     }
 
     public void setTemperature(int temperature) {
-        this.temperature = temperature;
+        boolean isOn = isOn();
+        if (isOn){
+            this.temperature = temperature;
+        }
+        if (!isOn){
+            this.temperature = 0;
+        }
+
     }
 }
