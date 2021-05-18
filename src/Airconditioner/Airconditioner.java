@@ -4,6 +4,7 @@ public class Airconditioner {
     private String productName;
     private boolean isOn;
     private int temperature = 16;
+    private int previousTemperature;
 
     public Airconditioner(String productName) {
         this.productName = productName;
@@ -16,7 +17,11 @@ public class Airconditioner {
     public void setOn(boolean condition) {
         isOn = condition;
         if (!isOn) {
+            previousTemperature = temperature;
             setTemperature(0);
+        }
+        if (previousTemperature != 0){
+            setTemperature(previousTemperature);
         }
     }
 
@@ -37,5 +42,9 @@ public class Airconditioner {
             this.temperature = 0;
         }
 
+    }
+
+    public void increaseTemperature() {
+        setTemperature(temperature += 1);
     }
 }

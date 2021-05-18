@@ -84,4 +84,52 @@ public class Airconditioner_Test {
         newAC.setTemperature(16);
         assertEquals(0, newAC.getTemperature());
     }
+
+    @Test
+    void testThatAcIsSetToPreviousTemperatureWhenTurnedOnForTheSecondTime() {
+        //given
+        Airconditioner newAC;
+        //when
+        newAC = new Airconditioner("iCool By Ehizman");
+        newAC.setOn(true);
+        newAC.setTemperature(20);
+        newAC.setOn(false);
+        newAC.setOn(true);
+        //assert
+        assertEquals(20, newAC.getTemperature());
+    }
+
+    @Test
+    void testThatAcIsSetToPreviousTemperatureWhenTurnedOnMultipleTimes() {
+        //given
+        Airconditioner newAC;
+        //when
+        newAC = new Airconditioner("iCool By Ehizman");
+        newAC.setOn(true);
+        newAC.setTemperature(20);
+        newAC.setOn(false);
+        newAC.setOn(true);
+        newAC.setOn(false);
+        newAC.setOn(true);
+        newAC.setTemperature(24);
+        newAC.setOn(false);
+        newAC.setOn(true);
+        newAC.setTemperature(28);
+        //assert
+        assertEquals(28, newAC.getTemperature());
+    }
+
+    @Test
+    void thatAcCanIncreaseTemperature(){
+        //given
+        Airconditioner newAC;
+        //when
+        newAC = new Airconditioner("iCool By Ehizman");
+        newAC.setOn(true);
+        newAC.setTemperature(20);
+        newAC.increaseTemperature();
+        //assert
+        assertEquals(21, newAC.getTemperature());
+    }
+
 }
