@@ -47,6 +47,19 @@ public class TV_Test {
     }
 
     @Test
+    void testThatTvCannotMoveToNextChannelWhenOff() {
+        TV newTV;
+
+        newTV = new TV(0,1);
+        newTV.setOn(true);
+        newTV.moveToNextChannel();
+        assertEquals(2, newTV.getCurrentChannel());
+        newTV.setOn(false);
+
+        assertEquals(0,newTV.getCurrentChannel());
+    }
+
+    @Test
     void testThatTvChannelIsSetToDefault_1AtCreation() {
         TV newTV;
         newTV = new TV(0,1);
@@ -79,10 +92,30 @@ public class TV_Test {
         TV newTV;
 
         newTV = new TV(0,1);
+        newTV.setOn(true);
         newTV.setChannel(10);
         assertEquals(10, newTV.getCurrentChannel());
     }
 
-//    @Test
-//    void testThatTvCannotSetChannelWhenOff)(){}
+    @Test
+    void testThatTvCannotSetChannelWhenOff() {
+        TV newTV;
+
+        newTV = new TV(0,1);
+        newTV.setOn(true);
+        newTV.setOn(false);
+        newTV.setChannel(10);
+        assertEquals(0, newTV.getCurrentChannel());
+    }
+
+    @Test
+    void testThatTvCanIncreaseVolume() {
+        TV newTV;
+
+        newTV = new TV(0,1);
+        newTV.setOn(true);
+        newTV.increaseVolume();
+
+        assertEquals(1, newTV.getCurrentVolume());
+    }
 }

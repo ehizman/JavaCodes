@@ -4,9 +4,11 @@ public class TV {
     private final String productName = "Ehizman";
     private boolean isOn;
     private int channel;
+    private int volume;
 
     public TV(int initialVolume, int initialChannel) {
         channel = initialChannel;
+        this.volume = initialVolume;
     }
 
     String getName() {
@@ -15,6 +17,9 @@ public class TV {
 
     public void setOn(boolean condition) {
         isOn = condition;
+        if (!isOn){
+            channel = 0;
+        }
     }
 
     public boolean isOn() {
@@ -30,10 +35,19 @@ public class TV {
     }
 
     public int getCurrentVolume() {
-        return 0;
+        return volume;
     }
 
     public void setChannel(int channel) {
-        this.channel = channel;
+        if (isOn){
+            this.channel = channel;
+        }
+        if (!isOn) {
+            this.channel = 0;
+        }
+    }
+
+    public void increaseVolume() {
+        volume++;
     }
 }
