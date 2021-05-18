@@ -1,5 +1,6 @@
 package TV;
 
+import assignments.AC.AC;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -57,7 +58,7 @@ public class TV_Test {
         newTV.moveToNextChannel();
         assertEquals(2, newTV.getCurrentChannel());
         newTV.setOn(false);
-
+        newTV.moveToNextChannel();
         assertEquals(0,newTV.getCurrentChannel());
     }
 /*
@@ -71,7 +72,7 @@ public class TV_Test {
     }
 
     @Test
-    void testThatTvVolumeIsSetToDefault_0AtCreation() {
+    void testThatTvVolumeIsSetToDefault_1AtCreation() {
         TV newTV;
         newTV = new TV(0,1);
         assertEquals(1, newTV.getCurrentVolume());
@@ -220,9 +221,9 @@ public class TV_Test {
 
         newTV = new TV();
         newTV.setOn(true);
+        newTV.increaseVolume();
         newTV.decreaseVolume();
-
-        assertEquals(0, newTV.getCurrentVolume());
+        assertEquals(1, newTV.getCurrentVolume());
     }
 
     @Test
@@ -237,5 +238,88 @@ public class TV_Test {
         newTV.setOn(false);
         newTV.decreaseVolume();
         assertEquals(0, newTV.getCurrentVolume());
+    }
+
+    @Test
+    void testThatTvCanMoveToPreviousChannel() {
+        TV newTV;
+
+        newTV = new TV(0,1);
+        newTV.setOn(true);
+        newTV.moveToNextChannel();
+        newTV.moveToPreviousChannel();
+        assertEquals(1, newTV.getCurrentChannel());
+    }
+    /*
+     * TV cannot change channel when off
+     * */
+    @Test
+    void testThatTvCannotMoveToPreviousChannelWhenOff() {
+        TV newTV;
+
+        newTV = new TV(0,1);
+        newTV.setOn(true);
+        newTV.moveToNextChannel();
+        assertEquals(2, newTV.getCurrentChannel());
+        newTV.setOn(false);
+        newTV.moveToPreviousChannel();
+        assertEquals(0,newTV.getCurrentChannel());
+    }
+
+    @Test
+    void testThatAcCannotBeMuteWhenOff() {
+        TV newTv;
+
+        newTv = new TV();
+        newTv.setMute(true);
+
+        assertFalse(newTv.isMute());
+    }
+
+    @Test
+    void testThatWhenPoweredOnTvSetsVolumeToPreviousVolume(){
+        TV newTv;
+
+        newTv = new TV();
+        newTv.setOn(false);
+        assertFalse(newTv.isOn());
+        newTv.setOn(true);
+        assertEquals(1,newTv.getCurrentVolume());
+    }
+
+    @Test
+    void testThatTvHasAMaximumVolumeOfTen(){
+        TV newTV;
+
+        newTV = new TV();
+        newTV.setOn(true);
+        newTV.setMute(true);
+        newTV.setMute(false);
+        newTV.setOn(false);
+        newTV.setMute(true);
+        assertFalse(newTV.isMute());
+        newTV.setOn(true);
+        newTV.increaseVolume();//2
+        newTV.increaseVolume();//3
+        newTV.increaseVolume();//4
+        newTV.increaseVolume();//5
+        newTV.increaseVolume();//6
+        newTV.increaseVolume();//7
+        newTV.increaseVolume();//8
+        newTV.increaseVolume();//9
+        newTV.increaseVolume();//10
+        newTV.increaseVolume();
+        assertEquals(10, newTV.getCurrentVolume());
+    }
+
+
+    @Test
+    void testThatTvHasAMinimumVolumeOfOne() {
+        TV newTV;
+
+        newTV = new TV();
+        newTV.setOn(true);
+        newTV.decreaseVolume();
+        assertEquals(1, newTV.getCurrentVolume());
     }
 }

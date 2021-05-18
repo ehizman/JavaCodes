@@ -6,14 +6,17 @@ public class TV {
     private int channel;
     private int volume;
     private boolean isMute;
+    private final int MAXIMUM_VOLUME = 10;
+    private final int MINIMUM_VOLUME = 1;
+    private boolean isOnForFirstTime = false;
 
     public TV(int initialVolume, int initialChannel) {
-        this.channel = 1;
+        this.channel = MINIMUM_VOLUME;
         this.volume = 1;
     }
 
     public TV() {
-        this.channel = 1;
+        this.channel = MINIMUM_VOLUME;
         this.volume = 1;
     }
 
@@ -23,10 +26,11 @@ public class TV {
 
     public void setOn(boolean condition) {
         isOn = condition;
-        if (!isOn) {
-            channel = 0;
-            volume = 0;
-        }
+        isOnForFirstTime = true;
+//        if (!isOn) {
+//            channel = 0;
+//            volume = 0;
+//        }
     }
 
     public boolean isOn() {
@@ -34,16 +38,28 @@ public class TV {
     }
 
     public void moveToNextChannel() {
-        channel++;
+        if (isOn){
+            channel++;
+        }
     }
 
     public int getCurrentChannel() {
+        if (!isOn){
+            if (isOnForFirstTime){
+                channel = 0;
+            }
+        }
         return channel;
     }
 
     public int getCurrentVolume() {
         if (isMute){
-            return 0;
+            volume = 0;
+        }
+        if (!isOn){
+            if (isOnForFirstTime){
+                volume = 0;
+            }
         }
         return volume;
     }
@@ -59,12 +75,16 @@ public class TV {
 
     public void increaseVolume() {
         if (isOn){
-            volume++;
+            if (volume < MAXIMUM_VOLUME){
+                volume++;
+            }
         }
     }
 
     public void setMute(boolean condition) {
-        isMute = condition;
+        if (isOn){
+            isMute = condition;
+        }
     }
 
     public boolean isMute() {
@@ -73,7 +93,15 @@ public class TV {
 
     public void decreaseVolume() {
         if (isOn){
-            volume--;
+            if (volume > MINIMUM_VOLUME){
+                volume--;
+            }
+        }
+    }
+
+    public void moveToPreviousChannel() {
+        if (isOn){
+            channel--;
         }
     }
 }
