@@ -126,10 +126,12 @@ public class Airconditioner_Test {
         //when
         newAC = new Airconditioner("iCool By Ehizman");
         newAC.setOn(true);
-        newAC.setTemperature(20);
         newAC.increaseTemperature();
         //assert
-        assertEquals(21, newAC.getTemperature());
+        assertEquals(17, newAC.getTemperature());
     }
+
+//    @Test
+    //void
 
 }
