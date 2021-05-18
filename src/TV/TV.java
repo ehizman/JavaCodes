@@ -8,8 +8,13 @@ public class TV {
     private boolean isMute;
 
     public TV(int initialVolume, int initialChannel) {
-        channel = initialChannel;
-        this.volume = initialVolume;
+        this.channel = 1;
+        this.volume = 1;
+    }
+
+    public TV() {
+        this.channel = 1;
+        this.volume = 1;
     }
 
     String getName() {
@@ -53,15 +58,22 @@ public class TV {
     }
 
     public void increaseVolume() {
-        volume++;
+        if (isOn){
+            volume++;
+        }
     }
 
     public void setMute(boolean condition) {
-        int tempVolume = getCurrentVolume();
         isMute = condition;
     }
 
     public boolean isMute() {
         return isMute;
+    }
+
+    public void decreaseVolume() {
+        if (isOn){
+            volume--;
+        }
     }
 }

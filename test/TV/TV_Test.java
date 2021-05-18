@@ -45,7 +45,9 @@ public class TV_Test {
 
         assertEquals(2, newTV.getCurrentChannel());
     }
-
+/*
+* TV cannot change channel when off
+* */
     @Test
     void testThatTvCannotMoveToNextChannelWhenOff() {
         TV newTV;
@@ -58,7 +60,9 @@ public class TV_Test {
 
         assertEquals(0,newTV.getCurrentChannel());
     }
-
+/*
+* upon creation tv should be set at channel 1 and at volume 1
+*/
     @Test
     void testThatTvChannelIsSetToDefault_1AtCreation() {
         TV newTV;
@@ -70,7 +74,7 @@ public class TV_Test {
     void testThatTvVolumeIsSetToDefault_0AtCreation() {
         TV newTV;
         newTV = new TV(0,1);
-        assertEquals(0, newTV.getCurrentVolume());
+        assertEquals(1, newTV.getCurrentVolume());
     }
 
     @Test
@@ -78,8 +82,7 @@ public class TV_Test {
         TV newTV;
 
         newTV = new TV(0,1);
-        assertEquals(0, newTV.getCurrentVolume());
-        assertEquals(1, newTV.getCurrentChannel());
+        assertEquals(1, newTV.getCurrentVolume());
         newTV.setOn(true);
         newTV.moveToNextChannel();
         newTV.moveToNextChannel();
@@ -116,7 +119,7 @@ public class TV_Test {
         newTV.setOn(true);
         newTV.increaseVolume();
 
-        assertEquals(1, newTV.getCurrentVolume());
+        assertEquals(2, newTV.getCurrentVolume());
     }
 
     @Test
@@ -127,9 +130,9 @@ public class TV_Test {
         newTV.setOn(true);
         newTV.increaseVolume();
         newTV.increaseVolume();
-        assertEquals(2, newTV.getCurrentVolume());
+        assertEquals(3, newTV.getCurrentVolume());
         newTV.setOn(false);
-
+        newTV.increaseVolume();
         assertEquals(0, newTV.getCurrentVolume());
     }
 
@@ -176,10 +179,63 @@ public class TV_Test {
         newTV.setOn(true);
         newTV.increaseVolume();
         newTV.increaseVolume();
-        assertEquals(2, newTV.getCurrentVolume());
+        assertEquals(3, newTV.getCurrentVolume());
         newTV.setMute(true);
         newTV.setMute(false);
-        assertEquals(2,newTV.getCurrentVolume());
+        assertEquals(3,newTV.getCurrentVolume());
+    }
+    @Test
+    void testThatWhenTvCanIncreaseVolumeWhenMute(){
+        TV newTV;
+
+        newTV = new TV(0,1);
+        newTV.setOn(true);
+        newTV.increaseVolume();
+        newTV.increaseVolume();
+        assertEquals(3, newTV.getCurrentVolume());
+        newTV.setMute(true);
+        newTV.increaseVolume();
+        newTV.increaseVolume();
+        newTV.setMute(false);
+        assertEquals(5,newTV.getCurrentVolume());
     }
 
+    @Test
+    void testVolumeIsSetAlwaysSetToZeroUponCreation() {
+        TV newTv;
+        newTv = new TV(2,0);
+        assertEquals(1,newTv.getCurrentVolume());
+    }
+
+    @Test
+    void testThatChannelIsAlwaysSetToOneUponCreation(){
+        TV newTv;
+        newTv = new TV();
+        assertEquals(1,newTv.getCurrentChannel());
+    }
+
+    @Test
+    void testThatTvCanReduceVolume() {
+        TV newTV;
+
+        newTV = new TV();
+        newTV.setOn(true);
+        newTV.decreaseVolume();
+
+        assertEquals(0, newTV.getCurrentVolume());
+    }
+
+    @Test
+    void testThatTvCannotDecreaseVolumeWhenOff() {
+        TV newTV;
+
+        newTV = new TV(0,1);
+        newTV.setOn(true);
+        newTV.increaseVolume();
+        newTV.increaseVolume();
+        assertEquals(3, newTV.getCurrentVolume());
+        newTV.setOn(false);
+        newTV.decreaseVolume();
+        assertEquals(0, newTV.getCurrentVolume());
+    }
 }
