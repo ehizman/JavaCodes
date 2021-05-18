@@ -118,4 +118,29 @@ public class TV_Test {
 
         assertEquals(1, newTV.getCurrentVolume());
     }
+
+    @Test
+    void testThatTvCannotIncreaseVolumeWhenOff() {
+        TV newTV;
+
+        newTV = new TV(0,1);
+        newTV.setOn(true);
+        newTV.increaseVolume();
+        newTV.increaseVolume();
+        assertEquals(2, newTV.getCurrentVolume());
+        newTV.setOn(false);
+
+        assertEquals(0, newTV.getCurrentVolume());
+    }
+
+    @Test
+    void testThatTvCanBeMute(){
+        TV newTV;
+
+        newTV = new TV(0,1);
+        newTV.setOn(true);
+        newTV.setMute(true);
+
+        assertTrue(newTV.isMute());
+    }
 }

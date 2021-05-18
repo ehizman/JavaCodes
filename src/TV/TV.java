@@ -5,6 +5,7 @@ public class TV {
     private boolean isOn;
     private int channel;
     private int volume;
+    private boolean isMute;
 
     public TV(int initialVolume, int initialChannel) {
         channel = initialChannel;
@@ -17,8 +18,9 @@ public class TV {
 
     public void setOn(boolean condition) {
         isOn = condition;
-        if (!isOn){
+        if (!isOn) {
             channel = 0;
+            volume = 0;
         }
     }
 
@@ -39,7 +41,7 @@ public class TV {
     }
 
     public void setChannel(int channel) {
-        if (isOn){
+        if (isOn) {
             this.channel = channel;
         }
         if (!isOn) {
@@ -49,5 +51,13 @@ public class TV {
 
     public void increaseVolume() {
         volume++;
+    }
+
+    public void setMute(boolean condition) {
+        isMute = condition;
+    }
+
+    public boolean isMute() {
+        return isMute;
     }
 }
