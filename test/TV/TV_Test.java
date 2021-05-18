@@ -143,4 +143,43 @@ public class TV_Test {
 
         assertTrue(newTV.isMute());
     }
+
+    @Test
+    void testThatWhenTvIsMuteVolumeIsSetTo0(){
+        TV newTV;
+
+        newTV = new TV(0,1);
+        newTV.setOn(true);
+        newTV.increaseVolume();
+        newTV.setMute(true);
+
+        assertEquals(0, newTV.getCurrentVolume());
+    }
+
+    @Test
+    void testThatTvCanBeUnmute(){
+        TV newTV;
+
+        newTV = new TV(0,1);
+        newTV.setOn(true);
+        newTV.setMute(true);
+        newTV.setMute(false);
+
+        assertFalse(newTV.isMute());
+    }
+
+    @Test
+    void testThatWhenTvIsUnmuteVolumeIsSameAsBeforeMute(){
+        TV newTV;
+
+        newTV = new TV(0,1);
+        newTV.setOn(true);
+        newTV.increaseVolume();
+        newTV.increaseVolume();
+        assertEquals(2, newTV.getCurrentVolume());
+        newTV.setMute(true);
+        newTV.setMute(false);
+        assertEquals(2,newTV.getCurrentVolume());
+    }
+
 }

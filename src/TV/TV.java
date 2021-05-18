@@ -37,6 +37,9 @@ public class TV {
     }
 
     public int getCurrentVolume() {
+        if (isMute){
+            return 0;
+        }
         return volume;
     }
 
@@ -54,6 +57,7 @@ public class TV {
     }
 
     public void setMute(boolean condition) {
+        int tempVolume = getCurrentVolume();
         isMute = condition;
     }
 
