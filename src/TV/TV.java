@@ -8,6 +8,8 @@ public class TV {
     private boolean isMute;
     private final int MAXIMUM_VOLUME = 10;
     private final int MINIMUM_VOLUME = 1;
+    private final int MAXIMUM_CHANNEL = 10;
+    private final int MINIMUM_CHANNEL = 1;
     private boolean isOnForFirstTime = false;
 
     public TV(int initialVolume, int initialChannel) {
@@ -27,10 +29,7 @@ public class TV {
     public void setOn(boolean condition) {
         isOn = condition;
         isOnForFirstTime = true;
-//        if (!isOn) {
-//            channel = 0;
-//            volume = 0;
-//        }
+//
     }
 
     public boolean isOn() {
@@ -39,14 +38,16 @@ public class TV {
 
     public void moveToNextChannel() {
         if (isOn){
-            channel++;
+            if (channel < MAXIMUM_CHANNEL) {
+                channel++;
+            }
         }
     }
 
     public int getCurrentChannel() {
         if (!isOn){
             if (isOnForFirstTime){
-                channel = 0;
+                return 0;
             }
         }
         return channel;
@@ -54,11 +55,11 @@ public class TV {
 
     public int getCurrentVolume() {
         if (isMute){
-            volume = 0;
+            return 0;
         }
         if (!isOn){
-            if (isOnForFirstTime){
-                volume = 0;
+            if (isOnForFirstTime){ //if TV has been powered on previously
+                return  0; //0 means that volume cannot be accessed
             }
         }
         return volume;
@@ -66,7 +67,11 @@ public class TV {
 
     public void setChannel(int channel) {
         if (isOn) {
-            this.channel = channel;
+            if (channel <= MAXIMUM_CHANNEL){
+                if (channel >= MINIMUM_CHANNEL) {
+                    this.channel = channel;
+                }
+            }
         }
         if (!isOn) {
             this.channel = 0;
