@@ -2,15 +2,10 @@ package TargetHeartRateCalculator;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.w3c.dom.ranges.Range;
-
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Calendar;
-import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class HeartRatesTest {
     private HeartRate person;
@@ -32,7 +27,7 @@ public class HeartRatesTest {
     @Test
     public void testThatLastNameCanBeSet(){
         //when
-        person.updateLastName();
+        person.updateLastName("Okoro");
         //confirm
         assertEquals("Edemakhiota", person.getLastName());
     }
@@ -71,14 +66,14 @@ public class HeartRatesTest {
         int currentYear = currentDate.get(Calendar.YEAR);
         assertEquals(2021, currentYear);
         //confirm
-        assertEquals(16, person.calculateAge(person.getYearOfBirth()));
+        assertEquals(16, person.calculateAge());
     }
 
     @Test
     public void testThatCalculatorCanReturnMaximumHeartRate() {
         //when
         person.setYearOfBirth(1985);
-        int age = person.calculateAge(person.getYearOfBirth());
+        int age = person.calculateAge();
         //confirm
         assertEquals(184, person.calculateMaxHeartRate(age));
     }
@@ -87,7 +82,7 @@ public class HeartRatesTest {
     public void testThatCalculatorCanReturnTargetHeartRate(){
         //when
         person.setYearOfBirth(1985);
-        int age = person.calculateAge(person.getYearOfBirth());
+        int age = person.calculateAge();
         int maxHeartRate = person.calculateMaxHeartRate(age);
         //confirm
         assertEquals(Arrays.asList(92.0, 156.4), person.calculateTargetHeartRate(maxHeartRate));

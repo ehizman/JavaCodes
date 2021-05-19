@@ -23,7 +23,7 @@ public class HeartRate {
     }
 
     public void updateFirstName(String firstName) {
-        if ((firstName == null) && (lastName == null)){
+        if ((firstName == null)){
             System.out.println("Invalid input");
         }
         this.firstName = firstName;
@@ -33,8 +33,11 @@ public class HeartRate {
         return firstName;
     }
 
-    public void updateLastName() {
+    public void updateLastName(String lastName) {
+        if ((this.lastName == null)){
             System.out.println("Invalid input");
+        }
+        this.lastName = lastName;
     }
 
     public String getLastName() {
@@ -58,7 +61,7 @@ public class HeartRate {
     }
 
     public void setYearOfBirth(int year) {
-            this.yearOfBirth = year;
+        this.yearOfBirth = year;
     }
 
 
@@ -66,8 +69,8 @@ public class HeartRate {
         return yearOfBirth;
     }
 
-    public int calculateAge(int yearOfBirth) {
-        return (currentYear - yearOfBirth);
+    public int calculateAge() {
+        return (currentYear - getYearOfBirth());
     }
 
     public int calculateMaxHeartRate(int age) {

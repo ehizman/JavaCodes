@@ -40,7 +40,7 @@ public class HeartRateApp {
         newHeartRate.setDayOfBirth(dayOfMonth);
         newHeartRate.setMonthOfBirth(monthOfBirth);
         newHeartRate.setYearOfBirth(yearOfBirth);
-        subjectS_Age = newHeartRate.calculateAge(yearOfBirth);
+        subjectS_Age = newHeartRate.calculateAge();
         subjectS_MaxHeartRate = newHeartRate.calculateMaxHeartRate(subjectS_Age);
         subjectS_TargetHeartRateRange = newHeartRate.calculateTargetHeartRate(subjectS_MaxHeartRate);
 
