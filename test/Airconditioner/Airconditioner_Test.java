@@ -131,7 +131,68 @@ public class Airconditioner_Test {
         assertEquals(17, newAC.getTemperature());
     }
 
-//    @Test
-    //void
+    @Test
+    void thatAcSetsToPreviousTemperatureWhenTurnedOnAfterOff(){
+        Airconditioner newAC;
+        newAC = new Airconditioner("iCool By Ehizman");
+        newAC.setOn(true);
+        newAC.increaseTemperature();
+        newAC.setOn(false);
+        newAC.setOn(true);
+        assertEquals(17, newAC.getTemperature());
+    }
 
+    @Test
+    void thatAcCanDecreaseTemperature(){
+        //given
+        Airconditioner newAC;
+        //when
+        newAC = new Airconditioner("iCool By Ehizman");
+        newAC.setOn(true);
+        newAC.increaseTemperature();
+        newAC.increaseTemperature();
+        newAC.decreaseTemperature();
+        //assert
+        assertEquals(17, newAC.getTemperature());
+    }
+
+    @Test
+    void testThatAcIsSetToPreviousTemperatureWhenTurnedOnMultipleTimesAndTemperatureIsIncreased() {
+        //given
+        Airconditioner newAC;
+        //when
+        newAC = new Airconditioner("iCool By Ehizman");
+        newAC.setOn(true);
+        newAC.setTemperature(20);
+        newAC.setOn(false);
+        newAC.setOn(true);
+        newAC.setOn(false);
+        newAC.setOn(true);
+        newAC.setTemperature(24);
+        newAC.setOn(false);
+        newAC.setOn(true);
+        newAC.increaseTemperature();
+        //assert
+        assertEquals(25, newAC.getTemperature());
+    }
+
+    @Test
+    void testThatAcIsSetToPreviousTemperatureWhenTurnedOnMultipleTimesAndTemperatureIsDecreased() {
+        //given
+        Airconditioner newAC;
+        //when
+        newAC = new Airconditioner("iCool By Ehizman");
+        newAC.setOn(true);
+        newAC.setTemperature(20);
+        newAC.setOn(false);
+        newAC.setOn(true);
+        newAC.setOn(false);
+        newAC.setOn(true);
+        newAC.setTemperature(24);
+        newAC.setOn(false);
+        newAC.setOn(true);
+        newAC.decreaseTemperature();
+        //assert
+        assertEquals(23, newAC.getTemperature());
+    }
 }

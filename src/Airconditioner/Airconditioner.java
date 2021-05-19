@@ -47,4 +47,8 @@ public class Airconditioner {
     public void increaseTemperature() {
         setTemperature(temperature += 1);
     }
+
+    public void decreaseTemperature() {
+        setTemperature(temperature -= 1);
+    }
 }
