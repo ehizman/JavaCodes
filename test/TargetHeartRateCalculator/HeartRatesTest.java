@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.NoSuchElementException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -14,7 +15,6 @@ public class HeartRatesTest {
     public void startEachTestWithThis(){
         person = new HeartRate("Ehis", "Edemakhiota");
     }
-
 
     @Test
     public void testThatFirstNameCanBeSet(){
@@ -29,24 +29,7 @@ public class HeartRatesTest {
         //when
         person.updateLastName("Okoro");
         //confirm
-        assertEquals("Edemakhiota", person.getLastName());
-    }
-
-    @Test
-    public void testThatDayOfBirthCanBeSet() {
-        //when
-        person.setDayOfBirth(28);
-        //confirm
-        assertEquals(28, person.getDayOfBirth());
-    }
-
-    @Test
-    public void testThatMonthOfBirthCanBeSet() {
-        //when
-        assertEquals("Ehis", person.getFirstName());
-        person.setMonthOfBirth("January");
-        //confirm
-        assertEquals("January", person.getMonthOfBirth());
+        assertEquals("Okoro", person.getLastName());
     }
 
     @Test
