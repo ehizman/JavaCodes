@@ -1,10 +1,9 @@
-package TargetHeartRateCalculator;
+package ChapterThreeFiles.TargetHeartRateCalculator;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.Calendar;
-import java.util.NoSuchElementException;
 
 import static org.junit.jupiter.api.Assertions.*;
 

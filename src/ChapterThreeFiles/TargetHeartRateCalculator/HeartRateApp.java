@@ -1,8 +1,10 @@
-package TargetHeartRateCalculator;
+package ChapterThreeFiles.TargetHeartRateCalculator;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
+import java.text.SimpleDateFormat;
 
 public class HeartRateApp {
 
@@ -24,15 +26,15 @@ public class HeartRateApp {
         System.out.print("Enter subject's last name: ");
         secondName = input.next();
 
-        System.out.print("Enter subject's date of birth(YY//M//DD): ");
-
+        System.out.print("Enter subject's date of birth in the format - (dd/MM/yy): ");
+        String date = input.next();
         try{
-            yearOfBirth = input.nextInt();
-            monthOfBirth = input.nextInt();
-            dayOfMonth = input.nextInt();
-            newCalendar.clear();
-            newCalendar.set(yearOfBirth, monthOfBirth, dayOfMonth);
+            Date dateOfBirth = new SimpleDateFormat("dd/MM/yy").parse(date);
+            newCalendar.setTime(dateOfBirth);
             HeartRate newHeartRate = new HeartRate(firstName, secondName);
+
+//            monthOfBirth = input.nextInt(); Set month of birth and day of birth
+//            dayOfMonth = input.nextInt();
             newHeartRate.setYearOfBirth(newCalendar.get(Calendar.YEAR));
             subjectS_Age = newHeartRate.calculateAge();
             subjectS_MaxHeartRate = newHeartRate.calculateMaxHeartRate(subjectS_Age);
