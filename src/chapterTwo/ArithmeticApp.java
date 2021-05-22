@@ -1,4 +1,4 @@
-package chapterTwo.BodyMassIndexCalculatorApp;
+package chapterTwo;
 
 import java.util.Scanner;
 /*
