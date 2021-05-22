@@ -1,6 +1,6 @@
 package assignments.Kata;
 
-public class Kata {
+public class Palindrome {
 
     public boolean isPalindrome(int number) {
         int unitDigit = number % 10;

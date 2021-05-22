@@ -1,16 +1,16 @@
 package Kata;
 
-import assignments.Kata.Kata;
+import assignments.Kata.Palindrome;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class KataTest {
+public class PalindromeTest {
     @Test
     public void testThatNumberIsAPalindrome() {
         //given
-        Kata number = new Kata();
+        Palindrome number = new Palindrome();
         //when
         //confirm
         assertTrue(number.isPalindrome(12233221));
