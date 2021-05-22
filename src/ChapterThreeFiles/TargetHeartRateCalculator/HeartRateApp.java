@@ -1,5 +1,7 @@
 package ChapterThreeFiles.TargetHeartRateCalculator;
 
+import ChapterThreeFiles.DateClass.DateValidator;
+
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -11,9 +13,9 @@ public class HeartRateApp {
     public static void main(String[] args) {
         String firstName;
         String secondName;
-        int dayOfMonth;
-        int monthOfBirth;
-        int yearOfBirth;
+        String day;
+        String month;
+        String year;
         int subjectS_Age;
         int subjectS_MaxHeartRate;
         List<Double> subjectS_TargetHeartRateRange;
@@ -26,9 +28,18 @@ public class HeartRateApp {
         System.out.print("Enter subject's last name: ");
         secondName = input.next();
 
-        System.out.print("Enter subject's date of birth in the format - (dd/MM/yy): ");
-        String date = input.next();
         try{
+            System.out.print("Enter subject's date of birth in the format - (dd/MM/yy): ");
+            String date = input.next();
+            String[] arrayOfDate = date.split("/");
+            day = arrayOfDate[0];
+            month = arrayOfDate[1];
+            year = arrayOfDate[2];
+            DateValidator validateDate = new DateValidator(day, month, year);
+            validateDate.setDay();
+            validateDate.setMonth();
+            validateDate.setYear();
+
             Date dateOfBirth = new SimpleDateFormat("dd/MM/yy").parse(date);
             newCalendar.setTime(dateOfBirth);
             HeartRate newHeartRate = new HeartRate(firstName, secondName);

@@ -80,7 +80,7 @@ public class Date {
 
         boolean isLeapYear = this.year % 4 == 0;
         if (isLeapYear){
-            boolean isValidDayInFebruaryLeapYear = ((day > 0) && (day < maximumNumberOfDaysInAFebruaryLeapYear));
+            boolean isValidDayInFebruaryLeapYear = ((day > 0) && (day <= maximumNumberOfDaysInAFebruaryLeapYear));
             if (isValidDayInFebruaryLeapYear){
                 this.day = day;
             }
