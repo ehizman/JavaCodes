@@ -36,6 +36,7 @@ public class HeartRateApp {
             month = arrayOfDate[1];
             year = arrayOfDate[2];
             DateValidator validateDate = new DateValidator(day, month, year);
+            System.out.println("Valid date");
             validateDate.setDay();
             validateDate.setMonth();
             validateDate.setYear();
@@ -44,8 +45,6 @@ public class HeartRateApp {
             newCalendar.setTime(dateOfBirth);
             HeartRate newHeartRate = new HeartRate(firstName, secondName);
 
-//            monthOfBirth = input.nextInt(); Set month of birth and day of birth
-//            dayOfMonth = input.nextInt();
             newHeartRate.setYearOfBirth(newCalendar.get(Calendar.YEAR));
             subjectS_Age = newHeartRate.calculateAge();
             subjectS_MaxHeartRate = newHeartRate.calculateMaxHeartRate(subjectS_Age);

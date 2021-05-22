@@ -20,9 +20,6 @@ public class HeartRate {
         catch (Exception e) {
             System.out.println("Invalid input!");
         }
-//        if ((firstName == null) && (lastName == null)){
-//            System.out.println("Invalid inputs");
-//        }
     }
 
     public void updateFirstName(String firstName) {

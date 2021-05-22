@@ -101,7 +101,7 @@ public class DateValidator {
     }
 
     public static void main(String[] args) {
-        DateValidator dateValidator = new DateValidator("14", "01", "2009");
+        DateValidator dateValidator = new DateValidator("14", "01", "2024");
         try {
             dateValidator.setYear();
         } catch (Exception e) {
@@ -120,7 +120,6 @@ public class DateValidator {
             System.out.println("Invalid day entered");
         }
         Date date = new Date(dateValidator.getYear(), dateValidator.getMonth(), dateValidator.getDay());
-        System.out.println("Valid date");
     }
 }
 
