@@ -1,5 +1,7 @@
 package assignments.Kata;
 
+import java.util.Scanner;
+
 public class TestDriller {
 
     public int calculateTotalPrice(int numberOfCopies) {
@@ -51,5 +53,22 @@ public class TestDriller {
         int sellingPrice = 2000;
         int totalRevenue = sellingPrice * numberOfCopiesBought;
         return (totalRevenue - totalCost);
+    }
+
+    public static void main(String[] args) {
+        int numberOfCopies;
+        Scanner scannerScanner = new Scanner(System.in);
+        TestDriller calculateForMerchantKelvinOkoro = new TestDriller();
+
+        System.out.print("Enter number of copies: ");
+        numberOfCopies = scannerScanner.nextInt();
+
+        System.out.printf("Total cost for %d unit(s): %d%n", numberOfCopies,
+                calculateForMerchantKelvinOkoro.calculateTotalPrice(numberOfCopies));
+
+        System.out.printf("Total profit for %d unit(s): %d%n", numberOfCopies,
+                calculateForMerchantKelvinOkoro.calculateProfit(numberOfCopies));
+
+        System.out.println("Thank you\nWe look forward to seeing you again");
     }
 }

@@ -42,7 +42,8 @@ public class TestDrillerTest {
                 () -> assertEquals(21600, testDrillerApp.calculateProfit(27)),
                 () -> assertEquals(29700, testDrillerApp.calculateProfit(33)),
                 () -> assertEquals(29700, testDrillerApp.calculateProfit(33)),
-                () -> assertEquals(1500, testDrillerApp.calculateProfit(3))
+                () -> assertEquals(1500, testDrillerApp.calculateProfit(3)),
+                () -> assertEquals(0, testDrillerApp.calculateTotalPrice(0))
         );
 
     }
