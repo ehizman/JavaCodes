@@ -45,4 +45,11 @@ public class TestDriller {
             return 0;
         }
     }
+
+    public int calculateProfit(int numberOfCopiesBought) {
+        int totalCost = calculateTotalPrice(numberOfCopiesBought);
+        int sellingPrice = 2000;
+        int totalRevenue = sellingPrice * numberOfCopiesBought;
+        return (totalRevenue - totalCost);
+    }
 }

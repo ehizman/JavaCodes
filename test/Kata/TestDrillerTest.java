@@ -31,4 +31,19 @@ public class TestDrillerTest {
         TestDriller testDrillerApp = new TestDriller();
         assertEquals(0, testDrillerApp.calculateTotalPrice(0));
     }
+
+    @Test
+    void testThatAppCanCalculateResellersProfitGivenTheNumberOfCopiesBought(){
+        TestDriller testDrillerApp = new TestDriller();
+        assertAll(
+                () -> assertEquals(360000, testDrillerApp.calculateProfit(300)),
+                () -> assertEquals(110000, testDrillerApp.calculateProfit(100)),
+                () -> assertEquals(3000, testDrillerApp.calculateProfit(5)),
+                () -> assertEquals(21600, testDrillerApp.calculateProfit(27)),
+                () -> assertEquals(29700, testDrillerApp.calculateProfit(33)),
+                () -> assertEquals(29700, testDrillerApp.calculateProfit(33)),
+                () -> assertEquals(1500, testDrillerApp.calculateProfit(3))
+        );
+
+    }
 }
