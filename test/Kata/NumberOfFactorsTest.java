@@ -28,4 +28,25 @@ public class NumberOfFactorsTest {
         int numberOfFactors = numberOfFactorsApp.calculateNumberOfFactors(100);
         assertEquals(9, numberOfFactors);
     }
+
+    @Test
+    void testThatAppCanDetermineNumberOfFactorsWhen1IsGivenAsInput(){
+        NumberOfFactors numberOfFactorsApp = new NumberOfFactors();
+        int numberOfFactors = numberOfFactorsApp.calculateNumberOfFactors(1);
+        assertEquals(1, numberOfFactors);
+    }
+
+    @Test
+    void testThatAppCanDetermineNumberOfFactorsWhenANegativeNumberIsGivenAsInput() {
+        NumberOfFactors numberOfFactorsApp = new NumberOfFactors();
+        int numberOfFactors = numberOfFactorsApp.calculateNumberOfFactors(-3);
+        assertEquals(4, numberOfFactors);
+    }
+
+    @Test
+    void testThatAppCanDetermineNumberOfFactorsWhenZeroIsGivenAsInput() {
+        NumberOfFactors numberOfFactorsApp = new NumberOfFactors();
+        int numberOfFactors = numberOfFactorsApp.calculateNumberOfFactors(0);
+        assertEquals(0, numberOfFactors);
+    }
 }
