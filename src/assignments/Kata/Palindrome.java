@@ -6,11 +6,11 @@ public class Palindrome {
         int unitDigit = number % 10;
         int reversedNumber = (unitDigit);
         int restOfTheNumber = number / 10;
+        int powerOfTen = 1;
         do {
             unitDigit = restOfTheNumber % 10;
-            int powerOfTen = 1;
             reversedNumber = (int) (reversedNumber * Math.pow(10,powerOfTen)) + unitDigit;
-            powerOfTen = powerOfTen + 1;
+
             restOfTheNumber = restOfTheNumber / 10;
         }while(restOfTheNumber != 0);
 
