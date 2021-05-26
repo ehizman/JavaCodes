@@ -18,12 +18,4 @@ public class WorldPopulationTest{
         calculator.growthIncrease(1);
         assertEquals("0.0814Billion", calculator.differenceInPopulation());
     }
-    @Test
-    void testThatCalculatorCanDisplayWorldPopulationAfterOneYear(){
-        //given
-        WorldPopulation calculator = new WorldPopulation();
-        //when
-        String growthRateAfterOneYear = calculator.displayGrowthTable(1);
-        assertEquals("1          7.9814Billion          0.0814Billion", growthRateAfterOneYear);
-    }
 }
