@@ -46,7 +46,7 @@ public class Date {
             this.year = defaultYearValue;
         }
 
-        int monthNumber = Integer.parseInt(month);
+        int monthNumber = Integer.parseInt(month, 10);
         boolean isValidMonth = (monthNumber > 0) && (monthNumber <= maximumNumberOfMonthsInAYear);
         if(isValidMonth){
             this.month = monthNumber;
@@ -132,7 +132,7 @@ public class Date {
     }
 
     public void setMonth(String month) {
-        int monthInInteger = Integer.parseInt(month);
+        int monthInInteger = Integer.parseInt(month, 10);
         boolean isValidMonth = ((monthInInteger > 0) && (monthInInteger <= maximumNumberOfMonthsInAYear));
         if (isValidMonth){
             this.month = monthInInteger;

@@ -18,7 +18,7 @@ public class WorldPopulation {
     }
 
     public String displayGrowthTable(int numberOfYears) {
-        String result = String.format("%-40d %-40s %s",numberOfYears, growthIncrease(numberOfYears),
+        String result = String.format("%-40d %-40s %-40s",numberOfYears, growthIncrease(numberOfYears),
                 differenceInPopulation());
         return  (result);
     }

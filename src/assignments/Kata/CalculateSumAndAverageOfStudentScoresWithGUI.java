@@ -21,10 +21,10 @@ public class CalculateSumAndAverageOfStudentScoresWithGUI {
             String numberInputsInString = (" ");
 
             int numberOfStudents = Integer.parseInt(JOptionPane.showInputDialog("How many student scores do you want to " +
-                    "enter: "));
+                    "enter: "), 10);
 
             while (numberOfScores < numberOfStudents) {
-                studentScore = Integer.parseInt(JOptionPane.showInputDialog("Enter student score: "));
+                studentScore = Integer.parseInt(JOptionPane.showInputDialog("Enter student score: "), 10);
 
                 numberInputsInString = numberInputsInString + studentScore + ", ";
                 sumOfScores = sumOfScores + studentScore;

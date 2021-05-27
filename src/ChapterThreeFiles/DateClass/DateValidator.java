@@ -14,9 +14,9 @@ public class DateValidator {
 
     public DateValidator(String day, String month, String year) {
 
-        this.year = Integer.parseInt(year);
-        this.month = Integer.parseInt(month);
-        this.day = Integer.parseInt(day);
+        this.year = Integer.parseInt(year, 10);
+        this.month = Integer.parseInt(month, 10);
+        this.day = Integer.parseInt(day, 10);
     }
 
     public int getYear() {

@@ -58,7 +58,7 @@ public class TestDrillerWithGui {
         int numberOfCopies;
         TestDriller calculateForMerchantKelvinOkoro = new TestDriller();
 
-        numberOfCopies = Integer.parseInt(JOptionPane.showInputDialog("Enter the number of copies: "));
+        numberOfCopies = Integer.parseInt(JOptionPane.showInputDialog("Enter the number of copies: "), 10);
         String message = String.format("Total cost for %d unit(s): %d%n", numberOfCopies,
                 calculateForMerchantKelvinOkoro.calculateTotalPrice(numberOfCopies));
         JOptionPane.showMessageDialog(null, message);

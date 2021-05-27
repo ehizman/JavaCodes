@@ -48,7 +48,7 @@ public class Bike {
                 setGear("N");
             }
             else {
-                currentGear = (Integer.parseInt(currentGear) + 1) + "";
+                currentGear = (Integer.parseInt(currentGear, 10) + 1) + "";
                 setGear(currentGear);
             }
         }
