@@ -1,4 +1,4 @@
-package assignments.ChapterFive;
+package ChapterFive;
 
 public class DiamondPrinting {
     public static void main(String[] args) {

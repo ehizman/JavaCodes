@@ -1,4 +1,4 @@
-package assignments.ChapterFive;
+package ChapterFive;
 
 public class printStarPyramid {
     public static void main(String[] args) {

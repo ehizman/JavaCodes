@@ -1,4 +1,4 @@
-package assignments.ChapterFive;
+package ChapterFive;
 
 public class PrintStarPyramidSideBySide {
     public static void main(String[] args) {
