@@ -1,7 +1,11 @@
 package ChapterFive;
-
-import java.util.Arrays;
 import java.util.Scanner;
+
+/*requirements : application allows your to enter a number between 1 and 12
+to display a corresponding verse of the 12 days of christmas
+for an input of -1 the application terminates
+for any input that is outside the accepted range, application displays
+a prompt - "Invalid input" and the application terminates*/
 
 public class TwelveDaysOfChristmas {
     public static String displayPrompt() {
