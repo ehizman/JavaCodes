@@ -1,7 +1,9 @@
 package ChapterFour;
 
+import java.util.Scanner;
+
 public class Factorial {
-    int factorial;
+    private int factorial;
 
     public Factorial() {
         factorial = 1;
@@ -13,5 +15,15 @@ public class Factorial {
             number--;
         }
         return factorial;
+    }
+
+    public static void main(String[] args) {
+        int number;
+        Scanner scanner = new Scanner(System.in);
+        Factorial calculator = new Factorial();
+        System.out.print("Enter number to calculate factorial: ");
+        number = scanner.nextInt();
+
+        System.out.printf("The factorial of %d is %d", number, calculator.calculateFactorial(number));
     }
 }
