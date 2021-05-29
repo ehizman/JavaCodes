@@ -3,7 +3,7 @@ package ChapterFour;
 import java.util.Arrays;
 
 public class DecryptionApp {
-    public static int[] decrypt(int[] encryptedNumber) {
+    public static int[] decrypt(int... encryptedNumber) {
         int [] decryptedNumber = new int[4];
         for (int i = 0; i < 4; i++) {
             if (encryptedNumber[i] <= 6) {
