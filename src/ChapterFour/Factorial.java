@@ -13,7 +13,7 @@ public class Factorial {
         this.factorial = 1;
         while (number >= 1){
             factorial = factorial * number;
-            --number;
+            number--;
         }
         return factorial;
     }
