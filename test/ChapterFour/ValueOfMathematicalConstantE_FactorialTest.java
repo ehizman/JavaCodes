@@ -17,4 +17,10 @@ public class ValueOfMathematicalConstantE_FactorialTest {
         ValueOfMathematicalConstantE_Factorial calculator = new ValueOfMathematicalConstantE_Factorial();
         assertEquals(2.5, calculator.calculateValueOfE(2));
     }
+
+    @Test
+    void testCalculateValueOfEWhenANegativeIntegerIsPassed(){
+        ValueOfMathematicalConstantE_Factorial calculator = new ValueOfMathematicalConstantE_Factorial();
+        assertEquals(1, calculator.calculateValueOfE(-2));
+    }
 }
