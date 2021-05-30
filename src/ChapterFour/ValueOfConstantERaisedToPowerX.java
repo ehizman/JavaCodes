@@ -8,7 +8,7 @@ public class ValueOfConstantERaisedToPowerX {
 
         for (int i = 1; i <= number ; i++) {
             valueOfConstant_ERaisedToPowerX =
-                    valueOfConstant_ERaisedToPowerX + (Math.pow(number, 2)/ (calculator.calculateFactorial(number)));
+                    valueOfConstant_ERaisedToPowerX + (Math.pow(number, i)/ (calculator.calculateFactorial(i)));
         }
 
         return valueOfConstant_ERaisedToPowerX;

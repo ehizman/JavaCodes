@@ -8,7 +8,7 @@ public class ValueOfConstantERaisedToAPowerX_Test {
     @Test
     void testThatValueOfConstantERaisedToPowerXWhenInputIsAPositiveNumber(){
         ValueOfConstantERaisedToPowerX calculator = new ValueOfConstantERaisedToPowerX();
-        assertEquals (4.0, calculator.calculateValueOfConstant_ERaisedToPower_X(2));
+        assertEquals (13.0, calculator.calculateValueOfConstant_ERaisedToPower_X(3));
     }
 
     @Test
