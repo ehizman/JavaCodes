@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class TriangleSideValidator {
 
-    public static Boolean isValidTriangle(int firstSide, int secondSide, int thirdSide){
+    public static Boolean isTriangle(int firstSide, int secondSide, int thirdSide){
         boolean isTriangle = false;
         final boolean is_Sum_Of_FirstSide_And_SecondSide_Is_Greater_Than_Length_Of_ThirdSide =
                 (firstSide + secondSide) > thirdSide;
@@ -51,7 +51,7 @@ public class TriangleSideValidator {
         System.out.print("Enter the length of third side of the triangle: ");
         thirdSideOfTriangle = scanner.nextInt();
 
-        isValidTriangle = isValidTriangle(firstSideOfTriangle, secondSideOfTriangle, thirdSideOfTriangle);
+        isValidTriangle = isTriangle(firstSideOfTriangle, secondSideOfTriangle, thirdSideOfTriangle);
         if (isValidTriangle){
             System.out.println("The lengths are appropriate to form a triangle");
         }
