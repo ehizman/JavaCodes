@@ -6,8 +6,8 @@ public class LargestAndSmallest {
 
     public static void main(String[] args) {
         System.out.println("This application takes in 10 numbers and then outputs the largest and the smallest");
-        int largest = 0;
-        int smallest = 0;
+        int largest = Integer.MIN_VALUE;
+        int smallest = Integer.MAX_VALUE;
         int currentInput = 0;
         Scanner scanner = new Scanner (System.in);
 
