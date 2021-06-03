@@ -1,8 +1,5 @@
 package OtherProjects;
-
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class ArrayTask {
     private int numberOfMultipleOccurrencesOfDuplicates;
@@ -130,13 +127,38 @@ public class ArrayTask {
         if (isElementInArray){
             int numberOfDuplicatesOf = findNumberOfDuplicatesOf(numberToDelete,arrayOfNumbers);
             int[] updatedArray = new int[arrayOfNumbers.length - numberOfDuplicatesOf];
-            for (int i = 0; i < arrayOfNumbers.length; i++) {
-                for (int j = i; j == updatedArray.length; j++) {
-                    if (arrayOfNumbers[i] != numberToDelete) {
-                        updatedArray[j] = arrayOfNumbers[i];
-                    }
+            int counterForUpdateArray = 0;
+            for (int arrayOfNumber : arrayOfNumbers) {
+                if (arrayOfNumber != numberToDelete) {
+                    updatedArray[counterForUpdateArray] = arrayOfNumber;
+                    counterForUpdateArray++;
                 }
             }
+            return updatedArray;
         }
+        else{
+            return arrayOfNumbers;
+        }
+    }
+
+    public int[] removeDuplicates(int[] arrayOfNumbers) {
+        int[] arrayOfDuplicates = findDuplicates(arrayOfNumbers);
+        int[] arrayWithDuplicatedElementsRemoved = arrayOfNumbers;
+        for (int element : arrayOfDuplicates) {
+            arrayWithDuplicatedElementsRemoved = deleteElement(arrayWithDuplicatedElementsRemoved,element);
+        }
+        int[] arrayWithoutDuplicates = new int[arrayWithDuplicatedElementsRemoved.length + arrayOfDuplicates.length];
+        for (int i = 0; i < arrayWithDuplicatedElementsRemoved.length; i++) {
+            arrayWithoutDuplicates[i] = arrayWithDuplicatedElementsRemoved[i];
+        }
+        int startPoint = arrayWithDuplicatedElementsRemoved.length;
+        int counter = 0;
+        while (counter < arrayOfDuplicates.length){
+            arrayWithoutDuplicates[startPoint] = arrayOfDuplicates[counter];
+            startPoint++;
+            counter++;
+        }
+
+        return sortArray(arrayWithoutDuplicates);
     }
 }

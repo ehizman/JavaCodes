@@ -75,7 +75,7 @@ public class ArraysTaskTest {
     void canSortArray(){
         ArrayTask array = new ArrayTask();
         int[] arrayOfNumbers = new int[] {2,46,57, -98, 567, 4774, 36, -363, 78, 34};
-        assertEquals(Arrays.toString(new int[]{-363, -98, 2, 34, 36,46, 57, 78, 567, 4774}).toString(),
+        assertEquals(Arrays.toString(new int[]{-363, -98, 2, 34, 36,46, 57, 78, 567, 4774}),
                 Arrays.toString(array.sortArray(arrayOfNumbers)));
     }
 
@@ -106,5 +106,13 @@ public class ArraysTaskTest {
         int[] arrayOfNumbers = new int[] {1,7,3,7,3,3,2,1,6,8,7,5,6,4,5,0};
         assertEquals(Arrays.toString(new int[]{1, 3, 3, 3, 2, 1, 6, 8, 5, 6, 4, 5, 0}),
                 Arrays.toString(array.deleteElement(arrayOfNumbers, 7)));
+    }
+
+    @Test
+    void canRemoveDuplicatesFromArray(){
+        ArrayTask array = new ArrayTask();
+        int[] arrayOfNumbers = new int[] {1,7,3,7,3,3,2,1,6,8,7,5,6,4,5,0, 686, 5, 76,67,5,3};
+        assertEquals(Arrays.toString(new int[] {0,1,2,3,4,5,6,7,8,67,76,686}),
+                Arrays.toString(array.removeDuplicates(arrayOfNumbers)));
     }
 }
