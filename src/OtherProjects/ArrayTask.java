@@ -5,19 +5,23 @@ import java.util.Arrays;
 import java.util.List;
 
 public class ArrayTask {
-
-    public int findMaximumElement(int[] arrayOfNumbers) {
-        int maximumElement = Integer.MIN_VALUE;
+    private int numberOfMultipleOccurrencesOfDuplicates;
+    public int findLargestElement(int[] arrayOfNumbers) {
+        int maximumElement = arrayOfNumbers[0];
         for (int element : arrayOfNumbers) {
-            maximumElement = Math.max(element, maximumElement);
+            if (element > maximumElement) {
+                maximumElement = element;
+            }
         }
         return maximumElement;
     }
 
     public int findSmallestElement(int[] arrayOfNumbers) {
-        int minimumElement = Integer.MAX_VALUE;
+        int minimumElement = arrayOfNumbers[0];
         for (int element : arrayOfNumbers){
-            minimumElement = Math.min(element, minimumElement);
+            if (element < minimumElement){
+                minimumElement = element;
+            }
         }
         return minimumElement;
     }
@@ -31,7 +35,7 @@ public class ArrayTask {
     }
 
     public int getRangeOfElementsInArray(int[] arrayOfNumbers) {
-        int range = findMaximumElement(arrayOfNumbers) - findSmallestElement(arrayOfNumbers);
+        int range = findLargestElement(arrayOfNumbers) - findSmallestElement(arrayOfNumbers);
         return range;
     }
 
@@ -43,25 +47,11 @@ public class ArrayTask {
         return false;
     }
 
-    public int[] deleteElement(int[] arrayOfNumbers, int elementToDelete) {
-        List <Integer> newList = new ArrayList<>();
-        for (int element : arrayOfNumbers) {
-            if (element !=  elementToDelete){
-                newList.add(element);
-            }
-        }
-        int[]  updatedArray = new int[newList.size()];
-        for (int i = 0; i < updatedArray.length; i++) {
-            updatedArray[i] = newList.get(i);
-        }
-        return updatedArray;
-    }
-
     public String findTwoLargestNumbers(int[] arrayOfNumbers) {
         int[] largestNumbers = new int[2];
-        largestNumbers[0] = findMaximumElement(arrayOfNumbers);
+        largestNumbers[0] = findLargestElement(arrayOfNumbers);
         int[] newArray = deleteElement(arrayOfNumbers, largestNumbers[0]);
-        largestNumbers[1] = findMaximumElement(newArray);
+        largestNumbers[1] = findLargestElement(newArray);
         return Arrays.toString(largestNumbers);
     }
 
@@ -86,8 +76,67 @@ public class ArrayTask {
         smallestNumbers[1] = findSmallestElement(newArray);
         return Arrays.toString(smallestNumbers);
     }
-//
-//    public int[] sortArray() {
-//
-//    }
+
+    public int[] sortArray(int[] arrayOfNumbers) {
+        for (int i = 0; i < arrayOfNumbers.length; i++) {
+            for (int j = i + 1; j < arrayOfNumbers.length; j++) {
+                if (arrayOfNumbers[i] > arrayOfNumbers[j]){
+                    int swapCell = arrayOfNumbers[i];
+                    arrayOfNumbers[i] = arrayOfNumbers[j];
+                    arrayOfNumbers[j] = swapCell;
+                }
+            }
+        }
+        return arrayOfNumbers;
+    }
+
+    public int[] findDuplicates(int[] arrayOfNumbers) {
+        int[] arrayOfDuplicates = new int [arrayOfNumbers.length/2];
+        String stringOfDuplicates = "";
+        int counter = 0;
+        for (int i = 0; i < arrayOfNumbers.length; i++) {
+            for (int j = i + 1; j < arrayOfNumbers.length; j++) {
+                if (arrayOfNumbers[i] == arrayOfNumbers[j]){
+                    if (!(findElement(arrayOfDuplicates, arrayOfNumbers[i]))){
+                        arrayOfDuplicates[counter] = arrayOfNumbers[i];
+                        counter++;
+                    }
+                    else{
+                        this.numberOfMultipleOccurrencesOfDuplicates++;
+                    }
+                }
+            }
+        }
+        int[] trimmedArrayOfDuplicates = new int[counter];
+        for (int i = 0; i < counter; i++) {
+            trimmedArrayOfDuplicates[i] = arrayOfDuplicates[i];
+        }
+        return trimmedArrayOfDuplicates;
+    }
+
+    public int findNumberOfDuplicatesOf(int number, int[] arrayOfNumbers) {
+        boolean isElementInArray = findElement(arrayOfNumbers, number);
+        int counter = 0;
+        if (isElementInArray){
+            for (int element : arrayOfNumbers) {
+                if (element == number)
+                    counter++;
+            }
+        }
+        return counter;
+    }
+    public int[] deleteElement(int[] arrayOfNumbers, int numberToDelete) {
+        boolean isElementInArray = findElement(arrayOfNumbers, numberToDelete);
+        if (isElementInArray){
+            int numberOfDuplicatesOf = findNumberOfDuplicatesOf(numberToDelete,arrayOfNumbers);
+            int[] updatedArray = new int[arrayOfNumbers.length - numberOfDuplicatesOf];
+            for (int i = 0; i < arrayOfNumbers.length; i++) {
+                for (int j = i; j == updatedArray.length; j++) {
+                    if (arrayOfNumbers[i] != numberToDelete) {
+                        updatedArray[j] = arrayOfNumbers[i];
+                    }
+                }
+            }
+        }
+    }
 }
