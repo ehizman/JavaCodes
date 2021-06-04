@@ -129,7 +129,6 @@ public class Bike {
         if (isClutchPressed()){
             speed = checkSpeedometer() - decelerationRate;
         }
-
     }
 
     private boolean isClutchPressed() {
