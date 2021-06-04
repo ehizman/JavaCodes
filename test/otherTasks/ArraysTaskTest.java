@@ -1,9 +1,7 @@
 package otherTasks;
-
 import OtherProjects.ArrayTask;
 import org.junit.jupiter.api.Test;
 import java.util.Arrays;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ArraysTaskTest {
@@ -111,8 +109,9 @@ public class ArraysTaskTest {
     @Test
     void canRemoveDuplicatesFromArray(){
         ArrayTask array = new ArrayTask();
-        int[] arrayOfNumbers = new int[] {1,7,3,7,3,3,2,1,6,8,7,5,6,4,5,0, 686, 5, 76,67,5,3};
-        assertEquals(Arrays.toString(new int[] {0,1,2,3,4,5,6,7,8,67,76,686}),
+        int[] arrayOfNumbers = new int[] {1,7,3,7,3,3,2,1,6,8,7,5,6,4,5,0, 686, 5, 76,67,5,3,23,45,67,89,24,35,32,23,
+                23};
+        assertEquals(Arrays.toString(new int[] {0,1,2,3,4,5,6,7,8,23,24,32, 35,45,67,76,89,686}),
                 Arrays.toString(array.removeDuplicates(arrayOfNumbers)));
     }
 }

@@ -1,5 +1,6 @@
 package OtherProjects;
 import java.util.Arrays;
+import java.time.*;
 
 public class ArrayTask {
     private int numberOfMultipleOccurrencesOfDuplicates;
@@ -89,7 +90,6 @@ public class ArrayTask {
 
     public int[] findDuplicates(int[] arrayOfNumbers) {
         int[] arrayOfDuplicates = new int [arrayOfNumbers.length/2];
-        String stringOfDuplicates = "";
         int counter = 0;
         for (int i = 0; i < arrayOfNumbers.length; i++) {
             for (int j = i + 1; j < arrayOfNumbers.length; j++) {
