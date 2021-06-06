@@ -1,6 +1,5 @@
 package OtherProjects;
 import java.util.Arrays;
-import java.time.*;
 
 public class ArrayTask {
     private int numberOfMultipleOccurrencesOfDuplicates;

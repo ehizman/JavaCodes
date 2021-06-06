@@ -9,8 +9,8 @@ public class ArraysTaskTest {
     @Test
     void canGetTheLargestElementInArray(){
         ArrayTask array = new ArrayTask();
-        int[] arrayOfNumbers = new int[] {2, 5, 6,7, 8, 109,19, 5, 26,-89};
-        assertEquals(109, array.findLargestElement(arrayOfNumbers));
+        int[] arrayOfNumbers = null;
+        assertEquals(0, array.findLargestElement(arrayOfNumbers));
     }
 
     @Test
@@ -80,15 +80,19 @@ public class ArraysTaskTest {
     @Test
     void canFindDuplicatesInArray(){
         ArrayTask array = new ArrayTask();
-        int[] arrayOfNumbers = new int[] {1,7,3,7,3,3,2,1,6,8,7,5,6,4,5,0};
-        int[] arrayOfDuplicates = new int[]{1,7,3,6,5};
+        int[] arrayOfNumbers = new int[] {1,7,3,7,3,3,2,1,6,8,7,5,6,4,5,0,7,7,7,8,7,9,7,10};
+        int[] arrayOfDuplicates = new int[]{1,7,3,6,5,8,10};
+        System.out.println(Arrays.toString(arrayOfDuplicates));
         assertAll(
                 () -> assertEquals(arrayOfDuplicates[0], array.findDuplicates(arrayOfNumbers)[0]),
                 () ->  assertEquals(arrayOfDuplicates[1], array.findDuplicates(arrayOfNumbers)[1]),
                 () ->  assertEquals(arrayOfDuplicates[2], array.findDuplicates(arrayOfNumbers)[2]),
                 () ->  assertEquals(arrayOfDuplicates[3], array.findDuplicates(arrayOfNumbers)[3]),
-                () ->  assertEquals(arrayOfDuplicates[4], array.findDuplicates(arrayOfNumbers)[4])
+                () ->  assertEquals(arrayOfDuplicates[4], array.findDuplicates(arrayOfNumbers)[4]),
+                () ->  assertEquals(arrayOfDuplicates[5], array.findDuplicates(arrayOfNumbers)[5]),
+                () ->  assertEquals(arrayOfDuplicates[6], array.findDuplicates(arrayOfNumbers)[6])
         );
+
     }
 
     @Test
@@ -109,9 +113,7 @@ public class ArraysTaskTest {
     @Test
     void canRemoveDuplicatesFromArray(){
         ArrayTask array = new ArrayTask();
-        int[] arrayOfNumbers = new int[] {1,7,3,7,3,3,2,1,6,8,7,5,6,4,5,0, 686, 5, 76,67,5,3,23,45,67,89,24,35,32,23,
-                23};
-        assertEquals(Arrays.toString(new int[] {0,1,2,3,4,5,6,7,8,23,24,32, 35,45,67,76,89,686}),
-                Arrays.toString(array.removeDuplicates(arrayOfNumbers)));
+        int[] arrayOfNumbers = null;
+        assertArrayEquals(null, array.removeDuplicates(arrayOfNumbers));
     }
 }
