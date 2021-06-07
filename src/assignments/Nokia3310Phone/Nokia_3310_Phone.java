@@ -1,13 +1,13 @@
 package assignments.Nokia3310Phone;
-
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class Nokia_3310_Phone {
+    private static final PhoneBook phoneBook = new PhoneBook();
     private static final MenuOption[] userInput = MenuOption.values();
-    private final Scanner input = new Scanner(System.in);
+    private static final Scanner input = new Scanner(System.in);
 
-    public int displayMainMenu() {
+    public static void displayMainMenu() {
         String message = """
                     -> NOKIA 3310
                     -> Press 1 for PHONEBOOK Menu
@@ -31,21 +31,7 @@ public class Nokia_3310_Phone {
         while (userInput != MenuOption.TURN_OFF){
             switch (userInput){
                 case PHONE_BOOK:{
-                    message = """
-                                -> Press 1 to SEARCH
-                                -> Press 2 to display SERVICE NOS
-                                -> Press 3 to ADD NAME
-                                -> Press 4 to ERASE
-                                -> Press 5 to EDIT
-                                -> Press 6 to ASSIGN TONE
-                                -> Press 7 to SEND B/'CARD
-                                -> Press 8 to DISPLAY OPTIONS
-                                -> Press 9 to view SPEED DIALS
-                                -> Press 10 to set VOICE TAGS
-                                -> Press 0 to RETURN TO PREVIOUS MENU
-                            """;
-                    System.out.print(message);
-                    getRequest();
+                    phoneBook.displayPhoneBookMenu();
                     break;
                 }
 
@@ -169,14 +155,16 @@ public class Nokia_3310_Phone {
                 default:{
                     System.exit(-1);
                 }
-
             }
+            System.out.println(message);
             userInput = getRequest();
         }
-        return 0;
+        if (userInput == MenuOption.TURN_OFF){
+            System.exit(0);
+        }
     }
 
-    MenuOption getRequest() {
+    private static MenuOption getRequest() {
         int request = 0;
         try{
             do{
