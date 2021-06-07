@@ -31,26 +31,12 @@ public class Nokia_3310_Phone {
         while (userInput != MenuOption.TURN_OFF){
             switch (userInput){
                 case PHONE_BOOK:{
-                    phoneBook.displayPhoneBookMenu();
+                    PhoneBook.displayPhoneBookMenu();
                     break;
                 }
 
                 case MESSAGES: {
-                    message = """
-                                -> Press 1 to WRITE MESSAGES
-                                -> Press 2 to view INBOX
-                                -> Press 3 to view OUTBOX
-                                -> Press 4 to send PICTURES MESSAGES
-                                -> Press 5 to view message TEMPLATES
-                                -> Press 6 to view SMILEYS
-                                -> Press 7 to for MESSAGE SETTINGS
-                                -> Press 8 to for INFO SERVICES
-                                -> Press 9 to for VOICE MAILBOX NUMBER
-                                -> Press 10 to view SERVICE COMMAND EDITOR
-                                -> Press 0 to return to PREVIOUS MENU
-                            """;
-                    System.out.print(message);
-                    getRequest();
+                    Messages.displayMessagesMenu();
                     break;
                 }
 

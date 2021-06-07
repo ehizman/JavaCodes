@@ -78,7 +78,6 @@ public class PhoneBook {
                                 """, name, number, B_CARD_SIZE);
                     System.out.println(B_Card_Details);
                     break;
-
                 }
 
                 case OPTIONS:{
