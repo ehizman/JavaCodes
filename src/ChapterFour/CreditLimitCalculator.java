@@ -7,7 +7,7 @@ public class CreditLimitCalculator {
     public static void main(String[] args) {
         String message = String.format("""
                     Welcome to credit limit calculator
-                    Press 1 to input input customer details
+                    Press 1 to input customer details
                     Press any key to exit application: %s
                 """, " ");
         System.out.print(message);
@@ -36,7 +36,6 @@ public class CreditLimitCalculator {
             if (newBalance > totalCreditAllowed){
                 System.out.print("Customer Balance exceeded");
             }
-
             System.out.println();
             System.out.println(message);
             input = scanner.nextInt();
