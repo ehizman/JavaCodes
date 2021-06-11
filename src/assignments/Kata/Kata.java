@@ -28,3 +28,4 @@ public class Kata {
         System.out.printf(" the reverse of %d is %s%n", number, reverse(number));
     }
 }
+

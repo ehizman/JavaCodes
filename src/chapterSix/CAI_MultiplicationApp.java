@@ -1,4 +1,4 @@
-package chapterSixFiles;
+package chapterSix;
 
 import java.security.SecureRandom;
 import java.util.Scanner;
