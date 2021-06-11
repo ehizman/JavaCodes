@@ -1,43 +1,48 @@
 package chapterSeven.gameOfCards;
 
-public class DeckOfCards {
-    private final int TOTAL_NUMBER_OF_CARDS = 52;
-    Card[] deck;
+import java.security.SecureRandom;
+import java.util.Arrays;
 
-    public DeckOfCards(){
-        int count = 0;
-        Face[] faces = Face.values();
-        Suit[] suits = Suit.values();
-        deck = new Card[TOTAL_NUMBER_OF_CARDS];
-        for (Suit suit: suits) {
-            for (Face face : faces) {
-                deck[count] = new Card(face, suit);
-                count++;
+public class DeckOfCards {
+    private final int numberOfCardsInDeck = 52;
+    SuitEnum[] suits = SuitEnum.values();
+    FaceEnum[] faces = FaceEnum.values();
+    Card[] deck = new Card[numberOfCardsInDeck];
+
+    public DeckOfCards() {
+        int counter = 0;
+        for (SuitEnum suit : suits) {
+            for (FaceEnum face : faces) {
+                Card card = new Card(face, suit);
+                deck[counter] = card;
+                counter ++;
             }
         }
     }
-}
 
-enum Suit {
-    HEARTS,
-    DIAMONDS,
-    CLUBS,
-    SPADES
-}
+    @Override
+    public String toString() {
+        return Arrays.toString(deck);
+    }
 
-enum Face {
-    ACE,
-    DEUCE,
-    THREE,
-    FOUR,
-    FIVE,
-    SIX,
-    SEVEN,
-    EIGHT,
-    NINE,
-    TEN,
-    JACK,
-    QUEEN,
-    KING
-}
+    public int getNumberOfCardsInDeck() {
+        System.out.println(deck[0]);
+        return numberOfCardsInDeck;
+    }
 
+    public void shuffle() {
+        int index;
+        Card temp;
+        SecureRandom randomNumber = new SecureRandom();
+        for (int i = 0; i < numberOfCardsInDeck; i++) {
+            index = randomNumber.nextInt(numberOfCardsInDeck);
+            temp = deck[i];
+            deck[i] = deck[index];
+            deck[index] = temp;
+        }
+    }
+
+    public Card getCard(int index) {
+        return deck[index];
+    }
+}

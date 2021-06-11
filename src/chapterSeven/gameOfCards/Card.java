@@ -1,17 +1,16 @@
 package chapterSeven.gameOfCards;
 
 public class Card {
+    private final FaceEnum face;
+    private final SuitEnum suit;
 
-    private final Suit suit;
-    private final Face face;
-
-    public Card(Face face, Suit suit){
-            this.face = face;
-            this.suit = suit;
+    public Card(FaceEnum cardFace, SuitEnum cardSuit) {
+        this.face = cardFace;
+        this.suit = cardSuit;
     }
 
     @Override
     public String toString() {
-        return (face + " of " + suit);
+        return String.format("Card %s of %s%n", face, suit);
     }
 }
