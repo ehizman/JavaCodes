@@ -1,5 +1,4 @@
 package OtherProjects;
-
 import java.util.Scanner;
 
 public class RecursiveFactorial {
@@ -15,7 +14,7 @@ public class RecursiveFactorial {
     private static int factorial(int number) {
         if (number > 1){
             factorial = factorial * number;
-            return (factorial(number -1));
+            return (factorial(number - 1));
         }
         return factorial;
     }
