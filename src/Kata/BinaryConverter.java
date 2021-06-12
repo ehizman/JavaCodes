@@ -1,8 +1,8 @@
 package Kata;
 
 public class BinaryConverter {
-    StringBuilder  binaryDigits = new StringBuilder("");
-    public String convertToBinary(int number, int base )
+    private static StringBuilder  binaryDigits = new StringBuilder("");
+    public static String convertToBinary(int number, int base )
     {
         binaryDigits.append(number % base);
         number = number / base;
@@ -13,8 +13,7 @@ public class BinaryConverter {
     }
 
     public static void main(String[] args) {
-        BinaryConverter binaryConverter = new BinaryConverter();
-        String binaryNumber = binaryConverter.convertToBinary(42, 7);
+        String binaryNumber = BinaryConverter.convertToBinary(42, 7);
         System.out.println(binaryNumber);
     }
 }

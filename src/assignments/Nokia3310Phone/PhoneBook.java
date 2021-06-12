@@ -198,7 +198,7 @@ class Options{
 
     private static void getMemoryStatus() {
         String systemDialog = String.format("""
-                                    Memory Details:
+                Memory Details:
                 USED: %d
                 REMAINING: %d
                 """, PhoneBook.numberOfContacts, (PhoneBook.maximumNumberOfContacts - PhoneBook.numberOfContacts));

@@ -41,6 +41,7 @@ public class Nokia_3310_Phone {
                 }
 
                 case CHAT:{
+                    System.out.println("Now in chat");
                     System.out.println("Search for who to chat with: ");
                     break;
                 }

@@ -3,8 +3,6 @@ package assignments.Kata;
 import java.util.Scanner;
 
 public class Kata {
-
-
     public static String reverse(int number) {
         String numberToReverse = number + "";
         String reversedNumber = "";
