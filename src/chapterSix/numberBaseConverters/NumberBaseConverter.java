@@ -1,4 +1,4 @@
-package chapterSixFiles.numberBaseConverters;
+package chapterSix.numberBaseConverters;
 
 import chapterSix.numberBaseConverters.BinaryConverter;
 import chapterSix.numberBaseConverters.HexDecimalConverter;
