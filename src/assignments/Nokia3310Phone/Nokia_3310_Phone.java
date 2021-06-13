@@ -47,18 +47,7 @@ public class Nokia_3310_Phone {
                 }
 
                 case CALL_REGISTER:{
-                    message = """
-                                -> Press 1 to view MISSED CALLS
-                                -> Press 2 to view RECEIVED CALLS
-                                -> Press 3 to view DIALLED NUMBERS
-                                -> Press 4 to ERASE RECENT CALL LISTS
-                                -> Press 5 to SHOW CALL DURATION
-                                -> Press 6 to SHOW CALL COSTS
-                                -> Press 7 to set CALL COST SETTINGS
-                                -> Press 8 for PREPAID CREDIT
-                                -> Press 0 to return to PREVIOUS MENU
-                            """;
-                    System.out.print(message);
+                    CallRegister.displayCallRegisterMenu();
                     getRequest();
                     break;
                 }
