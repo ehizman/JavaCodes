@@ -9,4 +9,5 @@ public class Kata {
         }
         return factorial;
     }
+
 }
