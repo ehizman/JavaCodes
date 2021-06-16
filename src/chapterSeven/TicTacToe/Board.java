@@ -19,7 +19,7 @@ public class Board {
         }
     }
 
-    public char[][] displayBoard() { //make displayBoard private. Display it from play()
+    public char[][] getBoard() { //make getBoard private. Display it from main()
         return board;
     }
 }
