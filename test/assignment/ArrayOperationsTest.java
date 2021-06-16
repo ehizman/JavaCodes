@@ -3,13 +3,41 @@ package assignment;
 import assignments.Kata.Kata;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ArrayOperationsTest {
     @Test
     void canFindMaximum(){
-        Kata kata = new Kata();
-        int[] array = new int[] {45,36,57,0,-13,4,67,45};
-        assertEquals(67, kata.findMaximumFrom(array));
+        int[] array = new int[] {45,36,57,0,-13,4,67,145};
+        assertEquals(145, Kata.findMaximumFrom(array));
+    }
+
+    @Test
+    void throwsExceptionWhenNullArrayIsPassed(){
+        int[] array = null;
+        assertThrows(NullPointerException.class,()-> Kata.findMaximumFrom(array));
+    }
+
+    @Test
+    void canFindMinimum(){
+        int[] array = new int[] {45,36,57,0,-13,4,67,145};
+        assertEquals(-13, Kata.findMinimum(array));
+    }
+
+    @Test
+    void canThrowNullExceptionWhenNullArrayIsPassed(){
+        int[] array = null;
+        assertThrows(NullPointerException.class, ()-> Kata.findMinimum(array));
+    }
+
+    @Test
+    void canFindAverage(){
+        int[] array = new int[] {45,36,57,0,-13,4,67,145};
+        assertEquals(42.625, Kata.findAverage(array));
+    }
+    @Test
+    void throwsNullExceptionWhenNUllArrayIsPassed(){
+        int[] array = null;
+        assertThrows(NullPointerException.class, ()->Kata.findAverage(array));
     }
 }
