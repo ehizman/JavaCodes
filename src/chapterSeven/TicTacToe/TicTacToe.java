@@ -1,12 +1,11 @@
 package chapterSeven.TicTacToe;
 
 import javax.naming.NoPermissionException;
-import java.util.NoSuchElementException;
 
 public class TicTacToe {
-    public Board board = new Board();
-    Player playerOne;
-    Player playerTwo;
+    private Board board = new Board();
+    private Player playerOne;
+    private Player playerTwo;
     private char playerOneMarker;
     private char playerTwoMarker;
 
@@ -39,11 +38,20 @@ public class TicTacToe {
     }
 
     public void playerOnePlay(int position) throws NoPermissionException {
-        board.play(position, playerOneMarker);
+        if (position > 9 || position < 1){
+            throw new ArrayIndexOutOfBoundsException("Invalid Position!");
+        }
+        else {
+            board.play(position, playerOneMarker);
+        }
     }
 
     public void playerTwoPlay(int position) throws NoPermissionException {
         board.play(position, playerTwoMarker);
+    }
+
+    public char[][] getBoard(){
+        return board.getBoard();
     }
 
     public String checkGameStatus() {
@@ -85,8 +93,6 @@ public class TicTacToe {
                 return String.format("%s wins!",playerTwo.name);
             }
             else{
-                System.out.println(board.getBoard()[0][0]);
-                System.out.println(playerOneMarker);
                 return "Draw!";
             }
         }

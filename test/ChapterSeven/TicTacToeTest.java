@@ -11,7 +11,7 @@ public class TicTacToeTest {
     @Test
     void testThatGameHasBoardOnConstruction(){
         TicTacToe game = new TicTacToe();
-        assertArrayEquals(new char[][]{{'*', '*', '*'}, {'*', '*', '*'}, {'*', '*', '*'}},game.board.getBoard());
+        assertArrayEquals(new char[][]{{'*', '*', '*'}, {'*', '*', '*'}, {'*', '*', '*'}},game.getBoard());
     }
 
     @Test
@@ -29,7 +29,7 @@ public class TicTacToeTest {
         game.setPlayerOne("Ehis", 'X');
         game.setPlayerTwo("Joshua", 'O');
         game.playerOnePlay(5);
-        assertArrayEquals(new char[][]{{'*','*','*'},{'*','X','*'},{'*','*','*'}}, game.board.getBoard());
+        assertArrayEquals(new char[][]{{'*','*','*'},{'*','X','*'},{'*','*','*'}}, game.getBoard());
     }
 
     @Test
@@ -39,7 +39,7 @@ public class TicTacToeTest {
         game.setPlayerTwo("Joshua", 'O');
         game.playerOnePlay(5);
         game.playerTwoPlay(1);
-        assertArrayEquals(new char[][]{{'O','*','*'},{'*','X','*'},{'*','*','*'}}, game.board.getBoard());
+        assertArrayEquals(new char[][]{{'O','*','*'},{'*','X','*'},{'*','*','*'}}, game.getBoard());
     }
 
     @Test
@@ -277,6 +277,22 @@ public class TicTacToeTest {
     void testThatThrowsExceptionWhenPlayerTwoTriesToSetAsteriskAsMarker(){
         TicTacToe game = new TicTacToe();
         assertThrows(NoPermissionException.class, ()->game.setPlayerTwo("Ehis", '*'));
+    }
+
+    @Test
+    void testThatThrowsExceptionWhenUserInputsPositionGreaterThanNine() throws NoPermissionException {
+        TicTacToe game = new TicTacToe();
+        game.setPlayerOne("Ehis", 'X');
+        game.setPlayerTwo("Joshua", 'O');
+        assertThrows(ArrayIndexOutOfBoundsException.class,()->game.playerOnePlay(10));
+    }
+
+    @Test
+    void testThatThrowsExceptionWhenUserInputsPositionLessThanOne() throws NoPermissionException {
+        TicTacToe game = new TicTacToe();
+        game.setPlayerOne("Ehis", 'X');
+        game.setPlayerTwo("Joshua", 'O');
+        assertThrows(ArrayIndexOutOfBoundsException.class,()->game.playerOnePlay(0));
     }
 }
 
