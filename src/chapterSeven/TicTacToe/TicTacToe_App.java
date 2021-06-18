@@ -93,31 +93,26 @@ public class TicTacToe_App {
         }
     }
 
-    private static void play(String player) throws NoPermissionException {
+    private static void play(String player){
         int position = 0;
         System.out.println(player);
         System.out.println("Enter position to place marker");
         System.out.println("Board positions are numbered 1-9-> ");
         if (player.equals("Player One")){
-            do {
-                try{
-                    position = scanner.nextInt();
-                    game.playerOnePlay(position);
-                } catch (NoPermissionException | ArrayIndexOutOfBoundsException | InputMismatchException e) {
-                    System.err.println("Invalid position");;
-                }
+            try{
+                position = scanner.nextInt();
                 game.playerOnePlay(position);
-            }while (position > 9 || position < 1);
+            } catch (NoPermissionException | ArrayIndexOutOfBoundsException | InputMismatchException e) {
+                System.err.println("Invalid position");;
+            }
         }
         else{
-            do {
-                try{
-                    position = scanner.nextInt();
-                    game.playerTwoPlay(position);
+            try{
+                position = scanner.nextInt();
+                game.playerTwoPlay(position);
                 } catch (NoPermissionException | ArrayIndexOutOfBoundsException | InputMismatchException e) {
-                    System.err.println("Invalid position! Position already filled");
-                }
-            }while (position > 9 || position < 1);
+                System.err.println("Invalid position!");
+            }
         }
     }
 }
