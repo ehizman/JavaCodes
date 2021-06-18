@@ -33,7 +33,7 @@ public class TicTacToe_App {
             game.setPlayerOne(playerOneName, playerOneMarker);
             game.setPlayerTwo(playerTwoName, playerTwoMarker);
         } catch (NoPermissionException|NullPointerException e) {
-            e.printStackTrace();
+            System.err.println("Invalid position! Position already filled");
         }
         displayBoard();
         play("Player One");
@@ -103,7 +103,7 @@ public class TicTacToe_App {
                     position = scanner.nextInt();
                     game.playerOnePlay(position);
                 } catch (NoPermissionException | ArrayIndexOutOfBoundsException e) {
-                    e.printStackTrace();
+                    System.err.println("Invalid position! Position already filled");;
                 }
             }while (position > 9 || position < 1);
         }
@@ -113,7 +113,7 @@ public class TicTacToe_App {
                     position = scanner.nextInt();
                     game.playerTwoPlay(position);
                 } catch (NoPermissionException | ArrayIndexOutOfBoundsException e) {
-                    e.printStackTrace();
+                    System.err.println("Invalid position! Position already filled");
                 }
             }while (position > 9 || position < 1);
         }
