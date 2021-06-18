@@ -3,12 +3,13 @@ package chapterSeven.TicTacToe;
 import commonOperations.IoOperations;
 
 import javax.naming.NoPermissionException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class TicTacToe_App {
     private static TicTacToe game = new TicTacToe();
     private static Scanner scanner = new Scanner(System.in);
-    public static void main(String[] args) {
+    public static void main(String[] args) throws NoPermissionException {
         IoOperations.display("Tic-Tac_Toe");
         IoOperations.display(String.format("%20s", "------------------------------------"));
         String playerOneName;
@@ -32,8 +33,8 @@ public class TicTacToe_App {
             }while (playerTwoMarker == '*');
             game.setPlayerOne(playerOneName, playerOneMarker);
             game.setPlayerTwo(playerTwoName, playerTwoMarker);
-        } catch (NoPermissionException|NullPointerException e) {
-            System.err.println("Invalid position! Position already filled");
+        } catch (NoPermissionException|NullPointerException | InputMismatchException e) {
+            System.err.println("Error!");
         }
         displayBoard();
         play("Player One");
@@ -92,7 +93,7 @@ public class TicTacToe_App {
         }
     }
 
-    private static void play(String player) {
+    private static void play(String player) throws NoPermissionException {
         int position = 0;
         System.out.println(player);
         System.out.println("Enter position to place marker");
@@ -102,9 +103,10 @@ public class TicTacToe_App {
                 try{
                     position = scanner.nextInt();
                     game.playerOnePlay(position);
-                } catch (NoPermissionException | ArrayIndexOutOfBoundsException e) {
-                    System.err.println("Invalid position! Position already filled");;
+                } catch (NoPermissionException | ArrayIndexOutOfBoundsException | InputMismatchException e) {
+                    System.err.println("Invalid position");;
                 }
+                game.playerOnePlay(position);
             }while (position > 9 || position < 1);
         }
         else{
@@ -112,7 +114,7 @@ public class TicTacToe_App {
                 try{
                     position = scanner.nextInt();
                     game.playerTwoPlay(position);
-                } catch (NoPermissionException | ArrayIndexOutOfBoundsException e) {
+                } catch (NoPermissionException | ArrayIndexOutOfBoundsException | InputMismatchException e) {
                     System.err.println("Invalid position! Position already filled");
                 }
             }while (position > 9 || position < 1);
