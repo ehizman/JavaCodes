@@ -182,6 +182,10 @@ enum MenuOption{
 
     private final int option;
 
+    public int getOption() {
+        return option;
+    }
+
     MenuOption(int option){
         this.option = option;
     }
