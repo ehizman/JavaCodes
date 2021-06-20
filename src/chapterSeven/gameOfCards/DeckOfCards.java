@@ -45,12 +45,21 @@ public class DeckOfCards {
         deckOfCards = copyOfDeck;
     }
 
-    public static void main(String[] args) {
-        DeckOfCards deckOfCards = new DeckOfCards();
-        deckOfCards.displayDeckOfCards();
-        deckOfCards.shuffle();
-        System.out.println();
-        System.out.println();
-        deckOfCards.displayDeckOfCards();
+    public Card[][] dealCard(int numberOfPlayers){
+        final int numberOfCardsToDeal = 5;
+        Card[][] hands = new Card[numberOfPlayers][numberOfCardsToDeal];
+        int currentCard = 0;
+        for (int i = 0; i < numberOfPlayers; i++) {
+            Card[] playerHand = new Card[numberOfCardsToDeal];
+            for (int j = 0; j < numberOfCardsToDeal; j++) {
+                if (currentCard == deckOfCards.length){
+                    throw new NullPointerException();
+                }
+                playerHand[j] = deckOfCards[currentCard];
+                currentCard++;
+            }
+            hands[i] = playerHand;
+        }
+        return hands;
     }
 }
