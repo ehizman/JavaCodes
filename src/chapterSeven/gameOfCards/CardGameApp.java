@@ -34,6 +34,9 @@ public class CardGameApp {
                 if (GameEngine.containsAPair(hands[i]) == true){
                     IoOperations.display(String.format("%s holds a pair!",players[i].getPlayerName()));
                 }
+                if (GameEngine.containsTwoPairs(hands[i]) == true ){
+                    IoOperations.display(String.format("%s holds two pairs!", players[i].getPlayerName()));
+                }
             }
         }
         catch(NumberFormatException e){
