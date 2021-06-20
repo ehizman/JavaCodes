@@ -1,5 +1,6 @@
-package chapterSeven;
+package ChapterSeven;
 
+import chapterSeven.Fibonacci;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;

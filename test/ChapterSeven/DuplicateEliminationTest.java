@@ -1,5 +1,6 @@
-package chapterSeven;
+package ChapterSeven;
 
+import chapterSeven.DuplicateElimination;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
