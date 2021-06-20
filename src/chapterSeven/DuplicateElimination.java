@@ -27,7 +27,7 @@ public class DuplicateElimination {
         do {
             try{
                 System.out.print("Enter a number: ");
-                number = scanner.nextInt();
+                number = Integer.parseInt(scanner.next());
 
                 if (number < 10 || number > 100){
                     throw new NoSuchElementException();
@@ -41,6 +41,9 @@ public class DuplicateElimination {
             }
             catch(NoSuchElementException e){
                 System.out.println("number should be between 10 and 100");
+            }
+            catch(NumberFormatException e){
+                System.out.println("Please enter a valid number");
             }
         }while(numberOfElementsEntered < 5);
 
