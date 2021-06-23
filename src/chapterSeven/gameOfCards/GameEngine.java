@@ -132,4 +132,18 @@ public class GameEngine {
             }
         }
     }
+//
+//    public static boolean isAFullHouse(Card[] playerHand) {
+//        int count = 0;
+//        for (int i = 0; i < playerHand.length -1; i++) {
+//            for (int j = i; j < playerHand.length; j++) {
+//                if (playerHand[i].getCardFace() == playerHand[j].getCardFace()){
+//                    count = count + 1;
+//                }
+//            }
+//            if (!(count == 1 || count == 2)){
+//                return false;
+//            }
+//        }
+//    }
 }

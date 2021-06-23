@@ -38,16 +38,31 @@ public class TicTacToe {
     }
 
     public void playerOnePlay(int position) throws NoPermissionException {
-        if (position > 9 || position < 1){
-            throw new ArrayIndexOutOfBoundsException("Invalid Position!");
+        try{
+            if (position > 9 || position < 1){
+                throw new ArrayIndexOutOfBoundsException();
+            }
+            else {
+                board.play(position, playerOneMarker);
+            }
         }
-        else {
-            board.play(position, playerOneMarker);
+        catch(ArrayIndexOutOfBoundsException | NoPermissionException e){
+            System.out.println("Invalid position");
         }
     }
 
     public void playerTwoPlay(int position) throws NoPermissionException {
-        board.play(position, playerTwoMarker);
+        try{
+            if (position > 9 || position < 1){
+                throw new ArrayIndexOutOfBoundsException();
+            }
+            else {
+                board.play(position, playerTwoMarker);
+            }
+        }
+        catch(ArrayIndexOutOfBoundsException | NoPermissionException e){
+            System.out.println("Invalid position");
+        }
     }
 
     public char[][] getBoard(){

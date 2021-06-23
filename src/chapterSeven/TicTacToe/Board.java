@@ -15,7 +15,7 @@ public class Board {
             board[boardMap[0]][boardMap[1]] = marker;
         }
         else {
-            throw new NoPermissionException("Other player has played in that position");
+            throw new NoPermissionException();
         }
     }
 

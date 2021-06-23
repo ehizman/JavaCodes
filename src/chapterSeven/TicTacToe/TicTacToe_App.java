@@ -37,48 +37,38 @@ public class TicTacToe_App {
             System.err.println("Error!");
         }
         displayBoard();
-        play("Player One");
-        displayBoard();
-        play("Player Two");
-        displayBoard();
-        play("Player One");
-        displayBoard();
-        play("Player Two");
-        displayBoard();
-        play("Player One");
-        displayBoard();
-        if (game.checkGameStatus().equals(game.getPlayerOne().name+" wins!")){
-            System.out.println(game.checkGameStatus());
-        }
-        else{
-            play("Player Two");
-            displayBoard();
-            if (game.checkGameStatus().equals(game.getPlayerTwo().name+" wins!")){
-                System.out.println(game.checkGameStatus());
-            }
-            else{
-                play("Player One");
+        int counter= 0;
+        while (counter < 5) {
+            try{
+                int position = 0;
+                System.out.println("Player One");
+                System.out.println("Enter position to place marker");
+                System.out.println("Board positions are numbered 1-9-> ");
+                position = scanner.nextInt();
+                play("Player One", position);
                 displayBoard();
                 if (game.checkGameStatus().equals(game.getPlayerOne().name+" wins!")){
                     System.out.println(game.checkGameStatus());
+                    break;
                 }
-                else{
-                    play("Player Two");
-                    displayBoard();
-                    if (game.checkGameStatus().equals(game.getPlayerTwo().name+" wins!")){
-                        System.out.println(game.checkGameStatus());
-                    }
-                    else{
-                        play("Player One");
-                        displayBoard();
-                        if (game.checkGameStatus().equals(game.getPlayerOne().name+" wins!")){
-                            System.out.println(game.checkGameStatus());
-                        }
-                        else{
-                            System.out.println(game.checkGameStatus());
-                        }
-                    }
+                System.out.println("Player Two");
+                System.out.println("Enter position to place marker");
+                System.out.println("Board positions are numbered 1-9-> ");
+                position = scanner.nextInt();
+                play("Player Two",position);
+                displayBoard();
+                if (game.checkGameStatus().equals(game.getPlayerTwo().name+" wins!")){
+                    System.out.println(game.checkGameStatus());
+                    break;
                 }
+                counter++;
+                if (counter == 4){
+                    System.out.println(game.checkGameStatus());
+                    break;
+                }
+            }
+            catch (NumberFormatException e){
+                System.out.print("Invalid position");
             }
         }
     }
@@ -93,26 +83,12 @@ public class TicTacToe_App {
         }
     }
 
-    private static void play(String player){
-        int position = 0;
-        System.out.println(player);
-        System.out.println("Enter position to place marker");
-        System.out.println("Board positions are numbered 1-9-> ");
+    private static void play(String player, int position) throws NoPermissionException {
         if (player.equals("Player One")){
-            try{
-                position = scanner.nextInt();
-                game.playerOnePlay(position);
-            } catch (NoPermissionException | ArrayIndexOutOfBoundsException | InputMismatchException e) {
-                System.err.println("Invalid position");;
-            }
+            game.playerOnePlay(position);
         }
         else{
-            try{
-                position = scanner.nextInt();
-                game.playerTwoPlay(position);
-                } catch (NoPermissionException | ArrayIndexOutOfBoundsException | InputMismatchException e) {
-                System.err.println("Invalid position!");
-            }
+            game.playerTwoPlay(position);
         }
     }
 }

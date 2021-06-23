@@ -64,5 +64,31 @@ public class Kata {
             return (double)total/array.length;
         }
     }
+
+    public static int findMaximumAfterRemoval(int[] array) {
+        if (array == null){
+            throw new NullPointerException("Invalid array");
+        }
+        int minimum = array[0];
+        int total = 0;
+        for (int number: array) {
+            total = total + number;
+            minimum = Math.min(minimum, number);
+        }
+        return total - minimum;
+    }
+
+    public static int findMinimumAfterRemoval(int[] array) {
+        if (array == null){
+            throw new NullPointerException("Invalid array");
+        }
+        int maximum = array[0];
+        int total = 0;
+        for (int number: array) {
+            total = total + number;
+            maximum = Math.max(maximum, number);
+        }
+        return total - maximum;
+    }
 }
 
