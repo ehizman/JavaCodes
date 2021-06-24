@@ -1,24 +1,23 @@
 package bankApplication;
-
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.security.InvalidParameterException;
 
 public class Account {
     private String accountNumber;
-    private int accountBalance;
+    private BigDecimal accountBalance;
 
     public Account() {
-        accountNumber = Bank.getCustomers().size()+ 1 + "";
-        accountBalance = 0;
+        accountNumber = Bank.getNumberOfCustomers() +1 + "";
+        accountBalance = BigDecimal.ZERO.setScale(2, RoundingMode.HALF_EVEN);
     }
 
     public String getAccountNumber() {
         return accountNumber;
     }
 
-    public int getAccountBalance() {
-        return accountBalance;
+    public BigDecimal getAccountBalance() {
+        return  accountBalance;
     }
 
     public void deposit(int depositAmount) {
@@ -31,16 +30,16 @@ public class Account {
         if(depositAmount == 0){
             throw new NullPointerException("zero amount to deposit!");
         }
-        this.accountBalance = this.accountBalance +  depositAmount;
+        this.accountBalance = this.accountBalance.add(BigDecimal.valueOf(depositAmount));
     }
 
     public void withdraw(int amountToWithDraw) {
-        if (amountToWithDraw > accountBalance){
+        if (BigDecimal.valueOf(amountToWithDraw).compareTo(accountBalance) == 1){
             throw new InvalidParameterException("Invalid withdrawal amount");
         }
-        if (amountToWithDraw ==0){
+        if (amountToWithDraw == 0){
             throw new NullPointerException("You want to withdraw 0");
         }
-        accountBalance = accountBalance - amountToWithDraw;
+        accountBalance = accountBalance.subtract(BigDecimal.valueOf(amountToWithDraw));
     }
 }

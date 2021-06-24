@@ -7,11 +7,11 @@ public class Customer {
     private String lastName;
     private String pin;
     private Account account;
-    private String customerAccountNumber = account.getAccountNumber();
+    private String customerAccountNumber;
 
     @Override
     public String toString() {
-        return getFirstName()+" "+getLastName()+" "+getAccount().getAccountNumber()+" "+getAccount().getAccountBalance();
+        return getFirstName()+" "+getLastName()+" "+ getAccountNumber()+" "+ account.getAccountBalance();
     }
 
     public Customer(String firstName, String lastName) {
@@ -50,9 +50,15 @@ public class Customer {
             if(Integer.parseInt(pin) < 0|| Integer.parseInt(pin) > 9999){
                 throw new NumberFormatException("Pin is not numeric!");
             }
+            this.pin = pin;
+    }
+    public void generateAccountNumber(){
+        Account account = new Account();
+        this.account = account;
+        this.customerAccountNumber = account.getAccountNumber();
     }
 
-    public Account getAccount() {
-        return account;
+    public String getAccountNumber() {
+        return customerAccountNumber;
     }
 }

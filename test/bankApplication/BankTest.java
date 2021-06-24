@@ -9,9 +9,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class BankTest {
     @Test
     void newCustomerCanBeAddedToListOfBankCustomers(){
-        List<Customer> bankCustomers = Bank.getCustomers();
+        Bank bank = new Bank();
         Customer newCustomer = new Customer("Ehis", "Edemakhiota");
-        bankCustomers.add(newCustomer);
-        assertTrue(bankCustomers.contains(newCustomer));
+        Bank.addNewCustomer(newCustomer);
+        assertTrue(Bank.getCustomers().contains(newCustomer));
     }
 }

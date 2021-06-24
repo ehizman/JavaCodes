@@ -67,4 +67,10 @@ class AccountTest {
                 ()-> assertEquals(5000, account.getAccountBalance())
         );
     }
+
+    @Test
+    void accountHasANumber(){
+
+        Account account = new Account();
+    }
 }

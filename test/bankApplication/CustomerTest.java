@@ -10,7 +10,9 @@ class CustomerTest {
     @Test
     void testCustomerSetUp(){
         Customer newCustomer = new Customer("Ehis","Edemakhiota");
-        assertEquals(String.format("%s %s\t%d%.2f","Ehis","Edemakhiota",1,0.00),newCustomer.toString());
+        Bank.addNewCustomer(newCustomer);
+        newCustomer.generateAccountNumber();
+        assertEquals(String.format("%s %s %d %.2f","Ehis","Edemakhiota",1,0.00),newCustomer.toString());
     }
 
     @Test
