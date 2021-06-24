@@ -7,12 +7,11 @@ public class Customer {
     private String lastName;
     private String pin;
     private Account account;
-    private String customerAccountNumber;
     private String userName;
 
     @Override
     public String toString() {
-        return getFirstName()+" "+getLastName()+" "+getUserName()+" "+getAccountNumber()+" "+ account.getAccountBalance();
+        return getFirstName()+" "+getLastName()+" "+getUserName()+" "+account.getAccountNumber()+" "+ account.getAccountBalance();
     }
 
     public Customer(String firstName, String lastName, String userName) {
@@ -63,12 +62,10 @@ public class Customer {
             this.pin = pin;
     }
     public void generateAccountNumber(){
-        Account account = new Account();
-        this.account = account;
-        this.customerAccountNumber = account.getAccountNumber();
+        this.account = new Account();
     }
 
-    public String getAccountNumber() {
-        return customerAccountNumber;
+    public Account getAccount() {
+        return account;
     }
 }
