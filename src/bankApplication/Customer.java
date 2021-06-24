@@ -1,5 +1,7 @@
 package bankApplication;
 
+import java.security.InvalidParameterException;
+
 public class Customer {
     private String firstName;
     private String lastName;
@@ -11,10 +13,10 @@ public class Customer {
         return getFirstName()+" "+getLastName()+" "+getAccount().getAccountNumber()+" "+getAccount().getAccountBalance();
     }
 
-    public Customer(String firstName, String lastName, String defaultPin) {
+    public Customer(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.pin = defaultPin;
+        this.pin = "1234";
     }
 
     public String getFirstName() {
@@ -38,7 +40,15 @@ public class Customer {
     }
 
     public void setPin(String pin) {
-        this.pin = pin;
+            if(pin == null){
+                throw new NullPointerException("Invalid pin!");
+            }
+            if(pin.length() != 4){
+                throw new InvalidParameterException("Pin too short!");
+            }
+            if(Integer.parseInt(pin) < 0|| Integer.parseInt(pin) > 9999){
+                throw new NumberFormatException("Pin is not numeric!");
+            }
     }
 
     public Account getAccount() {

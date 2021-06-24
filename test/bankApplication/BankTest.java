@@ -10,7 +10,7 @@ class BankTest {
     @Test
     void newCustomerCanBeAddedToListOfBankCustomers(){
         List<Customer> bankCustomers = Bank.getCustomers();
-        Customer newCustomer = new Customer("Ehis", "Edemakhiota", "1234");
+        Customer newCustomer = new Customer("Ehis", "Edemakhiota");
         bankCustomers.add(newCustomer);
         assertTrue(bankCustomers.contains(newCustomer));
     }
