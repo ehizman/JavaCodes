@@ -34,7 +34,7 @@ public class TicTacToe_App {
             game.setPlayerOne(playerOneName, playerOneMarker);
             game.setPlayerTwo(playerTwoName, playerTwoMarker);
         } catch (NoPermissionException|NullPointerException | InputMismatchException e) {
-            System.err.println("Error!");
+            System.out.println("Error!");
         }
         displayBoard();
         int counter= 0;
