@@ -8,16 +8,18 @@ public class Customer {
     private String pin;
     private Account account;
     private String customerAccountNumber;
+    private String userName;
 
     @Override
     public String toString() {
-        return getFirstName()+" "+getLastName()+" "+ getAccountNumber()+" "+ account.getAccountBalance();
+        return getFirstName()+" "+getLastName()+" "+getUserName()+" "+getAccountNumber()+" "+ account.getAccountBalance();
     }
 
-    public Customer(String firstName, String lastName) {
+    public Customer(String firstName, String lastName, String userName) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.pin = "1234";
+        this.userName = userName;
     }
 
     public String getFirstName() {
@@ -34,6 +36,14 @@ public class Customer {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getPin() {

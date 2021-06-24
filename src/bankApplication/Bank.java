@@ -21,6 +21,6 @@ public class Bank {
     }
 
     public static int getNumberOfCustomers() {
-        return numberOfCustomers;
+        return getCustomers().size();
     }
 }
