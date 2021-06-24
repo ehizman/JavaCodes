@@ -7,6 +7,7 @@ public class Customer {
     private String lastName;
     private String pin;
     private Account account;
+    private String customerAccountNumber = account.getAccountNumber();
 
     @Override
     public String toString() {

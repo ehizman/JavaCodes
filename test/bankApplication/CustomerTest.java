@@ -31,9 +31,9 @@ class CustomerTest {
         assertThrows(InvalidParameterException.class, ()->newCustomer.setPin("123"));
     }
     @Test
-    void thatThrowsExceptionWhenUserEntersAlphabeticPin(){
-        Customer newCustomer = new Customer("Ehis","Edemakhiota");
-        assertThrows(NumberFormatException.class, ()->newCustomer.setPin("acde"),"Invalid pin!");
+    void thatThrowsExceptionWhenUserEntersAlphabeticPin() {
+        Customer newCustomer = new Customer("Ehis", "Edemakhiota");
+        assertThrows(NumberFormatException.class, () -> newCustomer.setPin("acde"), "Invalid pin!");
     }
 
 }
