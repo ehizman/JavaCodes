@@ -2,8 +2,6 @@ package bankApplication;
 
 import org.junit.jupiter.api.Test;
 
-import java.math.BigDecimal;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class BankApplicationTest {
@@ -66,5 +64,27 @@ class BankApplicationTest {
         assertTrue(isValidLogin);
         bankApplication.loadAirtime(200);
         assertEquals(4800.00, customer.getAccount().getAccountBalance().doubleValue());
+    }
+
+    @Test
+    void testThatCustomerCanTransferThroughBankApp(){
+        BankApplication bankApplication = new BankApplication();
+        bankApplication.register("Michael", "Obi", "miObi");
+        bankApplication.register("Ehis", "Edemakhiota", "ehizman");
+        Customer customer = bankApplication.getUser();
+        Customer newCustomer = null;
+        bankApplication.getUser().setPin("1232");
+        bankApplication.getUser().getAccount().deposit(5000);
+        boolean isValidLogin = bankApplication.customerLogin("ehizman", "1232");
+        assertTrue(isValidLogin);
+        bankApplication.transfer("1", 4000);
+        assertEquals(1000.00, customer.getAccount().getAccountBalance().doubleValue());
+        for (Customer user: Bank.getCustomers()) {
+            if (user.getAccount().getAccountNumber().equals("1")){
+                newCustomer = user;
+            }
+        }
+        assert newCustomer != null;
+        assertEquals(4000.00, newCustomer.getAccount().getAccountBalance().doubleValue());
     }
 }

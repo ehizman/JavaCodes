@@ -33,13 +33,27 @@ public class BankApplication {
         return user;
     }
 
-    public void register(String firstName, String lastName, String pin) {
-        this.user = new Customer(firstName,lastName,pin);
+    public void register(String firstName, String lastName, String userName) {
+        this.user = new Customer(firstName,lastName,userName);
         Bank.addNewCustomer(user);
         this.user.generateAccountNumber();
     }
 
     public void loadAirtime(int amountToLoad) {
         getUser().getAccount().withdraw(amountToLoad);
+    }
+
+    public void transfer(String beneficiaryAccountNumber, int amountToWithdraw) {
+        boolean accountExists = false;
+        for (Customer customer: Bank.getCustomers()) {
+            if (customer.getAccount().getAccountNumber().equals(beneficiaryAccountNumber)){
+                user.getAccount().withdraw(amountToWithdraw);
+                customer.getAccount().deposit(amountToWithdraw);
+                accountExists = true;
+            }
+        }
+        if (!accountExists){
+            throw new NullPointerException("Invalid beneficiary account");
+        }
     }
 }

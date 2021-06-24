@@ -4,11 +4,12 @@ import java.math.RoundingMode;
 import java.security.InvalidParameterException;
 
 public class Account {
-    private String accountNumber = Bank.getNumberOfCustomers() +1 + "";
+    private String accountNumber;
     private BigDecimal accountBalance;
 
     public Account() {
         accountBalance = BigDecimal.ZERO.setScale(2, RoundingMode.HALF_EVEN);
+        accountNumber = Bank.getNumberOfCustomers() + "";
     }
 
     public String getAccountNumber() {
