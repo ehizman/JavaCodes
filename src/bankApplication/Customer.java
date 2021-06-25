@@ -1,8 +1,6 @@
 package bankApplication;
 import java.security.InvalidParameterException;
 import java.util.Scanner;
-
-import static bankApplication.BankApplication.customerLogin;
 import static bankApplication.BankApplication.register;
 import static bankApplication.Util.getRegistrationFields;
 import static bankApplication.Util.trimInputs;
@@ -77,8 +75,32 @@ public class Customer {
             }
 
             case 2 ->{
-                displayPrompt("Enter amount to deposit");
+                try{
+                    displayPrompt("Enter amount to deposit");
+                    int amountToDeposit = scanner.nextInt();
+                    this.account.deposit(amountToDeposit);
+                    displayPrompt(String.format("%d deposited into account successfully!\n", amountToDeposit));
+                    displayPrompt(String.format("New account Balance %.2f",account.getAccountBalance()));
+                    viewDashBoard();
+                }catch(NullPointerException | InvalidParameterException error){
+                    displayPrompt(error.getMessage());
+                }
+
             }
+
+            case 3 ->{
+                try{
+                    displayPrompt("Enter amount to withdraw");
+                    int amountToWithdraw = scanner.nextInt();
+                    this.account.withdraw(amountToWithdraw);
+                    displayPrompt(String.format("%d withdrawn from account successfully!\n", amountToWithdraw));
+                    displayPrompt(String.format("New account Balance %.2f",account.getAccountBalance()));
+                    viewDashBoard();
+                }catch (NullPointerException | InvalidParameterException error){
+                    displayPrompt(error.getMessage());
+                }
+            }
+
         }
     }
 

@@ -14,6 +14,7 @@ public class Staff {
     }
 
     public static void viewDashBoard() {
+        displayPrompt(String.format("\nWelcome %s",userName));
         String message = """
                 
                 Press 1 to view all Bank Accounts

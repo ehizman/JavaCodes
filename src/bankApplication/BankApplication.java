@@ -86,6 +86,11 @@ public class BankApplication {
                     System.out.println("Invalid input");
                 }
             }
+            case 4 ->{
+                System.out.println("Exiting application!");
+            }
+            default -> {
+            }
         }
 
     }
@@ -136,6 +141,12 @@ public class BankApplication {
         user = new Customer(firstName,lastName,userName);
         Bank.addNewCustomer(user);
         user.generateAccountNumber();
+        displayPrompt("""
+                Change your default pin
+                pin must be 4 numeric digits!
+                """);
+        String pin = scanner.next();
+        user.setPin(pin);
         return user;
     }
 
