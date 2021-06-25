@@ -69,11 +69,6 @@ class AccountTest {
         );
     }
 
-//    @Test
-//    void accountHasANumber(){
-//
-//        Account account = new Account();
-//    }
     @AfterEach
     void tearDown() {
         Bank.getCustomers().clear();

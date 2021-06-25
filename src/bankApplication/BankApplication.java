@@ -1,13 +1,57 @@
 package bankApplication;
 
+import commonOperations.IoOperations;
+
 import java.security.InvalidParameterException;
 import java.util.Scanner;
 
 public class BankApplication {
     private Customer user;
     private static final Scanner scanner = new Scanner(System.in);
-    public static void main(String[] args) {
+    private static final BankApplication bankApplication = new BankApplication();
 
+    public static void main(String[] args) {
+        //display prompt
+        String message = """
+                    Welcome to Bank PHB
+                    Press 1 to login as staff
+                    Press 2 to login as customer
+                    Press 3 to register
+                    Press 4 to exit application
+                """;
+        int userInput = 0;
+        do {
+            displayPrompt(message);
+            try{
+                userInput = scanner.nextInt();
+            }
+            catch (NumberFormatException error){
+                displayPrompt("Invalid input");
+            }
+        }while(userInput < 1 || userInput > 4);
+
+        switch (userInput) {
+            case 1 -> {
+                try {
+                    System.out.print("Enter username: -> ");
+                    String userName = IoOperations.collectInput();
+                    System.out.print("Enter pin: -> ");
+                    String pin = IoOperations.collectInput();
+                    boolean isValidLogin = bankApplication.staffLogin(userName, pin);
+                    if (isValidLogin) {
+                        displayPrompt("Login successful! ");
+                        Staff.viewDashBoard();
+                    }
+                } catch (InvalidParameterException error) {
+                    System.out.println(error.getMessage());
+                }
+            }
+        }
+
+    }
+
+    private static void displayPrompt(String message) {
+        System.out.println(message);
     }
 
     public boolean customerLogin(String userNameInput, String pin) {
