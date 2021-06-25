@@ -1,5 +1,6 @@
 package bankApplication;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 import java.security.InvalidParameterException;
@@ -36,6 +37,11 @@ class CustomerTest {
     void thatThrowsExceptionWhenUserEntersAlphabeticPin() {
         Customer newCustomer = new Customer("Ehis", "Edemakhiota", "ehizman");
         assertThrows(NumberFormatException.class, () -> newCustomer.setPin("acde"), "Invalid pin!");
+    }
+
+    @AfterEach
+    void tearDown() {
+        Bank.getCustomers().clear();
     }
 
 }

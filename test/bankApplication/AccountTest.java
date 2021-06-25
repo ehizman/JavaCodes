@@ -1,5 +1,6 @@
 package bankApplication;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 import java.security.InvalidParameterException;
@@ -11,7 +12,7 @@ class AccountTest {
     void testThatCanDepositToAccount(){
         Account account = new Account();
         account.deposit(5000);
-        assertEquals(5000, account.getAccountBalance());
+        assertEquals(5000.00, account.getAccountBalance().doubleValue());
     }
 
     @Test
@@ -19,7 +20,7 @@ class AccountTest {
         Account account = new Account();
         account.deposit(5000);
         account.withdraw(2000);
-        assertEquals(3000, account.getAccountBalance());
+        assertEquals(3000.00, account.getAccountBalance().doubleValue());
     }
 
     @Test
@@ -27,7 +28,7 @@ class AccountTest {
         Account account = new Account();
         assertAll(
                 ()->assertThrows(InvalidParameterException.class, ()->account.deposit(-5000)),
-                ()-> assertEquals(0, account.getAccountBalance())
+                ()-> assertEquals(0.00, account.getAccountBalance().doubleValue())
         );
     }
 
@@ -36,7 +37,7 @@ class AccountTest {
         Account account = new Account();
         assertAll(
                 ()-> assertThrows(NullPointerException.class, ()-> account.deposit(0)),
-                ()-> assertEquals(0, account.getAccountBalance())
+                ()-> assertEquals(0.00, account.getAccountBalance().doubleValue())
         );
     }
 
@@ -45,7 +46,7 @@ class AccountTest {
         Account account = new Account();
         account.deposit(5000);
         account.withdraw(2000);
-        assertEquals(3000, account.getAccountBalance());
+        assertEquals(3000.00, account.getAccountBalance().doubleValue());
     }
 
     @Test
@@ -54,7 +55,7 @@ class AccountTest {
         account.deposit(5000);
         assertAll(
                 ()-> assertThrows(InvalidParameterException.class,()->account.withdraw(50000)),
-                ()-> assertEquals(5000, account.getAccountBalance())
+                ()-> assertEquals(5000.00, account.getAccountBalance().doubleValue())
         );
     }
 
@@ -64,13 +65,17 @@ class AccountTest {
         account.deposit(5000);
         assertAll(
                 ()-> assertThrows(NullPointerException.class,()->account.withdraw(0)),
-                ()-> assertEquals(5000, account.getAccountBalance())
+                ()-> assertEquals(5000.00, account.getAccountBalance().doubleValue())
         );
     }
 
-    @Test
-    void accountHasANumber(){
-
-        Account account = new Account();
+//    @Test
+//    void accountHasANumber(){
+//
+//        Account account = new Account();
+//    }
+    @AfterEach
+    void tearDown() {
+        Bank.getCustomers().clear();
     }
 }

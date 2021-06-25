@@ -9,7 +9,7 @@ public class Account {
 
     public Account() {
         accountBalance = BigDecimal.ZERO.setScale(2, RoundingMode.HALF_EVEN);
-        accountNumber = Bank.getNumberOfCustomers() + "";
+        accountNumber = Bank.getAccountNumber() + "";
     }
 
     public String getAccountNumber() {

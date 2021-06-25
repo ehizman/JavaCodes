@@ -8,6 +8,9 @@ public class Customer {
     private String pin;
     private Account account;
     private String userName;
+    private AccountState accountState;
+
+    private enum AccountState {NOT_ACTIVE, ACTIVE };
 
     @Override
     public String toString() {
@@ -19,6 +22,7 @@ public class Customer {
         this.lastName = lastName;
         this.pin = "1234";
         this.userName = userName;
+        this.accountState = AccountState.ACTIVE;
     }
 
     public String getFirstName() {
@@ -67,5 +71,13 @@ public class Customer {
 
     public Account getAccount() {
         return account;
+    }
+
+    public void closeAccount() {
+        this.accountState = AccountState.NOT_ACTIVE;
+    }
+
+    public String getAccountState() {
+        return accountState.toString();
     }
 }

@@ -1,6 +1,9 @@
 package bankApplication;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
+
+import java.security.InvalidParameterException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -53,13 +56,20 @@ class BankApplicationTest {
     }
 
     @Test
+    void testThatThrowsExceptionWhenInvalidPinIsPassed(){
+        BankApplication bankApplication = new BankApplication();
+        bankApplication.register("Ehis", "Edemakhiota", "ehizman");
+        bankApplication.getUser().setPin("1232");
+        assertThrows(InvalidParameterException.class, ()->bankApplication.customerLogin("ehizman", "1231"));
+    }
+
+    @Test
     void testThatCustomerCanLoadAirtimeThroughBankApp(){
         BankApplication bankApplication = new BankApplication();
         bankApplication.register("Ehis", "Edemakhiota", "ehizman");
         Customer customer = bankApplication.getUser();
         bankApplication.getUser().setPin("1232");
         bankApplication.getUser().getAccount().deposit(5000);
-        System.out.println(bankApplication.getUser().getAccount().getAccountBalance());
         boolean isValidLogin = bankApplication.customerLogin("ehizman", "1232");
         assertTrue(isValidLogin);
         bankApplication.loadAirtime(200);
@@ -86,5 +96,28 @@ class BankApplicationTest {
         }
         assert newCustomer != null;
         assertEquals(4000.00, newCustomer.getAccount().getAccountBalance().doubleValue());
+    }
+    @Test
+    void testThatCustomerCanCloseAccount(){
+        BankApplication bankApplication = new BankApplication();
+        bankApplication.register("Ehis", "Edemakhiota", "ehizman");
+        Customer customer = bankApplication.getUser();
+        customer.closeAccount();
+        assertEquals("NOT_ACTIVE", customer.getAccountState());
+    }
+
+    @Test
+    void testThatCustomerCannotLoginAfterClosingAccount(){
+        BankApplication bankApplication = new BankApplication();
+        bankApplication.register("Ehis", "Edemakhiota", "ehizman");
+        Customer customer = bankApplication.getUser();
+        customer.setPin("2345");
+        customer.closeAccount();
+        assertThrows(InvalidParameterException.class,()->bankApplication.customerLogin("ehizman", "2345"));
+    }
+
+    @AfterEach
+    void tearDown() {
+        Bank.getCustomers().clear();
     }
 }

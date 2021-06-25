@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Bank {
-    private static List<Customer> customers = new ArrayList<Customer>(0);
+    private static final List<Customer> customers = new ArrayList<Customer>(0);
     private static int numberOfCustomers = 0;
     public static final Staff staff = new Staff();
 
@@ -20,7 +20,12 @@ public class Bank {
         return staff.getPin();
     }
 
-    public static int getNumberOfCustomers() {
-        return getCustomers().size();
+    public static String getAccountNumber() {
+        for (Customer customer: getCustomers()) {
+            if (customer.getAccountState().equals("NOT_ACTIVE")){
+                return customer.getAccount().getAccountNumber();
+            }
+        }
+        return getCustomers().size() + "";
     }
 }
