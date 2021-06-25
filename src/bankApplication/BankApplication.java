@@ -5,8 +5,11 @@ import commonOperations.IoOperations;
 import java.security.InvalidParameterException;
 import java.util.Scanner;
 
+import static bankApplication.Util.getRegistrationFields;
+import static bankApplication.Util.trimInputs;
+
 public class BankApplication {
-    private Customer user;
+    private static Customer user;
     private static final Scanner scanner = new Scanner(System.in);
     private static final BankApplication bankApplication = new BankApplication();
 
@@ -37,13 +40,50 @@ public class BankApplication {
                     String userName = IoOperations.collectInput();
                     System.out.print("Enter pin: -> ");
                     String pin = IoOperations.collectInput();
-                    boolean isValidLogin = bankApplication.staffLogin(userName, pin);
+                    boolean isValidLogin = staffLogin(userName, pin);
                     if (isValidLogin) {
                         displayPrompt("Login successful! ");
                         Staff.viewDashBoard();
                     }
                 } catch (InvalidParameterException error) {
                     System.out.println(error.getMessage());
+                }
+            }
+            case 2 ->{
+                try {
+                    System.out.print("Enter username: -> ");
+                    String userName = IoOperations.collectInput();
+                    System.out.print("Enter pin: -> ");
+                    String pin = IoOperations.collectInput();
+                    boolean isValidLogin = customerLogin(userName, pin);
+                    if (isValidLogin) {
+                        displayPrompt("Login successful! ");
+                        user.viewDashBoard();
+                    }
+                    else{
+                        throw new InvalidParameterException("invalid login details");
+                    }
+                } catch (InvalidParameterException error) {
+                    System.out.println(error.getMessage());
+                }
+            }
+
+            case 3->{
+                displayPrompt("Create a new Account");
+                try{
+                    String[] registrationFields = getRegistrationFields();
+                    String firstName = registrationFields[0];
+                    String lastName = registrationFields[1];
+                    String userName = registrationFields[2];
+                    String[] trimmedInputs = trimInputs(firstName, lastName, userName);
+                    firstName = trimmedInputs[0];
+                    lastName = trimmedInputs[1];
+                    userName = trimmedInputs[2];
+                    Customer newUser = register(firstName,lastName,userName);
+                    displayPrompt("New Account created successfully!\n");
+                    newUser.viewDashBoard();
+                }catch (NumberFormatException error){
+                    System.out.println("Invalid input");
                 }
             }
         }
@@ -54,7 +94,7 @@ public class BankApplication {
         System.out.println(message);
     }
 
-    public boolean customerLogin(String userNameInput, String pin) {
+    public static boolean customerLogin(String userNameInput, String pin) {
         boolean isValidLoginAttempt = false;
         for(Customer customer  : Bank.getCustomers()){
             if (customer.getUserName().equals(userNameInput)){
@@ -75,7 +115,7 @@ public class BankApplication {
         return isValidLoginAttempt;
     }
 
-    public boolean staffLogin(String adminUserName, String pin) {
+    public static boolean staffLogin(String adminUserName, String pin) {
         boolean isValidLoginAttempt = false;
         if (adminUserName.equals("Admin")){
             if (pin.equals("1234")){
@@ -92,17 +132,18 @@ public class BankApplication {
         return user;
     }
 
-    public void register(String firstName, String lastName, String userName) {
-        this.user = new Customer(firstName,lastName,userName);
+    public static Customer register(String firstName, String lastName, String userName) {
+        user = new Customer(firstName,lastName,userName);
         Bank.addNewCustomer(user);
-        this.user.generateAccountNumber();
+        user.generateAccountNumber();
+        return user;
     }
 
     public void loadAirtime(int amountToLoad) {
         getUser().getAccount().withdraw(amountToLoad);
     }
 
-    public void transfer(String beneficiaryAccountNumber, int amountToWithdraw) {
+    public static void transfer(String beneficiaryAccountNumber, int amountToWithdraw) {
         boolean accountExists = false;
         for (Customer customer: Bank.getCustomers()) {
             if (customer.getAccount().getAccountNumber().equals(beneficiaryAccountNumber)){

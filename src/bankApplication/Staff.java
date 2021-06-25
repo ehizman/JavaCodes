@@ -29,7 +29,7 @@ public class Staff {
             catch (NumberFormatException error){
                 displayPrompt("Invalid input");
             }
-        }while(userInput < 1 || userInput > 4);
+        }while(userInput < 1 || userInput > 3);
 
         switch (userInput) {
             case 1 -> {

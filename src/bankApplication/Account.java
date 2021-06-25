@@ -4,7 +4,7 @@ import java.math.RoundingMode;
 import java.security.InvalidParameterException;
 
 public class Account {
-    private String accountNumber;
+    private final String accountNumber;
     private BigDecimal accountBalance;
 
     public Account() {
