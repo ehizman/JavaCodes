@@ -39,7 +39,10 @@ public class BankApplication {
             case 1 -> staffLogin();
             case 2 -> customerLogin();
             case 3 -> createNewAccount();
-            case 4 -> System.out.println("Exiting application!");
+            case 4 -> {
+                System.out.println("Exiting application!");
+                System.exit(0);
+            }
             default -> System.out.println("Invalid input!");
         }
     }
