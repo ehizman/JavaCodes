@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Bank {
-    private static final List<Customer> customers = new ArrayList<Customer>(0);
+    private static final List<Customer> customers = new ArrayList<>(0);
 
 
     public static void setCustomers(){

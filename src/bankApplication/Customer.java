@@ -45,10 +45,6 @@ public class Customer {
                     String firstName = registrationFields[0];
                     String lastName = registrationFields[1];
                     String userName = registrationFields[2];
-                    String[] trimmedInputs = trimInputs(firstName, lastName, userName);
-                    firstName = trimmedInputs[0];
-                    lastName = trimmedInputs[1];
-                    userName = trimmedInputs[2];
                     Customer newUser = register(firstName,lastName,userName);
                     displayPrompt("New Account created successfully!");
                     message = """
