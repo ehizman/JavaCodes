@@ -1,20 +1,22 @@
 package bankApplication;
-
 import commonOperations.IoOperations;
-
 import java.security.InvalidParameterException;
 import java.util.Scanner;
-
 import static bankApplication.Util.getRegistrationFields;
-import static bankApplication.Util.trimInputs;
 
 public class BankApplication {
     private static Customer user;
     private static final Scanner scanner = new Scanner(System.in);
-    private static final BankApplication bankApplication = new BankApplication();
 
     public static void main(String[] args) {
-        //display prompt
+        displayPrompt("Initial program setup...");
+        register("Ehis","Edemakhiota", "ehizman");
+        register("Kelvin","Okoro", "python");
+        register("Ifeanyi","Ndubisi", "iyayen");
+        run();
+    }
+
+    public static void run() {
         String message = """
                     Welcome to Bank PHB
                     Press 1 to login as staff
@@ -22,9 +24,9 @@ public class BankApplication {
                     Press 3 to register
                     Press 4 to exit application
                 """;
+        displayPrompt(message);
         int userInput = 0;
         do {
-            displayPrompt(message);
             try{
                 userInput = scanner.nextInt();
             }
@@ -34,78 +36,58 @@ public class BankApplication {
         }while(userInput < 1 || userInput > 4);
 
         switch (userInput) {
-            case 1 -> {
-                try {
-                    System.out.print("Enter username: -> ");
-                    String userName = IoOperations.collectInput();
-                    System.out.print("Enter pin: -> ");
-                    String pin = IoOperations.collectInput();
-                    boolean isValidLogin = staffLogin(userName, pin);
-                    if (isValidLogin) {
-                        displayPrompt("Login successful! ");
-                        Staff.viewDashBoard();
-                    }
-                } catch (InvalidParameterException error) {
-                    System.out.println(error.getMessage());
-                }
-            }
-            case 2 ->{
-                try {
-                    System.out.print("Enter username: -> ");
-                    String userName = IoOperations.collectInput();
-                    System.out.print("Enter pin: -> ");
-                    String pin = IoOperations.collectInput();
-                    boolean isValidLogin = customerLogin(userName, pin);
-                    if (isValidLogin) {
-                        displayPrompt("Login successful! ");
-                        user.viewDashBoard();
-                    }
-                    else{
-                        throw new InvalidParameterException("invalid login details");
-                    }
-                } catch (InvalidParameterException error) {
-                    System.out.println(error.getMessage());
-                }
-            }
-
-            case 3->{
-                displayPrompt("Create a new Account");
-                try{
-                    String[] registrationFields = getRegistrationFields();
-                    String firstName = registrationFields[0];
-                    String lastName = registrationFields[1];
-                    String userName = registrationFields[2];
-                    String[] trimmedInputs = trimInputs(firstName, lastName, userName);
-                    firstName = trimmedInputs[0];
-                    lastName = trimmedInputs[1];
-                    userName = trimmedInputs[2];
-                    Customer newUser = register(firstName,lastName,userName);
-                    displayPrompt("New Account created successfully!\n");
-                    newUser.viewDashBoard();
-                }catch (NumberFormatException error){
-                    System.out.println("Invalid input");
-                }
-            }
-            case 4 ->{
-                System.out.println("Exiting application!");
-            }
-            default -> {
-            }
+            case 1 -> staffLogin();
+            case 2 -> customerLogin();
+            case 3 -> createNewAccount();
+            case 4 -> System.out.println("Exiting application!");
+            default -> System.out.println("Invalid input!");
         }
+    }
 
+    private static void createNewAccount() {
+        displayPrompt("Create a new Account");
+        try{
+            String[] registrationFields = getRegistrationFields();
+            String firstName = registrationFields[0];
+            String lastName = registrationFields[1];
+            String userName = registrationFields[2];
+            Customer newUser = register(firstName,lastName,userName);
+            displayPrompt("New Account created successfully!\n");
+            newUser.viewDashBoard();
+        } catch (NumberFormatException error){
+            System.out.println("Invalid input");
+        }
     }
 
     private static void displayPrompt(String message) {
         System.out.println(message);
     }
 
-    public static boolean customerLogin(String userNameInput, String pin) {
-        boolean isValidLoginAttempt = false;
+    public static void customerLogin() {
+        try {
+            System.out.print("Enter username: -> ");
+            String userName = IoOperations.collectInput();
+            System.out.print("Enter pin: -> ");
+            String pin = IoOperations.collectInput();
+            user  = customerValidation(userName, pin);
+            if (user != null) {
+                displayPrompt("Login successful! ");
+                user.viewDashBoard();
+            }
+            else{
+                throw new InvalidParameterException("invalid login details");
+            }
+        } catch (InvalidParameterException error) {
+            System.out.println(error.getMessage());
+        }
+    }
+
+    private static Customer customerValidation(String userNameInput, String pin) {
         for(Customer customer  : Bank.getCustomers()){
             if (customer.getUserName().equals(userNameInput)){
                 if (customer.getAccountState().equals("ACTIVE")){
                     if (customer.getPin().equals(pin)){
-                        isValidLoginAttempt = true;
+                        return customer;
                     }
                     else{
                         throw new InvalidParameterException("Invalid pin");
@@ -114,13 +96,29 @@ public class BankApplication {
                 else{
                     throw  new InvalidParameterException("Account is Inactive");
                 }
-
             }
         }
-        return isValidLoginAttempt;
+        return null;
     }
 
-    public static boolean staffLogin(String adminUserName, String pin) {
+    public static void staffLogin() {
+        Staff staff = new Staff();
+        try {
+            System.out.print("Enter username: -> ");
+            String userName = IoOperations.collectInput();
+            System.out.print("Enter pin: -> ");
+            String pin = IoOperations.collectInput();
+            boolean isValidLogin = BankApplication.staffValidation(userName, pin);
+            if (isValidLogin) {
+                displayPrompt("Login successful! ");
+                staff.viewDashBoard();
+            }
+        } catch (InvalidParameterException error) {
+            System.out.println(error.getMessage());
+        }
+    }
+
+    static boolean staffValidation(String adminUserName, String pin) {
         boolean isValidLoginAttempt = false;
         if (adminUserName.equals("Admin")){
             if (pin.equals("1234")){
@@ -138,35 +136,16 @@ public class BankApplication {
     }
 
     public static Customer register(String firstName, String lastName, String userName) {
-        user = new Customer(firstName,lastName,userName);
-        Bank.addNewCustomer(user);
-        user.generateAccountNumber();
-        displayPrompt("""
-                Change your default pin
-                pin must be 4 numeric digits!
-                """);
+        Customer newUser = new Customer(firstName,lastName,userName);
+        Bank.addNewCustomer(newUser);
+        newUser.generateAccountNumber();
+        displayPrompt(String.format("""
+                Welcome %s!.
+                Please change your default pin
+                Pin must be 4 numeric digits!
+                """, firstName));
         String pin = scanner.next();
-        user.setPin(pin);
-        return user;
-    }
-
-    public void loadAirtime(int amountToLoad) {
-        getUser().getAccount().withdraw(amountToLoad);
-    }
-
-    public static void transfer(String beneficiaryAccountNumber, int amountToWithdraw) {
-        boolean accountExists = false;
-        for (Customer customer: Bank.getCustomers()) {
-            if (customer.getAccount().getAccountNumber().equals(beneficiaryAccountNumber)){
-                if (!(customer.getAccountState().equals("NOT_ACTIVE"))){
-                    user.getAccount().withdraw(amountToWithdraw);
-                    customer.getAccount().deposit(amountToWithdraw);
-                    accountExists = true;
-                }
-            }
-        }
-        if (!accountExists){
-            throw new NullPointerException("Invalid beneficiary account");
-        }
+        newUser.setPin(pin);
+        return newUser;
     }
 }

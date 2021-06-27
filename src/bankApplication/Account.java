@@ -42,4 +42,24 @@ public class Account {
         }
         accountBalance = accountBalance.subtract(BigDecimal.valueOf(amountToWithDraw));
     }
+
+    public void transfer(String beneficiaryAccountNumber, int amountToWithdraw) {
+        boolean accountExists = false;
+        for (Customer customer: Bank.getCustomers()) {
+            if (customer.getAccount().getAccountNumber().equals(beneficiaryAccountNumber)){
+                if (!(customer.getAccountState().equals("NOT_ACTIVE"))){
+                    this.withdraw(amountToWithdraw);
+                    customer.getAccount().deposit(amountToWithdraw);
+                    accountExists = true;
+                }
+            }
+        }
+        if (!accountExists){
+            throw new NullPointerException("Invalid beneficiary account");
+        }
+    }
+
+    public void loadAirtime(int amountToLoad) {
+        this.withdraw(amountToLoad);
+    }
 }

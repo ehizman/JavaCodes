@@ -21,6 +21,6 @@ public class Util {
         String lastName = scanner.next();
         System.out.print("Enter Username -> ");
         String userName = scanner.next();
-        return new String[]{firstName, lastName, userName};
+        return trimInputs(firstName, lastName, userName);
     }
 }

@@ -13,10 +13,9 @@ public class Staff {
         return pin;
     }
 
-    public static void viewDashBoard() {
+    public void viewDashBoard() {
         displayPrompt(String.format("\nWelcome %s",userName));
-        String message = """
-                
+        String message = """                
                 Press 1 to view all Bank Accounts
                 Press 2 to delete an account
                 Press 3 to Logout
@@ -35,6 +34,7 @@ public class Staff {
         switch (userInput) {
             case 1 -> {
                 viewAllAccounts();
+                viewDashBoard();
             }
             case 2 -> {
                 message = "Enter account number to delete";
@@ -45,35 +45,37 @@ public class Staff {
                 } catch (NumberFormatException error) {
                     System.out.println("Invalid input");
                 }
+                viewDashBoard();
             }
             case 3 -> {
-                BankApplication.main(new String[]{});
+                BankApplication.run();
             }
         }
     }
 
     private static void deleteAccount(String accountNumberToDelete) {
-        Customer customerTodelete = null;
+        Customer customerTobedeleted = null;
         for (Customer customer: Bank.getCustomers()) {
             if (customer.getAccount().getAccountNumber().equals(accountNumberToDelete)){
-                customerTodelete = customer;
+                customerTobedeleted = customer;
                 break;
             }
         }
-        if (customerTodelete != null){
-            Bank.getCustomers().remove(customerTodelete);
+        if (customerTobedeleted != null){
+            Bank.getCustomers().remove(customerTobedeleted);
             String message = String.format("%s %s with account number %s has been deleted!",
-                    customerTodelete.getFirstName(), customerTodelete.getLastName(),
-                    customerTodelete.getAccount().getAccountNumber());
+                    customerTobedeleted.getFirstName(), customerTobedeleted.getLastName(),
+                    customerTobedeleted.getAccount().getAccountNumber());
             displayPrompt(message);
         }
         else{
             displayPrompt("user not found!");
         }
+
     }
 
     private static void viewAllAccounts() {
-        String accountsHeader = String.format("%s\t\t\t\t%s\t\t\t\t%s\t\t\t\t%s\t\t\t\t%s","Firstname","Lastname",
+        String accountsHeader = String.format("%20s%20s%20s%20s%20s","Firstname","Lastname",
                 "username","accountNumber","accountBalance");
         displayPrompt(accountsHeader);
         for (Customer customer: Bank.getCustomers()) {

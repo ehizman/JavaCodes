@@ -17,14 +17,14 @@ public class Customer {
     public void viewDashBoard() {
         displayPrompt(String.format("Welcome %s %s",getFirstName(),getLastName() ));
         String message = """
-                
                 Press 1 to create new account
                 Press 2 to deposit
                 Press 3 to withdraw
-                Press 4 to transfer
-                Press 5 to load airtime
-                Press 6 to logout
-                Press 7 to closeAccount
+                Press 4 to view balance
+                Press 5 to transfer
+                Press 6 to load airtime
+                Press 7 to logout
+                Press 8 to close Account
                 """;
         int userInput = 0;
         do {
@@ -52,7 +52,6 @@ public class Customer {
                     Customer newUser = register(firstName,lastName,userName);
                     displayPrompt("New Account created successfully!");
                     message = """
-                            
                             Press 1 to login to new Account
                             Press 2 to dismiss prompt
                             """;
@@ -71,6 +70,7 @@ public class Customer {
                     }
                 }catch (NumberFormatException error){
                     System.out.println("Invalid input");
+                    viewDashBoard();
                 }
             }
 
@@ -84,8 +84,8 @@ public class Customer {
                     viewDashBoard();
                 }catch(NullPointerException | InvalidParameterException error){
                     displayPrompt(error.getMessage());
+                    viewDashBoard();
                 }
-
             }
 
             case 3 ->{
@@ -98,10 +98,65 @@ public class Customer {
                     viewDashBoard();
                 }catch (NullPointerException | InvalidParameterException error){
                     displayPrompt(error.getMessage());
+                    viewDashBoard();
                 }
             }
 
+            case 4 ->{
+                displayPrompt(String.format("Your account balance is %.2f",
+                    this.getAccount().getAccountBalance()));
+                viewDashBoard();
+            }
+
+            case 5 ->{
+                try{
+                    displayPrompt("Enter amount to transfer");
+                    int amountToWithdraw = scanner.nextInt();
+                    displayPrompt("Enter valid beneficiary account number");
+                    String beneficiaryAccountNumber = scanner.next();
+                    this.account.transfer(beneficiaryAccountNumber,amountToWithdraw);
+                    displayPrompt(String.format("%d withdrawn from account successfully!\n", amountToWithdraw));
+                    displayPrompt(String.format("New account Balance %.2f",account.getAccountBalance()));
+                    viewDashBoard();
+                }catch (NullPointerException | InvalidParameterException error){
+                    displayPrompt(error.getMessage());
+                    viewDashBoard();
+                }
+            }
+            case 6 ->{
+                try{
+                    displayPrompt("Enter phone number to recharge");
+                    String phoneNumber = scanner.next();
+                    displayPrompt("Enter amount to recharge");
+                    int amountToRecharge = scanner.nextInt();
+                    if (phoneNumber.length() != 11){
+                        throw new NullPointerException("Invalid phone number!");
+                    }
+                    this.account.loadAirtime(amountToRecharge);
+                    displayPrompt(String.format("%d withdrawn from account successfully!\n", amountToRecharge));
+                    displayPrompt(String.format("New account Balance %.2f",account.getAccountBalance()));
+                    viewDashBoard();
+                }catch (NullPointerException | InvalidParameterException error){
+                    displayPrompt(error.getMessage());
+                    viewDashBoard();
+                }
+            }
+            case 7 ->{
+                this.logout();
+                BankApplication.run();
+            }
+            case 8 ->{
+                this.closeAccount();
+                displayPrompt("Account deactivated successfully!");
+                BankApplication.run();
+            }
+            default -> BankApplication.run();
         }
+    }
+
+    public void logout() {
+        displayPrompt(String.format("GoodBye %s!",this.getFirstName()));
+        BankApplication.run();
     }
 
     private static void displayPrompt(String message) {
@@ -112,7 +167,8 @@ public class Customer {
 
     @Override
     public String toString() {
-        return getFirstName()+" "+getLastName()+" "+getUserName()+" "+account.getAccountNumber()+" "+ account.getAccountBalance();
+        return String.format("%20s%20s%20s%20s%20.2f", getFirstName(), getLastName(), getUserName(),
+                account.getAccountNumber(), account.getAccountBalance());
     }
 
     public Customer(String firstName, String lastName, String userName) {
