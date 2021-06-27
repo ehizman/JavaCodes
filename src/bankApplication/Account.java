@@ -21,10 +21,7 @@ public class Account {
     }
 
     public void deposit(int depositAmount) {
-        if (depositAmount < 0){
-            throw new InvalidParameterException("Invalid deposit Amount");
-        }
-        if (Double.parseDouble(depositAmount + "") < 0 || Double.parseDouble(depositAmount + "") > 100000000.00){
+        if (depositAmount < 0 || depositAmount > 100_000_000.00){
             throw new InvalidParameterException("Invalid deposit Amount");
         }
         if(depositAmount == 0){
