@@ -62,7 +62,7 @@ public class Staff {
             }
         }
         if (customerTobedeleted != null){
-            Bank.getCustomers().remove(customerTobedeleted);
+            customerTobedeleted.closeAccount();
             String message = String.format("%s %s with account number %s has been deleted!",
                     customerTobedeleted.getFirstName(), customerTobedeleted.getLastName(),
                     customerTobedeleted.getAccount().getAccountNumber());
@@ -79,7 +79,9 @@ public class Staff {
                 "username","accountNumber","accountBalance");
         displayPrompt(accountsHeader);
         for (Customer customer: Bank.getCustomers()) {
-            System.out.println(customer.toString());
+            if (customer.getAccountState().equals("ACTIVE")){
+                System.out.println(customer.toString());
+            }
         }
     }
 

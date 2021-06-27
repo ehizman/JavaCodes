@@ -18,10 +18,8 @@ public class Bank {
     }
 
     public static String getAccountNumber() {
-        for (Customer customer: getCustomers()) {
-            if (customer.getAccountState().equals("NOT_ACTIVE")){
-                return customer.getAccount().getAccountNumber();
-            }
+        if (getCustomers().size() == 10){
+            getCustomers().removeIf(customer -> customer.getAccountState().equals("NOT_ACTIVE"));
         }
         return getCustomers().size() + "";
     }

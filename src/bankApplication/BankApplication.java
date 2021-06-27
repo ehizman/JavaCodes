@@ -79,6 +79,7 @@ public class BankApplication {
             }
         } catch (InvalidParameterException error) {
             System.out.println(error.getMessage());
+            run();
         }
     }
 
