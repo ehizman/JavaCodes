@@ -144,9 +144,8 @@ public class PersonalityTest {
             System.out.println("\n".repeat(30));
         }
         System.out.println("Your personality test results -> ");
-        for (int i = 0; i < 4; i++) {
-            System.out.printf("%5s%5s%5s"," ","A","B");
-        }
+        String header = String.format("%5s%5s%5s"," ","A","B");
+        System.out.printf(header.repeat(4));
         System.out.println();
         System.out.println("---------------------------------------------------------------------------");
         for (int i = 1; i <= numberOfQuestions; i = i + 4) {
