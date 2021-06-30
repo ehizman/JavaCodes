@@ -75,15 +75,15 @@ class GameEngineTest {
         Card[] playerHand = new Card[]{firstCard, secondCard, thirdCard, fourthCard, fifthCard};
         assertTrue(GameEngine.isAStraight(playerHand));
     }
-//
-//    @Test
-//    void isAFullHouse(){
-//        Card firstCard = new Card(CardFace.FOUR, CardSuit.CLUBS);
-//        Card secondCard = new Card(CardFace.FIVE, CardSuit.CLUBS);
-//        Card thirdCard = new Card(CardFace.FOUR, CardSuit.SPADES);
-//        Card fourthCard = new Card(CardFace.FIVE, CardSuit.HEARTS);
-//        Card fifthCard = new Card(CardFace.FIVE, CardSuit.DIAMONDS);
-//        Card[] playerHand = new Card[]{firstCard, secondCard, thirdCard, fourthCard, fifthCard};
-//        assertTrue(GameEngine.isAFullHouse(playerHand));
-//    }
+
+    @Test
+    void isAFullHouse(){
+        Card firstCard = new Card(CardFace.SIX, CardSuit.CLUBS);
+        Card secondCard = new Card(CardFace.SEVEN, CardSuit.CLUBS);
+        Card thirdCard = new Card(CardFace.SEVEN, CardSuit.SPADES);
+        Card fourthCard = new Card(CardFace.SIX, CardSuit.HEARTS);
+        Card fifthCard = new Card(CardFace.SEVEN, CardSuit.DIAMONDS);
+        Card[] playerHand = new Card[]{firstCard, secondCard, thirdCard, fourthCard, fifthCard};
+        assertTrue(GameEngine.isAFullHouse(playerHand));
+    }
 }

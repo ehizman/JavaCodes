@@ -132,18 +132,32 @@ public class GameEngine {
             }
         }
     }
-//
-//    public static boolean isAFullHouse(Card[] playerHand) {
-//        int count = 0;
-//        for (int i = 0; i < playerHand.length -1; i++) {
-//            for (int j = i; j < playerHand.length; j++) {
-//                if (playerHand[i].getCardFace() == playerHand[j].getCardFace()){
-//                    count = count + 1;
-//                }
-//            }
-//            if (!(count == 1 || count == 2)){
-//                return false;
-//            }
-//        }
-//    }
+
+    public static boolean isAFullHouse(Card[] playerHand) {
+        int countOfFirstDuplicates = 1;
+        int countOfSecondDuplicates = 0;
+        int indexOfDifferentFace = 0;
+        for (int i = 1; i < playerHand.length; i++) {
+            if (playerHand[0].getCardFace().equals(playerHand[i].getCardFace())) {
+                countOfFirstDuplicates = countOfFirstDuplicates + 1;
+            } else {
+                indexOfDifferentFace = i;
+            }
+        }
+        if (countOfFirstDuplicates == 1 || countOfFirstDuplicates > 3) {
+            return false;
+        }
+        else {
+            for (Card card : playerHand) {
+                if (playerHand[indexOfDifferentFace].getCardFace() == card.getCardFace()) {
+                    countOfSecondDuplicates++;
+                }
+            }
+            if (countOfSecondDuplicates != 5 - countOfFirstDuplicates) {
+                return false;
+            }
+            return true;
+        }
+    }
 }
+
