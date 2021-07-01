@@ -1,6 +1,9 @@
 package chapterEight;
+import lombok.Data;
+
 import java.security.InvalidParameterException;
 
+@Data
 public class Time {
     int hour;
     int minute;
@@ -16,12 +19,10 @@ public class Time {
 
     public Time (int hour, int minute, int second){
         try{
-            boolean isValid = validation(hour,minute,second);
-            if (isValid){
-                this.hour = hour;
-                this.minute = minute;
-                this.second = second;
-            }
+            validation(hour,minute,second);
+            this.hour = hour;
+            this.minute = minute;
+            this.second = second;
         }
         catch (InvalidParameterException error){
             System.out.println(error.getMessage());
@@ -29,13 +30,12 @@ public class Time {
 
     }
 
-    public static boolean validation(int hour, int minute, int second) {
+    private static void validation(int hour, int minute, int second) {
         boolean isValid;
         isValid = hour >= 0 && hour < 24 && minute >= 0 && minute < 60 && second >= 0 && second < 60;
-        if (isValid){
-            return true;
+        if (!isValid){
+            throw new InvalidParameterException("Invalid time parameters");
         }
-        throw new InvalidParameterException("Invalid time parameters");
     }
 
     public String displayUniversalTime() {

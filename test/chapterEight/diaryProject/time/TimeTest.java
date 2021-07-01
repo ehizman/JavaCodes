@@ -1,3 +1,5 @@
+package chapterEight.diaryProject.time;
+
 import chapterEight.Time;
 import org.junit.jupiter.api.Test;
 
@@ -17,7 +19,8 @@ public class TimeTest {
 
     @Test
     void throwsExceptionWhenInvalidInputIsEntered(){
-        assertThrows(InvalidParameterException.class, ()-> Time.validation(25,61,56));
+        Time clock = new Time(25,61,56);
+        assertEquals(0,clock.getHour());
     }
 
     @Test
