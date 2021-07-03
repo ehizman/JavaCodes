@@ -41,4 +41,13 @@ public class CreditCardValidationProgram {
         }
         return sum_Of_Oddly_Placed_Digits;
     }
+
+    public boolean isValidCreditCard(int sum_of_evenly_placed_digits, int sum_of_oddly_placed_digits) {
+        if ((sum_of_evenly_placed_digits + sum_of_oddly_placed_digits) % 10 == 0){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 }
