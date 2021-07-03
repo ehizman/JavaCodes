@@ -32,4 +32,13 @@ public class CreditCardValidationProgram {
         }
         return sum_Of_Evenly_Placed_Digits;
     }
+
+    public int sumOfDoubleOddPlace(String creditCardNumber) {
+        int sum_Of_Oddly_Placed_Digits = 0;
+        for (int i =  creditCardNumber.length() - 1; i >= 0; i -= 2) {
+            int digitInCreditCardNumberAsInt = Integer.parseInt(String.valueOf(creditCardNumber.charAt(i)));
+            sum_Of_Oddly_Placed_Digits += digitInCreditCardNumberAsInt;
+        }
+        return sum_Of_Oddly_Placed_Digits;
+    }
 }

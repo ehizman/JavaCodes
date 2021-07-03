@@ -71,12 +71,37 @@ class CreditCardValidationProgramTest {
     @Test
     void can_Sum_All_Evenly_Placed_Numbers_From_Right_To_Left_When_Length_Of_ValidNumber_Is_14(){
         CreditCardValidationProgram creditCardValidator = new CreditCardValidationProgram();
-        assertEquals(23, creditCardValidator.sumOfDoubleEvenPlace("43885760184026"));
+        assertEquals(33, creditCardValidator.sumOfDoubleEvenPlace("43885760184026"));
     }
 
     @Test
     void can_Sum_All_Evenly_Placed_Numbers_From_Right_To_Left_When_Length_Of_ValidNumber_Is_13(){
         CreditCardValidationProgram creditCardValidator = new CreditCardValidationProgram();
-        assertEquals(33, creditCardValidator.sumOfDoubleEvenPlace("43885760184026"));
+        assertEquals(25, creditCardValidator.sumOfDoubleEvenPlace("4388576018402"));
     }
+
+    @Test
+    void can_Sum_All_Oddly_Placed_Numbers_From_Right_To_Left_When_Length_Of_ValidNumber_Is_16(){
+        CreditCardValidationProgram creditCardValidator = new CreditCardValidationProgram();
+        assertEquals(38, creditCardValidator.sumOfDoubleOddPlace("4388576018402626"));
+    }
+
+    @Test
+    void can_Sum_All_Oddly_Placed_Numbers_From_Right_To_Left_When_Length_Of_ValidNumber_Is_15(){
+        CreditCardValidationProgram creditCardValidator = new CreditCardValidationProgram();
+        assertEquals(32, creditCardValidator.sumOfDoubleOddPlace("438857601840262"));
+    }
+
+    @Test
+    void can_Sum_All_Oddly_Placed_Numbers_From_Right_To_Left_When_Length_Of_ValidNumber_Is_14(){
+        CreditCardValidationProgram creditCardValidator = new CreditCardValidationProgram();
+        assertEquals(32, creditCardValidator.sumOfDoubleOddPlace("43885760184026"));
+    }
+
+    @Test
+    void can_Sum_All_Oddly_Placed_Numbers_From_Right_To_Left_When_Length_Of_ValidNumber_Is_13(){
+        CreditCardValidationProgram creditCardValidator = new CreditCardValidationProgram();
+        assertEquals(30, creditCardValidator.sumOfDoubleOddPlace("4388576018402"));
+    }
+
 }
