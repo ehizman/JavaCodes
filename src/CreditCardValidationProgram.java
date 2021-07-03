@@ -17,4 +17,19 @@ public class CreditCardValidationProgram {
             return false;
         }
     }
+
+    public int sumOfDoubleEvenPlace(String creditCardNumber) {
+        int sum_Of_Evenly_Placed_Digits = 0;
+        for (int i =  creditCardNumber.length() - 2; i >= 0; i -= 2) {
+            int digitInCreditCardNumberAsInt = Integer.parseInt(String.valueOf(creditCardNumber.charAt(i)));
+            int doubleOfCardDigits = digitInCreditCardNumberAsInt * 2;
+            if (doubleOfCardDigits > 9){
+                sum_Of_Evenly_Placed_Digits += (doubleOfCardDigits / 10) + (doubleOfCardDigits % 10);
+            }
+            else{
+                sum_Of_Evenly_Placed_Digits += doubleOfCardDigits;
+            }
+        }
+        return sum_Of_Evenly_Placed_Digits;
+    }
 }
