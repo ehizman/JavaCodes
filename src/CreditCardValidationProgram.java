@@ -9,7 +9,7 @@ public class CreditCardValidationProgram {
         }
     }
 
-    public boolean checkLength(String creditCardNumber) {
+    public boolean isValidLength(String creditCardNumber) {
         if (creditCardNumber.length() >= 13 && creditCardNumber.length() <= 16){
             return true;
         }
@@ -33,7 +33,7 @@ public class CreditCardValidationProgram {
         return sum_Of_Evenly_Placed_Digits;
     }
 
-    public int sumOfDoubleOddPlace(String creditCardNumber) {
+    public int sumOfOddPlace(String creditCardNumber) {
         int sum_Of_Oddly_Placed_Digits = 0;
         for (int i =  creditCardNumber.length() - 1; i >= 0; i -= 2) {
             int digitInCreditCardNumberAsInt = Integer.parseInt(String.valueOf(creditCardNumber.charAt(i)));
@@ -50,4 +50,6 @@ public class CreditCardValidationProgram {
             return false;
         }
     }
+
 }
+

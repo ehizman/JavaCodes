@@ -36,31 +36,31 @@ class CreditCardValidationProgramTest {
     @Test
     void check_Credit_Card_Validator_Returns_True_When_Number_With_A_Valid_Length_Of_16__Is_Checked() {
         CreditCardValidationProgram creditCardValidator = new CreditCardValidationProgram();
-        assertTrue(creditCardValidator.checkLength("8388576018402626"));
+        assertTrue(creditCardValidator.isValidLength("8388576018402626"));
     }
 
     @Test
     void check_Credit_Card_Validator_Returns_True_When_Number_With_A_Valid_Length_Of_13__Is_Checked() {
         CreditCardValidationProgram creditCardValidator = new CreditCardValidationProgram();
-        assertTrue(creditCardValidator.checkLength("8388576018402"));
+        assertTrue(creditCardValidator.isValidLength("8388576018402"));
     }
 
     @Test
     void check_Credit_Card_Validator_Returns_True_When_Number_With_A_Valid_Length_Of_14__Is_Checked() {
         CreditCardValidationProgram creditCardValidator = new CreditCardValidationProgram();
-        assertTrue(creditCardValidator.checkLength("83885760184026"));
+        assertTrue(creditCardValidator.isValidLength("83885760184026"));
     }
 
     @Test
     void check_Credit_Card_Validator_Returns_True_When_Number_With_A_Valid_Length_Of_15__Is_Checked() {
         CreditCardValidationProgram creditCardValidator = new CreditCardValidationProgram();
-        assertTrue(creditCardValidator.checkLength("838857601840262"));
+        assertTrue(creditCardValidator.isValidLength("838857601840262"));
     }
 
     @Test
     void check_Credit_Card_Validator_Returns_False_When_Number_With_A_Invalid_Length_Is_Checked() {
         CreditCardValidationProgram creditCardValidator = new CreditCardValidationProgram();
-        assertFalse(creditCardValidator.checkLength("838857601840"));
+        assertFalse(creditCardValidator.isValidLength("838857601840"));
     }
 
     @Test
@@ -90,31 +90,31 @@ class CreditCardValidationProgramTest {
     @Test
     void can_Sum_All_Oddly_Placed_Numbers_From_Right_To_Left_When_Length_Of_ValidNumber_Is_16() {
         CreditCardValidationProgram creditCardValidator = new CreditCardValidationProgram();
-        assertEquals(38, creditCardValidator.sumOfDoubleOddPlace("4388576018402626"));
+        assertEquals(38, creditCardValidator.sumOfOddPlace("4388576018402626"));
     }
 
     @Test
     void can_Sum_All_Oddly_Placed_Numbers_From_Right_To_Left_When_Length_Of_ValidNumber_Is_15() {
         CreditCardValidationProgram creditCardValidator = new CreditCardValidationProgram();
-        assertEquals(32, creditCardValidator.sumOfDoubleOddPlace("438857601840262"));
+        assertEquals(32, creditCardValidator.sumOfOddPlace("438857601840262"));
     }
 
     @Test
     void can_Sum_All_Oddly_Placed_Numbers_From_Right_To_Left_When_Length_Of_ValidNumber_Is_14() {
         CreditCardValidationProgram creditCardValidator = new CreditCardValidationProgram();
-        assertEquals(32, creditCardValidator.sumOfDoubleOddPlace("43885760184026"));
+        assertEquals(32, creditCardValidator.sumOfOddPlace("43885760184026"));
     }
 
     @Test
     void can_Sum_All_Oddly_Placed_Numbers_From_Right_To_Left_When_Length_Of_ValidNumber_Is_13() {
         CreditCardValidationProgram creditCardValidator = new CreditCardValidationProgram();
-        assertEquals(30, creditCardValidator.sumOfDoubleOddPlace("4388576018402"));
+        assertEquals(30, creditCardValidator.sumOfOddPlace("4388576018402"));
     }
 
     @Test
     void check_If_Credit_Card_Validator_Returns_True_When_Credit_Card_NUmber_Is_Valid() {
         CreditCardValidationProgram creditCardValidator = new CreditCardValidationProgram();
-        int sum_of_oddly_placed_digits = creditCardValidator.sumOfDoubleOddPlace("4388576018410707");
+        int sum_of_oddly_placed_digits = creditCardValidator.sumOfOddPlace("4388576018410707");
         int sum_of_evenly_placed_digits = creditCardValidator.sumOfDoubleEvenPlace("4388576018410707");
         assertTrue(creditCardValidator.isValidCreditCard(sum_of_evenly_placed_digits, sum_of_oddly_placed_digits));
     }
@@ -122,7 +122,7 @@ class CreditCardValidationProgramTest {
     @Test
     void check_If_Credit_Card_Validator_Returns_True_When_Credit_Card_NUmber_Is_Invalid() {
         CreditCardValidationProgram creditCardValidator = new CreditCardValidationProgram();
-        int sum_of_oddly_placed_digits = creditCardValidator.sumOfDoubleOddPlace("4388576018402626");
+        int sum_of_oddly_placed_digits = creditCardValidator.sumOfOddPlace("4388576018402626");
         int sum_of_evenly_placed_digits = creditCardValidator.sumOfDoubleEvenPlace("4388576018402626");
         assertFalse(creditCardValidator.isValidCreditCard(sum_of_evenly_placed_digits, sum_of_oddly_placed_digits));
     }
