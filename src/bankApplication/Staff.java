@@ -18,7 +18,8 @@ public class Staff {
         String message = """                
                 Press 1 to view all Bank Accounts
                 Press 2 to delete an account
-                Press 3 to Logout
+                Press 3 to view transaction on an account
+                Press 4 to Logout
                 """;
         int userInput = 0;
         do {
@@ -29,7 +30,7 @@ public class Staff {
             catch (NumberFormatException error){
                 displayPrompt("Invalid input");
             }
-        }while(userInput < 1 || userInput > 3);
+        }while(userInput < 1 || userInput > 4);
 
         switch (userInput) {
             case 1 -> {
@@ -47,9 +48,30 @@ public class Staff {
                 }
                 viewDashBoard();
             }
-            case 3 -> {
-                BankApplication.run();
+
+            case 3 ->{
+                message = "Enter account number to query";
+                displayPrompt(message);
+                try {
+                    String accountNumberToQuery = scanner.next();
+                    boolean isCustomerFound = false;
+                    for (Customer customer : Bank.getCustomers()) {
+                        if (customer.getAccount().getAccountNumber().equals(accountNumberToQuery)) {
+                            isCustomerFound = true;
+                            customer.getAccount().viewTransactionsOnAccount();
+                            break;
+                        }
+                    }
+                    if (!isCustomerFound){
+                        System.out.println("Customer with that account number does not exist");
+                    }
+                }
+                catch (NumberFormatException | NullPointerException error){
+                    displayPrompt("Invalid Input!");
+                }
+                viewDashBoard();
             }
+            case 4 -> BankApplication.run();
         }
     }
 

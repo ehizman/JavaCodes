@@ -21,10 +21,11 @@ public class Customer {
                 Press 2 to deposit
                 Press 3 to withdraw
                 Press 4 to view balance
-                Press 5 to transfer
-                Press 6 to load airtime
-                Press 7 to logout
-                Press 8 to close Account
+                Press 5 to view all transactions
+                Press 6 to transfer
+                Press 7 to load airtime
+                Press 8 to logout
+                Press 9 to close Account
                 """;
         int userInput = 0;
         do {
@@ -104,7 +105,12 @@ public class Customer {
                 viewDashBoard();
             }
 
-            case 5 ->{
+            case 5 -> {
+                this.getAccount().viewTransactionsOnAccount();
+                viewDashBoard();
+            }
+
+            case 6 ->{
                 try{
                     displayPrompt("Enter amount to transfer");
                     int amountToWithdraw = scanner.nextInt();
@@ -119,7 +125,7 @@ public class Customer {
                     viewDashBoard();
                 }
             }
-            case 6 ->{
+            case 7 ->{
                 try{
                     displayPrompt("Enter phone number to recharge");
                     String phoneNumber = scanner.next();
@@ -137,11 +143,11 @@ public class Customer {
                     viewDashBoard();
                 }
             }
-            case 7 ->{
+            case 8 ->{
                 this.logout();
                 BankApplication.run();
             }
-            case 8 ->{
+            case 9 ->{
                 this.closeAccount();
                 displayPrompt("Account deactivated successfully!");
                 BankApplication.run();
