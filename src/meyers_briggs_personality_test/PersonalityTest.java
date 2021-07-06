@@ -117,7 +117,7 @@ public class PersonalityTest {
                             """
                         };
         Scanner scanner = new Scanner(System.in);
-        int numberOfQuestions = 20;
+        int numberOfQuestions = questions.length;
         char[] answers = new char[numberOfQuestions];
         char temp;
         boolean isValidInput = false;
