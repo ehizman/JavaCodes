@@ -16,7 +16,8 @@ public class Shape_Test {
         for (Shape shape: shapes) {
             System.out.printf("Area of %s: %.2f%n", shape.getClass().getSimpleName(), shape.area());
             if (shape instanceof Three_Dimensional_Shape){
-                System.out.printf("Volume of %s: %.2f%n", shape.getClass().getSimpleName(),((Three_Dimensional_Shape) shape).volume());
+            System.out.printf("Volume of %s: %.2f%n", shape.getClass().getSimpleName(),
+                        ((Three_Dimensional_Shape) shape).volume());
             }
         }
     }
