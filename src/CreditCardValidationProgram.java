@@ -50,6 +50,5 @@ public class CreditCardValidationProgram {
             return false;
         }
     }
-
 }
 
