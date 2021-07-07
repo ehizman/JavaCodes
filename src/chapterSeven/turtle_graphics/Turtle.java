@@ -42,44 +42,20 @@ public class Turtle {
     }
 
     public void turnLeft() {
-        if (getTurtleDirection() == EAST){
-            changeDirection(NORTH);
-        }
-        else{
-            if (getTurtleDirection() == NORTH){
-                changeDirection(WEST);
-            }
-            else{
-                if (getTurtleDirection() == WEST){
-                    changeDirection(SOUTH);
-                }
-                else{
-                    if (getTurtleDirection() == SOUTH){
-                        changeDirection(EAST);
-                    }
-                }
-            }
+        switch(getTurtleDirection()){
+            case EAST -> changeDirection(NORTH);
+            case NORTH -> changeDirection(WEST);
+            case WEST -> changeDirection(SOUTH);
+            case SOUTH -> changeDirection(EAST);
         }
     }
 
     public void turnRight() {
-        if (getTurtleDirection() == EAST){
-            changeDirection(SOUTH);
-        }
-        else{
-            if (getTurtleDirection() == SOUTH){
-                changeDirection(WEST);
-            }
-            else{
-                if (getTurtleDirection() == WEST){
-                    changeDirection(NORTH);
-                }
-                else{
-                    if (getTurtleDirection() == NORTH){
-                        changeDirection(EAST);
-                    }
-                }
-            }
+        switch (getTurtleDirection()){
+            case EAST -> changeDirection(SOUTH);
+            case SOUTH -> changeDirection(WEST);
+            case NORTH -> changeDirection(EAST);
+            case WEST -> changeDirection(NORTH);
         }
     }
 }
