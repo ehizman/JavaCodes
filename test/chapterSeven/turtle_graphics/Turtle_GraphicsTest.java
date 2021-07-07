@@ -112,4 +112,43 @@ class Turtle_GraphicsTest {
         turtle.turnRight();
         assertSame(EAST, turtle.getTurtleDirection());
     }
+
+    @Test
+    void turtleIsOnPosition0_0UponCreation(){
+        Turtle turtle = new Turtle();
+        assertArrayEquals(new int[]{0,0},turtle.getTurtlePosition());
+    }
+
+    @Test
+    void testThatTurtleCanMoveANumberOfStepsInEastDirection(){
+        Turtle turtle = new Turtle();
+        turtle.move(10);
+        assertArrayEquals(new int[]{0,10}, turtle.getTurtlePosition());
+    }
+
+    @Test
+    void testThatTurtleCanMoveANumberOfStepsInSouthDirection(){
+        Turtle turtle = new Turtle();
+        turtle.turnRight();
+        turtle.move(10);
+        assertArrayEquals(new int[]{10,0}, turtle.getTurtlePosition());
+    }
+
+    @Test
+    void testThatTurtleCanMoveANumberOfStepsInSouthDirectionTwice(){
+        Turtle turtle = new Turtle();
+        turtle.turnRight();
+        turtle.move(10);
+        assertArrayEquals(new int[]{10,0}, turtle.getTurtlePosition());
+        turtle.move(5);
+        assertArrayEquals(new int[]{15,0}, turtle.getTurtlePosition());
+    }
+
+    @Test
+    void testThatTurtleCannotMoveOutOfSketchPad(){
+        Turtle turtle = new Turtle();
+        turtle.move(10);
+        assertArrayEquals(new int[]{0,10}, turtle.getTurtlePosition());
+        assertThrows(ArrayIndexOutOfBoundsException.class, ()-> turtle.move(11));
+    }
 }
