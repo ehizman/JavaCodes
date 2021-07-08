@@ -151,4 +151,51 @@ class Turtle_GraphicsTest {
         assertArrayEquals(new int[]{0,10}, turtle.getTurtlePosition());
         assertThrows(ArrayIndexOutOfBoundsException.class, ()-> turtle.move(11));
     }
+
+    @Test
+    void testThatTurtleCanWrite(){
+        Turtle turtle = new Turtle();
+        turtle.penDown();
+        turtle.move(10);
+        turtle.penUp();
+        assertArrayEquals(new int[]{1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0},
+                SketchPad.sketchPad[0]);
+        turtle.turnRight();
+        turtle.penDown();
+        turtle.move(10);
+        turtle.penUp();
+        assertAll(
+                ()-> assertEquals(1, SketchPad.sketchPad[0][10]),
+                ()->assertEquals(1, SketchPad.sketchPad[1][10]),
+                ()->assertEquals(1, SketchPad.sketchPad[1][10]),
+                ()->assertEquals(1, SketchPad.sketchPad[1][10]),
+                ()->assertEquals(1, SketchPad.sketchPad[2][10]),
+                ()->assertEquals(1, SketchPad.sketchPad[3][10]),
+                ()->assertEquals(1, SketchPad.sketchPad[4][10]),
+                ()->assertEquals(1, SketchPad.sketchPad[5][10]),
+                ()->assertEquals(1, SketchPad.sketchPad[6][10]),
+                ()->assertEquals(1, SketchPad.sketchPad[6][10]),
+                ()->assertEquals(1, SketchPad.sketchPad[7][10]),
+                ()->assertEquals(1, SketchPad.sketchPad[8][10]),
+                ()->assertEquals(1, SketchPad.sketchPad[9][10])
+        );
+        SketchPad.displaySketchPad();
+        turtle.turnLeft();
+        turtle.move(5);
+        assertAll(
+                ()-> assertEquals(1, SketchPad.sketchPad[11][10]),
+                ()->assertEquals(1, SketchPad.sketchPad[1][10]),
+                ()->assertEquals(1, SketchPad.sketchPad[1][10]),
+                ()->assertEquals(1, SketchPad.sketchPad[1][10]),
+                ()->assertEquals(1, SketchPad.sketchPad[2][10]),
+                ()->assertEquals(1, SketchPad.sketchPad[3][10]),
+                ()->assertEquals(1, SketchPad.sketchPad[4][10]),
+                ()->assertEquals(1, SketchPad.sketchPad[5][10]),
+                ()->assertEquals(1, SketchPad.sketchPad[6][10]),
+                ()->assertEquals(1, SketchPad.sketchPad[6][10]),
+                ()->assertEquals(1, SketchPad.sketchPad[7][10]),
+                ()->assertEquals(1, SketchPad.sketchPad[8][10]),
+                ()->assertEquals(1, SketchPad.sketchPad[9][10])
+        );
+    }
 }

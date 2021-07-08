@@ -67,13 +67,48 @@ public class Turtle {
 
     public void move(int numberOfSteps) {
         int[] currentTurtlePosition = getTurtlePosition();
-        if (currentTurtlePosition[1] + numberOfSteps > 20){
+        if (getTurtleDirection() == EAST && currentTurtlePosition[1] + numberOfSteps > 20){
+            throw new ArrayIndexOutOfBoundsException("moving turtle out of sketch pad!");
+        }
+        if (getTurtleDirection() == WEST && currentTurtlePosition[1] - numberOfSteps < 0){
+            throw new ArrayIndexOutOfBoundsException("moving turtle out of sketch pad!");
+        }
+        if (getTurtleDirection() == NORTH && currentTurtlePosition[0] - numberOfSteps < 20){
+            throw new ArrayIndexOutOfBoundsException("moving turtle out of sketch pad!");
+        }
+        if (getTurtleDirection() == SOUTH && currentTurtlePosition[0] + numberOfSteps > 20){
             throw new ArrayIndexOutOfBoundsException("moving turtle out of sketch pad!");
         }
         switch (getTurtleDirection()){
-            case EAST -> currentTurtlePosition[1] += numberOfSteps;
+            case EAST -> {
+                if (getPenPosition() == DOWN){
+                    for (int i = 0; i < numberOfSteps; i++) {
+                        SketchPad.sketchPad[currentTurtlePosition[0]][currentTurtlePosition[1]]=
+                                SketchPad.sketchPad[currentTurtlePosition[0]][currentTurtlePosition[1]] + 1;
+                        currentTurtlePosition[1] += 1;
+                    }
+
+                }
+                else{
+                    currentTurtlePosition[1] += numberOfSteps;
+                }
+            }
             case WEST -> currentTurtlePosition[1] -= numberOfSteps;
-            case SOUTH -> currentTurtlePosition[0] += numberOfSteps;
+            case SOUTH -> {
+                {
+                    if (getPenPosition() == DOWN){
+                        for (int i = 0; i < numberOfSteps; i++) {
+                            SketchPad.sketchPad[currentTurtlePosition[0]][currentTurtlePosition[1]]=
+                                    SketchPad.sketchPad[currentTurtlePosition[0]][currentTurtlePosition[1]] + 1;
+                            currentTurtlePosition[0] += 1;
+                        }
+                    }
+                    else{
+                        currentTurtlePosition[0] += numberOfSteps;
+                    }
+
+                }
+            }
             case NORTH -> currentTurtlePosition[0] -= numberOfSteps;
         }
     }
