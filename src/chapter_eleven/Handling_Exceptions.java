@@ -39,7 +39,7 @@ public class Handling_Exceptions {
                 }
             }while (shouldContinue);
     }
-    private static int quotient(int numerator, int denominator) {
+    private static int quotient(int numerator, int denominator){
         return (numerator/denominator);
     }
 }
