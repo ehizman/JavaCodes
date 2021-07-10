@@ -7,10 +7,10 @@ public final class SketchPad {
         for (int[] row: sketchPad) {
             for (int cell: row) {
                 if (cell == 1){
-                    System.out.print("* ");
+                    System.out.print("*");
                 }
                 else{
-                    System.out.printf("%d ",cell);
+                    System.out.printf("%s ","");
                 }
             }
             System.out.println();

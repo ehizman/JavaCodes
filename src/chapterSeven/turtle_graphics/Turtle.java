@@ -1,5 +1,7 @@
 package chapterSeven.turtle_graphics;
 
+import java.util.Arrays;
+
 import static chapterSeven.turtle_graphics.Direction.*;
 import static chapterSeven.turtle_graphics.Position.DOWN;
 import static chapterSeven.turtle_graphics.Position.UP;
@@ -85,18 +87,33 @@ public class Turtle {
                     for (int i = 0; i < numberOfSteps; i++) {
                         SketchPad.sketchPad[currentTurtlePosition[0]][currentTurtlePosition[1]]=
                                 SketchPad.sketchPad[currentTurtlePosition[0]][currentTurtlePosition[1]] + 1;
+                        System.out.println(Arrays.toString(currentTurtlePosition));
                         currentTurtlePosition[1] += 1;
                     }
-
                 }
                 else{
                     currentTurtlePosition[1] += numberOfSteps;
                 }
             }
-            case WEST -> currentTurtlePosition[1] -= numberOfSteps;
+            case WEST -> {
+                if (getPenPosition() == DOWN){
+                    for (int i = 0; i < numberOfSteps; i++) {
+                        SketchPad.sketchPad[currentTurtlePosition[0]][currentTurtlePosition[1]]=
+                                SketchPad.sketchPad[currentTurtlePosition[0]][currentTurtlePosition[1]] + 1;
+                        currentTurtlePosition[1] -= 1;
+                    }
+                }
+                else{
+                    currentTurtlePosition[1] -= numberOfSteps;
+                }
+            }
+
             case SOUTH -> {
                 {
                     if (getPenPosition() == DOWN){
+                        if (currentTurtlePosition[1] != 0){
+                            currentTurtlePosition[0] += 1;
+                        }
                         for (int i = 0; i < numberOfSteps; i++) {
                             SketchPad.sketchPad[currentTurtlePosition[0]][currentTurtlePosition[1]]=
                                     SketchPad.sketchPad[currentTurtlePosition[0]][currentTurtlePosition[1]] + 1;

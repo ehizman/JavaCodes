@@ -1,6 +1,8 @@
 package chapterSeven.turtle_graphics;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+
 import static chapterSeven.turtle_graphics.Direction.*;
 import static chapterSeven.turtle_graphics.Position.DOWN;
 import static chapterSeven.turtle_graphics.Position.UP;
@@ -160,42 +162,37 @@ class Turtle_GraphicsTest {
         turtle.penUp();
         assertArrayEquals(new int[]{1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0},
                 SketchPad.sketchPad[0]);
+        SketchPad.displaySketchPad();
         turtle.turnRight();
         turtle.penDown();
         turtle.move(10);
         turtle.penUp();
+        SketchPad.displaySketchPad();
+
         assertAll(
                 ()-> assertEquals(1, SketchPad.sketchPad[0][10]),
-                ()->assertEquals(1, SketchPad.sketchPad[1][10]),
-                ()->assertEquals(1, SketchPad.sketchPad[1][10]),
                 ()->assertEquals(1, SketchPad.sketchPad[1][10]),
                 ()->assertEquals(1, SketchPad.sketchPad[2][10]),
                 ()->assertEquals(1, SketchPad.sketchPad[3][10]),
                 ()->assertEquals(1, SketchPad.sketchPad[4][10]),
                 ()->assertEquals(1, SketchPad.sketchPad[5][10]),
-                ()->assertEquals(1, SketchPad.sketchPad[6][10]),
                 ()->assertEquals(1, SketchPad.sketchPad[6][10]),
                 ()->assertEquals(1, SketchPad.sketchPad[7][10]),
                 ()->assertEquals(1, SketchPad.sketchPad[8][10]),
                 ()->assertEquals(1, SketchPad.sketchPad[9][10])
         );
         SketchPad.displaySketchPad();
+        System.out.println(Arrays.toString(turtle.getTurtlePosition()));
         turtle.turnLeft();
+        turtle.penDown();
         turtle.move(5);
+        turtle.penUp();
         assertAll(
-                ()-> assertEquals(1, SketchPad.sketchPad[11][10]),
-                ()->assertEquals(1, SketchPad.sketchPad[1][10]),
-                ()->assertEquals(1, SketchPad.sketchPad[1][10]),
-                ()->assertEquals(1, SketchPad.sketchPad[1][10]),
-                ()->assertEquals(1, SketchPad.sketchPad[2][10]),
-                ()->assertEquals(1, SketchPad.sketchPad[3][10]),
-                ()->assertEquals(1, SketchPad.sketchPad[4][10]),
-                ()->assertEquals(1, SketchPad.sketchPad[5][10]),
-                ()->assertEquals(1, SketchPad.sketchPad[6][10]),
-                ()->assertEquals(1, SketchPad.sketchPad[6][10]),
-                ()->assertEquals(1, SketchPad.sketchPad[7][10]),
-                ()->assertEquals(1, SketchPad.sketchPad[8][10]),
-                ()->assertEquals(1, SketchPad.sketchPad[9][10])
+                ()-> assertEquals(1, SketchPad.sketchPad[10][11]),
+                ()->assertEquals(1, SketchPad.sketchPad[10][12]),
+                ()->assertEquals(1, SketchPad.sketchPad[10][13]),
+                ()->assertEquals(1, SketchPad.sketchPad[10][14])
         );
+        SketchPad.displaySketchPad();
     }
 }
