@@ -155,44 +155,89 @@ class Turtle_GraphicsTest {
     }
 
     @Test
-    void testThatTurtleCanWrite(){
+    void testThatTurtleCanWrite_WhenAtInitialWhenFacingEast(){
         Turtle turtle = new Turtle();
         turtle.penDown();
         turtle.move(10);
         turtle.penUp();
         assertArrayEquals(new int[]{1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0},
                 SketchPad.sketchPad[0]);
-        SketchPad.displaySketchPad();
+    }
+
+    @Test
+    void testThatTurtleCanWriteWhenFacingSouth(){
+        Turtle turtle = new Turtle();
         turtle.turnRight();
         turtle.penDown();
         turtle.move(10);
         turtle.penUp();
-        SketchPad.displaySketchPad();
-
         assertAll(
-                ()-> assertEquals(1, SketchPad.sketchPad[0][10]),
-                ()->assertEquals(1, SketchPad.sketchPad[1][10]),
-                ()->assertEquals(1, SketchPad.sketchPad[2][10]),
-                ()->assertEquals(1, SketchPad.sketchPad[3][10]),
-                ()->assertEquals(1, SketchPad.sketchPad[4][10]),
-                ()->assertEquals(1, SketchPad.sketchPad[5][10]),
-                ()->assertEquals(1, SketchPad.sketchPad[6][10]),
-                ()->assertEquals(1, SketchPad.sketchPad[7][10]),
-                ()->assertEquals(1, SketchPad.sketchPad[8][10]),
-                ()->assertEquals(1, SketchPad.sketchPad[9][10])
+                ()-> assertEquals(1, SketchPad.sketchPad[0][0]),
+                ()->assertEquals(1, SketchPad.sketchPad[1][0]),
+                ()->assertEquals(1, SketchPad.sketchPad[2][0]),
+                ()->assertEquals(1, SketchPad.sketchPad[3][0]),
+                ()->assertEquals(1, SketchPad.sketchPad[4][0]),
+                ()->assertEquals(1, SketchPad.sketchPad[5][0]),
+                ()->assertEquals(1, SketchPad.sketchPad[6][0]),
+                ()->assertEquals(1, SketchPad.sketchPad[7][0]),
+                ()->assertEquals(1, SketchPad.sketchPad[8][0]),
+                ()->assertEquals(1, SketchPad.sketchPad[9][0])
         );
-        SketchPad.displaySketchPad();
+    }
+
+    @Test
+    void testThatTurtleCanWriteWhenFacingNorth(){
+        Turtle turtle = new Turtle();
+        turtle.turnRight();
+        turtle.penDown();
+        turtle.move(10);
+        turtle.penUp();
+        turtle.turnLeft();
+        turtle.penDown();
+        turtle.move(5);
         System.out.println(Arrays.toString(turtle.getTurtlePosition()));
+        turtle.penUp();
         turtle.turnLeft();
         turtle.penDown();
         turtle.move(5);
         turtle.penUp();
         assertAll(
-                ()-> assertEquals(1, SketchPad.sketchPad[10][11]),
-                ()->assertEquals(1, SketchPad.sketchPad[10][12]),
-                ()->assertEquals(1, SketchPad.sketchPad[10][13]),
-                ()->assertEquals(1, SketchPad.sketchPad[10][14])
+                () -> assertEquals(1, SketchPad.sketchPad[9][5]),
+                () -> assertEquals(1, SketchPad.sketchPad[8][5]),
+                () -> assertEquals(1, SketchPad.sketchPad[7][5]),
+                () -> assertEquals(1, SketchPad.sketchPad[6][5]),
+                () -> assertEquals(1, SketchPad.sketchPad[5][5]),
+                () -> assertEquals(1, SketchPad.sketchPad[4][5])
         );
+    }
+
+    @Test
+    void testThatTurtleCanWriteWhenFacingWest(){
+        Turtle turtle = new Turtle();
+        turtle.turnRight();
+        turtle.penDown();
+        turtle.move(10);
+        turtle.penUp();
+        turtle.turnLeft();
+        turtle.penDown();
+        turtle.move(5);
+        turtle.penUp();
+        turtle.turnLeft();
+        turtle.penDown();
+        turtle.move(9);
+        turtle.penUp();
+        turtle.turnLeft();
+        turtle.penDown();
+        turtle.move(5);
+        turtle.penDown();
         SketchPad.displaySketchPad();
+        assertAll(
+                ()-> assertEquals(1, SketchPad.sketchPad[0][5]),
+                ()-> assertEquals(1, SketchPad.sketchPad[0][4]),
+                ()-> assertEquals(1, SketchPad.sketchPad[0][3]),
+                ()-> assertEquals(1, SketchPad.sketchPad[0][2]),
+                ()-> assertEquals(1, SketchPad.sketchPad[0][1]),
+                ()-> assertEquals(1, SketchPad.sketchPad[0][0])
+        );
     }
 }

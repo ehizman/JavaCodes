@@ -37,7 +37,7 @@ public class Turtle {
         pen.setPosition(UP);
     }
 
-    private void changeDirection(Direction direction) {
+    private void changeDirectionTo(Direction direction) {
         this.direction = direction;
     }
 
@@ -47,19 +47,19 @@ public class Turtle {
 
     public void turnLeft() {
         switch(getTurtleDirection()){
-            case EAST -> changeDirection(NORTH);
-            case NORTH -> changeDirection(WEST);
-            case WEST -> changeDirection(SOUTH);
-            case SOUTH -> changeDirection(EAST);
+            case EAST -> changeDirectionTo(NORTH);
+            case NORTH -> changeDirectionTo(WEST);
+            case WEST -> changeDirectionTo(SOUTH);
+            case SOUTH -> changeDirectionTo(EAST);
         }
     }
 
     public void turnRight() {
         switch (getTurtleDirection()){
-            case EAST -> changeDirection(SOUTH);
-            case SOUTH -> changeDirection(WEST);
-            case NORTH -> changeDirection(EAST);
-            case WEST -> changeDirection(NORTH);
+            case EAST -> changeDirectionTo(SOUTH);
+            case SOUTH -> changeDirectionTo(WEST);
+            case NORTH -> changeDirectionTo(EAST);
+            case WEST -> changeDirectionTo(NORTH);
         }
     }
 
@@ -75,7 +75,7 @@ public class Turtle {
         if (getTurtleDirection() == WEST && currentTurtlePosition[1] - numberOfSteps < 0){
             throw new ArrayIndexOutOfBoundsException("moving turtle out of sketch pad!");
         }
-        if (getTurtleDirection() == NORTH && currentTurtlePosition[0] - numberOfSteps < 20){
+        if (getTurtleDirection() == NORTH && currentTurtlePosition[0] - numberOfSteps < 0){
             throw new ArrayIndexOutOfBoundsException("moving turtle out of sketch pad!");
         }
         if (getTurtleDirection() == SOUTH && currentTurtlePosition[0] + numberOfSteps > 20){
@@ -83,12 +83,17 @@ public class Turtle {
         }
         switch (getTurtleDirection()){
             case EAST -> {
+                System.out.println("Now facing East");
                 if (getPenPosition() == DOWN){
+                    if (currentTurtlePosition[0] != 0){
+                        currentTurtlePosition[1] += 1;
+                    }
                     for (int i = 0; i < numberOfSteps; i++) {
                         SketchPad.sketchPad[currentTurtlePosition[0]][currentTurtlePosition[1]]=
                                 SketchPad.sketchPad[currentTurtlePosition[0]][currentTurtlePosition[1]] + 1;
-                        System.out.println(Arrays.toString(currentTurtlePosition));
-                        currentTurtlePosition[1] += 1;
+                        if (i != numberOfSteps - 1){
+                            currentTurtlePosition[1] += 1;
+                        }
                     }
                 }
                 else{
@@ -96,11 +101,11 @@ public class Turtle {
                 }
             }
             case WEST -> {
+                System.out.println("Now facing west");
                 if (getPenPosition() == DOWN){
                     for (int i = 0; i < numberOfSteps; i++) {
-                        SketchPad.sketchPad[currentTurtlePosition[0]][currentTurtlePosition[1]]=
-                                SketchPad.sketchPad[currentTurtlePosition[0]][currentTurtlePosition[1]] + 1;
                         currentTurtlePosition[1] -= 1;
+                        SketchPad.sketchPad[currentTurtlePosition[0]][currentTurtlePosition[1]]= 1;
                     }
                 }
                 else{
@@ -109,24 +114,39 @@ public class Turtle {
             }
 
             case SOUTH -> {
+                System.out.println("Now facing south");
                 {
                     if (getPenPosition() == DOWN){
                         if (currentTurtlePosition[1] != 0){
                             currentTurtlePosition[0] += 1;
                         }
                         for (int i = 0; i < numberOfSteps; i++) {
-                            SketchPad.sketchPad[currentTurtlePosition[0]][currentTurtlePosition[1]]=
-                                    SketchPad.sketchPad[currentTurtlePosition[0]][currentTurtlePosition[1]] + 1;
-                            currentTurtlePosition[0] += 1;
+                            SketchPad.sketchPad[currentTurtlePosition[0]][currentTurtlePosition[1]] = 1;
+                            if (i != numberOfSteps - 1){
+                                currentTurtlePosition[0] += 1;
+                            }
                         }
                     }
                     else{
                         currentTurtlePosition[0] += numberOfSteps;
                     }
-
                 }
             }
-            case NORTH -> currentTurtlePosition[0] -= numberOfSteps;
+            case NORTH -> {
+                System.out.println("Now facing North");
+                if (getPenPosition() == DOWN){
+                    currentTurtlePosition[0] -= 1;
+                    for (int i = 0; i < numberOfSteps; i++) {
+                        SketchPad.sketchPad[currentTurtlePosition[0]][currentTurtlePosition[1]] = 1;
+                        if (i != numberOfSteps - 1){
+                            currentTurtlePosition[0] -= 1;
+                        }
+                    }
+                }
+                else{
+                    currentTurtlePosition[0] -= numberOfSteps;
+                }
+            }
         }
     }
 }
