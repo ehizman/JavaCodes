@@ -1,7 +1,4 @@
 package chapterSeven.turtle_graphics;
-
-import java.util.Arrays;
-
 import static chapterSeven.turtle_graphics.Direction.*;
 import static chapterSeven.turtle_graphics.Position.DOWN;
 import static chapterSeven.turtle_graphics.Position.UP;
@@ -9,21 +6,14 @@ import static chapterSeven.turtle_graphics.Position.UP;
 public class Turtle {
     private Pen pen;
     private Direction direction;
-    private int[] position;
+    private int[] currentTurtlePosition;
 
     public Turtle() {
         this.pen = new Pen();
         this.direction = EAST;
-        this.position = new int[]{0,0};
+        this.currentTurtlePosition = new int[]{0,0};
     }
 
-    public void setPin(Pen pen) {
-        this.pen = pen;
-    }
-
-    public Pen getPin() {
-        return pen;
-    }
 
     public Position getPenPosition() {
         return pen.getPosition();
@@ -64,24 +54,14 @@ public class Turtle {
     }
 
     public int[] getTurtlePosition() {
-        return position;
+        return currentTurtlePosition;
     }
 
     public void move(int numberOfSteps) {
         int[] currentTurtlePosition = getTurtlePosition();
-        if (getTurtleDirection() == EAST && currentTurtlePosition[1] + numberOfSteps > 20){
-            throw new ArrayIndexOutOfBoundsException("moving turtle out of sketch pad!");
-        }
-        if (getTurtleDirection() == WEST && currentTurtlePosition[1] - numberOfSteps < 0){
-            throw new ArrayIndexOutOfBoundsException("moving turtle out of sketch pad!");
-        }
-        if (getTurtleDirection() == NORTH && currentTurtlePosition[0] - numberOfSteps < 0){
-            throw new ArrayIndexOutOfBoundsException("moving turtle out of sketch pad!");
-        }
-        if (getTurtleDirection() == SOUTH && currentTurtlePosition[0] + numberOfSteps > 20){
-            throw new ArrayIndexOutOfBoundsException("moving turtle out of sketch pad!");
-        }
-        switch (getTurtleDirection()){
+        int width = SketchPad.sketchPad.length;
+        validateIfTurtleIsAttemptingToMoveOutOfSketchPad(numberOfSteps, currentTurtlePosition, width);
+        switch (direction){
             case EAST -> {
                 System.out.println("Now facing East");
                 if (getPenPosition() == DOWN){
@@ -147,6 +127,21 @@ public class Turtle {
                     currentTurtlePosition[0] -= numberOfSteps;
                 }
             }
+        }
+    }
+
+    private void validateIfTurtleIsAttemptingToMoveOutOfSketchPad(int numberOfSteps, int[] currentTurtlePosition, int width) {
+        if (direction == EAST && currentTurtlePosition[1] + numberOfSteps > width){
+            throw new ArrayIndexOutOfBoundsException("moving turtle out of sketch pad!");
+        }
+        if (direction == WEST && currentTurtlePosition[1] - numberOfSteps < 0){
+            throw new ArrayIndexOutOfBoundsException("moving turtle out of sketch pad!");
+        }
+        if (direction == NORTH && currentTurtlePosition[0] - numberOfSteps < 0){
+            throw new ArrayIndexOutOfBoundsException("moving turtle out of sketch pad!");
+        }
+        if (direction == SOUTH && currentTurtlePosition[0] + numberOfSteps > width){
+            throw new ArrayIndexOutOfBoundsException("moving turtle out of sketch pad!");
         }
     }
 }

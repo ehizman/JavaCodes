@@ -16,12 +16,6 @@ class Turtle_GraphicsTest {
     }
 
     @Test
-    void testThatTurtleHasPen(){
-        Turtle turtle = new Turtle();
-        assertNotNull(turtle.getPin());
-    }
-
-    @Test
     void testThatTurtleDefaultPositionIsUp(){
         Turtle turtle = new Turtle();
         assertSame(UP, turtle.getPenPosition());
