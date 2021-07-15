@@ -34,7 +34,7 @@ public class DuplicateElimination {
                 }
                 numberOfElementsEntered++;
                 isElementDuplicated = checkIfNewElementIsDuplicated(number,counter);
-                if(isElementDuplicated == false){
+                if(!isElementDuplicated){
                     array[counter] = number;
                     counter++;
                 }

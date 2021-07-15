@@ -1,19 +1,23 @@
 package chapterSeven.turtle_graphics;
 
 public final class SketchPad {
-    public static int[][] sketchPad = new int[20][20];
+    public int[][] floor = new int[20][20];
 
-    public static void displaySketchPad(){
-        for (int[] row: sketchPad) {
+    public void displaySketchPad(){
+        for (int[] row: floor) {
             for (int cell: row) {
                 if (cell == 1){
-                    System.out.print("*");
+                    System.out.print("* ");
                 }
                 else{
-                    System.out.printf("%s ","");
+                    System.out.print("0 ");
                 }
             }
             System.out.println();
         }
+    }
+
+    public void writeOn(int rowPosition, int columnPosition) {
+        floor[rowPosition][columnPosition]= 1;
     }
 }
