@@ -1,8 +1,4 @@
 package chapterSeven;
-
-import commonOperations.IoOperations;
-
-import java.io.OutputStream;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
