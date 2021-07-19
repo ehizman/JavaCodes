@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>assignments.E_Store</OriginalElement>
+  <nodes>
+    <node x="-44.0" y="646.0">assignments.E_Store.CardType</node>
+    <node x="276.0" y="447.0">assignments.E_Store.BillingInformation</node>
+    <node x="504.0" y="327.5">assignments.E_Store.Admin</node>
+    <node x="-383.0" y="447.0">assignments.E_Store.CreditCardInformation</node>
+    <node x="52.0" y="374.5">assignments.E_Store.Seller</node>
+    <node x="-42.0" y="809.0">assignments.E_Store.AdminBehaviour</node>
+    <node x="212.0" y="665.5">assignments.E_Store.Items</node>
+    <node x="495.0" y="759.0">assignments.E_Store.Product</node>
+    <node x="-54.0" y="447.0">assignments.E_Store.Address</node>
+    <node x="545.0" y="664.0">assignments.E_Store.ShoppingCart</node>
+    <node x="273.0" y="797.0">assignments.E_Store.SellerBehaviour</node>
+    <node x="-459.0" y="297.0">assignments.E_Store.Customer</node>
+    <node x="-48.5" y="-48.0">assignments.E_Store.User</node>
+    <node x="-347.0" y="646.0">assignments.E_Store.ProductCategory</node>
+    <node x="-370.0" y="809.0">assignments.E_Store.CustomerBehaviour</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="assignments.E_Store.Admin" target="assignments.E_Store.User" relationship="GENERALIZATION">
+      <point x="0.0" y="-16.5" />
+      <point x="557.5" y="277.0" />
+      <point x="101.5" y="277.0" />
+      <point x="0.0" y="126.0" />
+    </edge>
+    <edge source="assignments.E_Store.Customer" target="assignments.E_Store.User" relationship="GENERALIZATION">
+      <point x="0.0" y="-42.0" />
+      <point x="-276.5" y="277.0" />
+      <point x="101.5" y="277.0" />
+      <point x="0.0" y="126.0" />
+    </edge>
+    <edge source="assignments.E_Store.Seller" target="assignments.E_Store.User" relationship="GENERALIZATION">
+      <point x="0.0" y="-16.5" />
+      <point x="0.0" y="126.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.6632756866734486" showDependencies="false" x="161.0" y="433.5" />
+  <SelectedNodes>
+    <node>assignments.E_Store.Product</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
