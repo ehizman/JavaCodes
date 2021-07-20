@@ -46,10 +46,22 @@ public class Turtle {
 
     public void turnRight() {
         switch (getTurtleDirection()){
-            case EAST -> changeDirectionTo(SOUTH);
-            case SOUTH -> changeDirectionTo(WEST);
-            case NORTH -> changeDirectionTo(EAST);
-            case WEST -> changeDirectionTo(NORTH);
+            case EAST -> {
+                changeDirectionTo(SOUTH);
+                System.out.println("Now facing south");
+            }
+            case SOUTH -> {
+                changeDirectionTo(WEST);
+                System.out.println("Now facing west");
+            }
+            case NORTH -> {
+                changeDirectionTo(EAST);
+                System.out.println("Now facing East");
+            }
+            case WEST -> {
+                changeDirectionTo(NORTH);
+                System.out.println("Now facing North");
+            }
         }
     }
 
@@ -65,46 +77,59 @@ public class Turtle {
         validateIfTurtleIsAttemptingToMoveOutOfSketchPad(numberOfSteps, currentTurtlePosition, width);
         switch (direction){
             case EAST -> {
-                System.out.println("Now facing East");
                 if (getPenPosition().equals(DOWN)){
-                    for (int i = 0; i < numberOfSteps; i++) {
-                        sketchPad.writeOn(rowPosition, columnPosition);
-                        columnPosition += 1;
-                    }
+                    moveEast(numberOfSteps, sketchPad, rowPosition, columnPosition);
                 }
                 currentTurtlePosition[1] += numberOfSteps - 1;
             }
             case WEST -> {
-                System.out.println("Now facing west");
                 if (getPenPosition() == DOWN){
-                    for (int i = 0; i < numberOfSteps; i++) {
-                        sketchPad.writeOn(rowPosition, columnPosition);
-                        columnPosition -= 1;
-                    }
+                    moveWest(numberOfSteps, sketchPad, rowPosition, columnPosition);
                 }
                 currentTurtlePosition[1] -= numberOfSteps - 1;
             }
 
             case SOUTH -> {
-                System.out.println("Now facing south");
                 if (getPenPosition().equals(DOWN)){
-                    for (int i = 0; i < numberOfSteps; i++) {
-                        sketchPad.writeOn(rowPosition, columnPosition);
-                        rowPosition += 1;
-                    }
+                    moveSouth(numberOfSteps, sketchPad, rowPosition, columnPosition);
                 }
                 currentTurtlePosition[0] += numberOfSteps - 1;
             }
             case NORTH -> {
-                System.out.println("Now facing North");
                 if (getPenPosition() == DOWN){
-                    for (int i = 0; i < numberOfSteps; i++) {
-                        sketchPad.writeOn(rowPosition, columnPosition);
-                        rowPosition -= 1;
-                    }
+                    moveNorth(numberOfSteps, sketchPad, rowPosition, columnPosition);
                 }
                 currentTurtlePosition[0] -= numberOfSteps - 1;
             }
+        }
+
+    }
+
+    private void moveEast(int numberOfSteps, SketchPad sketchPad, int rowPosition, int columnPosition) {
+        for (int i = 0; i < numberOfSteps; i++) {
+            sketchPad.writeOn(rowPosition, columnPosition);
+            columnPosition += 1;
+        }
+    }
+
+    private void moveWest(int numberOfSteps, SketchPad sketchPad, int rowPosition, int columnPosition) {
+        for (int i = 0; i < numberOfSteps; i++) {
+            sketchPad.writeOn(rowPosition, columnPosition);
+            columnPosition -= 1;
+        }
+    }
+
+    private void moveSouth(int numberOfSteps, SketchPad sketchPad, int rowPosition, int columnPosition) {
+        for (int i = 0; i < numberOfSteps; i++) {
+            sketchPad.writeOn(rowPosition, columnPosition);
+            rowPosition += 1;
+        }
+    }
+
+    private void moveNorth(int numberOfSteps, SketchPad sketchPad, int rowPosition, int columnPosition) {
+        for (int i = 0; i < numberOfSteps; i++) {
+            sketchPad.writeOn(rowPosition, columnPosition);
+            rowPosition -= 1;
         }
     }
 

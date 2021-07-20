@@ -5,10 +5,11 @@ import java.util.Scanner;
 public class TurtleApplication {
     public static void main(String[] args) {
         Turtle turtle = new Turtle();
-        run(turtle);
+        SketchPad sketchPad = new SketchPad();
+        run(turtle, sketchPad);
     }
 
-    private static void run(Turtle turtle) {
+    private static void run(Turtle turtle, SketchPad sketchPad) {
         displayPrompt("Welcome to Turtle Graphics Application");
         String commandPrompt = """
                 Press 1 to set turtle's pen up
@@ -21,35 +22,38 @@ public class TurtleApplication {
         displayPrompt(commandPrompt);
         Scanner scanner = new Scanner(System.in);
         int userInput = scanner.nextInt();
-        SketchPad sketchPad = new SketchPad();
+        System.out.println("\n".repeat(20));
         switch(userInput){
             case 1 -> {
                 turtle.penUp();
                 displayPrompt("Turtle pen has been set up successfully");
-                run(turtle);
+                run(turtle, sketchPad);
             }
             case 2 -> {
                 turtle.penDown();
                 displayPrompt("Turtle pen has been set down successfully");
-                run(turtle);
+                run(turtle, sketchPad);
             }
             case 3 -> {
                 turtle.turnRight();
-                run(turtle);
+                run(turtle, sketchPad);
             }
             case 4 -> {
                     turtle.turnLeft();
-                    run(turtle);
+                    run(turtle, sketchPad);
                 }
                 case 5 -> {
-                    displayPrompt("Enter the number of moves");
-                    int numberOfMoves = scanner.nextInt();
-                    turtle.move(numberOfMoves,sketchPad);
-                    run(turtle);
+                    try{
+                        enterNumberOfMoves(turtle, sketchPad, scanner);
+                    }
+                    catch (ArrayIndexOutOfBoundsException outOfBoundsException){
+                        System.out.println("Invalid number of moves!");
+                        enterNumberOfMoves(turtle, sketchPad, scanner);
+                    }
                 }
                 case 6 -> {
                     sketchPad.displaySketchPad();
-                    run(turtle);
+                    run(turtle, sketchPad);
                 }
                 case 7 -> {
                     displayPrompt("Exiting application!");
@@ -59,6 +63,13 @@ public class TurtleApplication {
                 default -> displayPrompt("Invalid input!");
             }
         }
+
+    private static void enterNumberOfMoves(Turtle turtle, SketchPad sketchPad, Scanner scanner) {
+        displayPrompt("Enter the number of moves");
+        int numberOfMoves = scanner.nextInt();
+        turtle.move(numberOfMoves, sketchPad);
+        run(turtle, sketchPad);
+    }
 
     private static void displayPrompt(String prompt) {
         System.out.println(prompt);
