@@ -66,5 +66,16 @@ public class CartTest {
         Item item = new Item("2 Cartons of Indomie", BigDecimal.valueOf(2600.00), 4);
         Item itemTwo = new Item("2 Big of Rice", BigDecimal.valueOf(26000.00), 2);
         newCart.add(item, itemTwo);
+        assertEquals(2, newCart.getItemsInCart().size());
+    }
+
+    @Test
+    void canAddCalculateTotalWorthOfItemsInCart(){
+        Cart newCart = new Cart();
+        Item item = new Item("Cartons of Indomie", BigDecimal.valueOf(2600.00), 4);
+        Item itemTwo = new Item("Big of Rice", BigDecimal.valueOf(26000.00), 2);
+        newCart.add(item, itemTwo);
+        newCart.calculateTotalWorthOfItems();
+        assertEquals(BigDecimal.valueOf(62400.0), newCart.calculateTotalWorthOfItems());
     }
 }

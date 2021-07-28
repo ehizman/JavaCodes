@@ -2,6 +2,7 @@ package classwork.store_checkout_application_with_OOP;
 
 import assignments.E_Store.Items;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -14,9 +15,7 @@ public class Cart {
         collectionOfItems = new ArrayList<>();
     }
     public void add(Item... items) {
-        for (Item item: items) {
-            assert (item != null);
-        }
+        Arrays.stream(items).forEach(item ->{assert (item != null);});
         collectionOfItems.addAll(Arrays.asList(items));
     }
 
@@ -26,5 +25,14 @@ public class Cart {
 
     public void remove(Item item) {
         collectionOfItems.remove(item);
+    }
+
+    public BigDecimal calculateTotalWorthOfItems() {
+        BigDecimal totalWorthOfItemsInCart = BigDecimal.ZERO;
+        for (Item item: collectionOfItems) {
+            totalWorthOfItemsInCart =
+                    totalWorthOfItemsInCart.add(item.getPricePerUnit().multiply(BigDecimal.valueOf(item.getQuantity())));
+        }
+        return totalWorthOfItemsInCart;
     }
 }
