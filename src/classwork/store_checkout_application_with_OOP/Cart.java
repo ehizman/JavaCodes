@@ -14,9 +14,9 @@ public class Cart {
     public Cart(){
         collectionOfItems = new ArrayList<>();
     }
-    public void add(Item... items) {
-        Arrays.stream(items).forEach(item ->{assert (item != null);});
-        collectionOfItems.addAll(Arrays.asList(items));
+    public void add(Item item) {
+        assert (item != null);
+        collectionOfItems.add(item);
     }
 
     public List<Item> getItemsInCart(){

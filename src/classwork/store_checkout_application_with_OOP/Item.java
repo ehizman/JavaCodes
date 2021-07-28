@@ -24,4 +24,8 @@ public class Item {
     public int getQuantity() {
         return quantity;
     }
+    public String toString(){
+        return String.format("%-15s%-15.2f%-10d%-10.2f%n",productName, pricePerUnit, quantity,
+                pricePerUnit.multiply(BigDecimal.valueOf(quantity)));
+    }
 }

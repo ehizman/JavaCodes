@@ -17,4 +17,11 @@ public class ItemTest {
                 () -> assertEquals(5, item.getQuantity())
         );
     }
+
+    @Test
+    void testToStringMethod(){
+        Item item = new Item("Dettol Soap", BigDecimal.valueOf(450.00), 5);
+        assertEquals(String.format("%-15s%-15.2f%-10d%-10.2f%n","Dettol Soap", BigDecimal.valueOf(450.00), 5,
+                BigDecimal.valueOf(450.00).multiply(BigDecimal.valueOf(5))), item.toString());
+    }
 }
