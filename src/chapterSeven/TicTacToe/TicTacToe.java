@@ -25,7 +25,13 @@ public class TicTacToe {
             throw new NoPermissionException("Cannot use '*'. Please choose another marker" );
         }
         else{
-            this.playerTwoMarker = marker;
+            if (marker == this.playerOneMarker){
+                throw new NoPermissionException(String.format("Player One has already set %s as marker already",
+                        marker));
+            }
+            else{
+                this.playerTwoMarker = marker;
+            }
         }
     }
 
@@ -38,30 +44,20 @@ public class TicTacToe {
     }
 
     public void playerOnePlay(int position) throws NoPermissionException {
-        try{
-            if (position > 9 || position < 1){
-                throw new ArrayIndexOutOfBoundsException();
-            }
-            else {
-                board.play(position, playerOneMarker);
-            }
+        if (position > 9 || position < 1){
+            throw new ArrayIndexOutOfBoundsException();
         }
-        catch(ArrayIndexOutOfBoundsException | NoPermissionException e){
-            System.out.println("Invalid position");
+        else {
+            board.play(position, playerOneMarker);
         }
     }
 
     public void playerTwoPlay(int position) throws NoPermissionException {
-        try{
-            if (position > 9 || position < 1){
-                throw new ArrayIndexOutOfBoundsException();
-            }
-            else {
-                board.play(position, playerTwoMarker);
-            }
+        if (position > 9 || position < 1){
+            throw new ArrayIndexOutOfBoundsException();
         }
-        catch(ArrayIndexOutOfBoundsException | NoPermissionException e){
-            System.out.println("Invalid position");
+        else {
+            board.play(position, playerTwoMarker);
         }
     }
 

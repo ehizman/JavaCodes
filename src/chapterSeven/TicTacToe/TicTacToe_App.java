@@ -39,36 +39,53 @@ public class TicTacToe_App {
         displayBoard();
         int counter= 0;
         while (counter < 5) {
-            try{
-                int position = 0;
-                System.out.println("Player One");
-                System.out.println("Enter position to place marker");
-                System.out.println("Board positions are numbered 1-9-> ");
-                position = scanner.nextInt();
-                play("Player One", position);
-                displayBoard();
-                if (game.checkGameStatus().equals(game.getPlayerOne().name+" wins!")){
-                    System.out.println(game.checkGameStatus());
-                    break;
+            boolean shouldContinue = true;
+            while (shouldContinue){
+                try{
+                    int position;
+                    System.out.println("Player One");
+                    System.out.println("Enter position to place marker");
+                    System.out.println("Board positions are numbered 1-9-> ");
+                    position = scanner.nextInt();
+
+                    play("Player One", position);
+                    shouldContinue = false;
+                    displayBoard();
+                    if (game.checkGameStatus().equals(game.getPlayerOne().name+" wins!")){
+                        System.out.println(game.checkGameStatus());
+                        System.exit(0);
+                    }
                 }
-                System.out.println("Player Two");
-                System.out.println("Enter position to place marker");
-                System.out.println("Board positions are numbered 1-9-> ");
-                position = scanner.nextInt();
-                play("Player Two",position);
-                displayBoard();
-                if (game.checkGameStatus().equals(game.getPlayerTwo().name+" wins!")){
-                    System.out.println(game.checkGameStatus());
-                    break;
-                }
-                counter++;
-                if (counter == 4){
-                    System.out.println(game.checkGameStatus());
-                    break;
+                catch (NoPermissionException | NumberFormatException e){
+                    System.out.println("Invalid position");
                 }
             }
-            catch (NumberFormatException e){
-                System.out.print("Invalid position");
+
+            shouldContinue = true;
+            int position;
+            while (shouldContinue) {
+                try {
+                    System.out.println("Player Two");
+                    System.out.println("Enter position to place marker");
+                    System.out.println("Board positions are numbered 1-9-> ");
+                    position = scanner.nextInt();
+                    play("Player Two", position);
+                    displayBoard();
+                    shouldContinue = false;
+                    if (game.checkGameStatus().equals(game.getPlayerTwo().name + " wins!")) {
+                        System.out.println(game.checkGameStatus());
+                        System.exit(0);
+                    }
+                    counter++;
+                    if (counter == 4) {
+                        System.out.println(game.checkGameStatus());
+                        System.exit(0);
+                    }
+                }
+                catch (NumberFormatException | NoPermissionException e) {
+                    shouldContinue = true;
+                    System.out.println("Invalid position");
+                }
             }
         }
     }
