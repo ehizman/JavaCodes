@@ -4,7 +4,7 @@ public class ReverseStrings{
     public static String reverseStrings(String string) {
         int LENGTH = string.length();
         int lastPositionOfSpace = 0;
-        String reversedString = "";
+        StringBuilder reversedString = new StringBuilder();
 
         for (int i = LENGTH - 1; i >= 0; i--) {
             if (string.charAt(i) == ' '){
@@ -12,18 +12,18 @@ public class ReverseStrings{
             }
             if (i == lastPositionOfSpace - 4){
                 System.out.println(lastPositionOfSpace);
-                reversedString = reversedString + " ";
+                reversedString.append(" ");
                 lastPositionOfSpace = i;
             }
 
             if (i == lastPositionOfSpace - 3 && i < 4){
                 System.out.println(lastPositionOfSpace);
-                reversedString = reversedString + " ";
+                reversedString.append(" ");
                 lastPositionOfSpace = i;
             }
-            reversedString = reversedString + string.charAt(i);
+            reversedString.append(string.charAt(i));
         }
         System.out.println(reversedString);
-        return reversedString;
+        return reversedString.toString();
     } 
 }
