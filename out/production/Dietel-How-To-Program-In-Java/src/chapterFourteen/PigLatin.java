@@ -17,5 +17,6 @@ public class PigLatin {
         StringBuilder pigLatin = new StringBuilder(token.substring(1));
         pigLatin.append(token.charAt(0)).append("ay ");
         System.out.print(pigLatin);
+        pigLatin = null;
     }
 }

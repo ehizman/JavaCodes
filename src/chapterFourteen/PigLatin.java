@@ -14,8 +14,6 @@ public class PigLatin {
     }
 
     private static void printLatinWord(String token) {
-        StringBuilder pigLatin = new StringBuilder(token.substring(1));
-        pigLatin.append(token.charAt(0)).append("ay ");
-        System.out.print(pigLatin);
+        System.out.print(token.substring(1) + token.charAt(0) + "ay ");
     }
 }

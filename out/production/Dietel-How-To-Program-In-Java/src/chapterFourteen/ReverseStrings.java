@@ -1,10 +1,29 @@
-//package chapterFourteen;
-//public class ReverseStrings{
-//    public static void main(String[] args) {
-//        String numberToReverse = "68573565 432+";
-//        final int LENGTH = numberToReverse.length();
-//        for (int i = LENGTH - 1; i >= 0; i--) {
-//            if (i < LENGTH - 1 - )
-//        }
-//    }
-//}
+package chapterFourteen;
+public class ReverseStrings{
+
+    public static String reverseStrings(String string) {
+        int LENGTH = string.length();
+        int lastPositionOfSpace = 0;
+        String reversedString = "";
+
+        for (int i = LENGTH - 1; i >= 0; i--) {
+            if (string.charAt(i) == ' '){
+                lastPositionOfSpace = i;
+            }
+            if (i == lastPositionOfSpace - 4){
+                System.out.println(lastPositionOfSpace);
+                reversedString = reversedString + " ";
+                lastPositionOfSpace = i;
+            }
+
+            if (i == lastPositionOfSpace - 3 && i < 4){
+                System.out.println(lastPositionOfSpace);
+                reversedString = reversedString + " ";
+                lastPositionOfSpace = i;
+            }
+            reversedString = reversedString + string.charAt(i);
+        }
+        System.out.println(reversedString);
+        return reversedString;
+    } 
+}

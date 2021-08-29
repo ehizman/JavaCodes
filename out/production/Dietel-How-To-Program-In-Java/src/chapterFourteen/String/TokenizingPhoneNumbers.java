@@ -12,6 +12,5 @@ public class TokenizingPhoneNumbers {
         String telePhoneNumberWithOutAreaCode = tokens[1].replace("-","");
         System.out.printf("The area code is: %s%n", areaCode);
         System.out.printf("The telephone number without area-code is: %s", telePhoneNumberWithOutAreaCode);
-
     }
 }

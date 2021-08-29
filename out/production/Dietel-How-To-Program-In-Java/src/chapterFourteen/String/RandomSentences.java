@@ -1,7 +1,4 @@
 package chapterFourteen.String;
-
-import java.util.HashMap;
-import java.util.Locale;
 import java.util.Random;
 
 public class RandomSentences {
@@ -31,7 +28,7 @@ public class RandomSentences {
             String secondNoun = nouns[indexOfSecondRandomNoun];
 
 
-            System.out.printf("%s %s %s %s %s %s.%n", article.toUpperCase(Locale.ROOT).charAt(0) + article.substring(1),
+            System.out.printf("%s %s %s %s %s %s.%n", article.toUpperCase().charAt(0) + article.substring(1),
                     noun
                     ,verb, preposition, secondArticle, secondNoun);
         }
