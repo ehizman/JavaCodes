@@ -15,7 +15,7 @@ class GameEngineTest {
         Card firstCard = new Card(CardFace.FIVE, CardSuit.CLUBS);
         Card secondCard = new Card(CardFace.FIVE, CardSuit.DIAMONDS);
         Card thirdCard = new Card(CardFace.ACE, CardSuit.CLUBS);
-        Card fourthCard = new Card(CardFace.FOUR, CardSuit.HEARTS);
+        Card fourthCard = new Card(CardFace.FOUR, CardSuit.DIAMONDS);
         Card fifthCard = new Card(CardFace.FOUR, CardSuit.DIAMONDS);
         Card[] playerHand = new Card[]{firstCard, secondCard, thirdCard, fourthCard, fifthCard};
         Assertions.assertTrue(GameEngine.containsTwoPairs(playerHand));
@@ -49,7 +49,7 @@ class GameEngineTest {
         Card secondCard = new Card(CardFace.QUEEN, CardSuit.CLUBS);
         Card thirdCard = new Card(CardFace.QUEEN, CardSuit.SPADES);
         Card fourthCard = new Card(CardFace.QUEEN, CardSuit.HEARTS);
-        Card fifthCard = new Card(CardFace.QUEEN, CardSuit.DIAMONDS);
+        Card fifthCard = new Card(CardFace.SEVEN, CardSuit.DIAMONDS);
         Card[] playerHand = new Card[]{firstCard, secondCard, thirdCard, fourthCard, fifthCard};
         assertTrue(GameEngine.containsFourOfAKind(playerHand));
     }
@@ -57,21 +57,21 @@ class GameEngineTest {
     @Test
     void flush(){
         Card firstCard = new Card(CardFace.QUEEN, CardSuit.CLUBS);
-        Card secondCard = new Card(CardFace.QUEEN, CardSuit.CLUBS);
-        Card thirdCard = new Card(CardFace.QUEEN, CardSuit.SPADES);
-        Card fourthCard = new Card(CardFace.QUEEN, CardSuit.HEARTS);
-        Card fifthCard = new Card(CardFace.QUEEN, CardSuit.DIAMONDS);
+        Card secondCard = new Card(CardFace.SIX, CardSuit.CLUBS);
+        Card thirdCard = new Card(CardFace.ACE, CardSuit.CLUBS);
+        Card fourthCard = new Card(CardFace.NINE, CardSuit.CLUBS);
+        Card fifthCard = new Card(CardFace.KING, CardSuit.CLUBS);
         Card[] playerHand = new Card[]{firstCard, secondCard, thirdCard, fourthCard, fifthCard};
         assertTrue(GameEngine.isAFlush(playerHand));
     }
 
     @Test
     void straight(){
-        Card firstCard = new Card(CardFace.FOUR, CardSuit.CLUBS);
-        Card secondCard = new Card(CardFace.FIVE, CardSuit.CLUBS);
-        Card thirdCard = new Card(CardFace.SIX, CardSuit.SPADES);
-        Card fourthCard = new Card(CardFace.SEVEN, CardSuit.HEARTS);
-        Card fifthCard = new Card(CardFace.EIGHT, CardSuit.DIAMONDS);
+        Card firstCard = new Card(CardFace.THREE, CardSuit.CLUBS);
+        Card secondCard = new Card(CardFace.FOUR, CardSuit.CLUBS);
+        Card thirdCard = new Card(CardFace.DEUCE, CardSuit.SPADES);
+        Card fourthCard = new Card(CardFace.FIVE, CardSuit.HEARTS);
+        Card fifthCard = new Card(CardFace.SIX, CardSuit.DIAMONDS);
         Card[] playerHand = new Card[]{firstCard, secondCard, thirdCard, fourthCard, fifthCard};
         assertTrue(GameEngine.isAStraight(playerHand));
     }
