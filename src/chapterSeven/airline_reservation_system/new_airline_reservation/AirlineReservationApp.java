@@ -39,7 +39,13 @@ public class AirlineReservationApp {
                     try{
                         String responseTwo = checkIfCustomerWouldLikeToBookAnotherSeatInAnotherSection();
                         if (responseTwo.equalsIgnoreCase("yes")){
-                            service.checkEconomy_ReturnSeatNoIfAvailable_ElseThrowException();
+                            int seatNoInEconomy = service.checkEconomy_ReturnSeatNoIfAvailable_ElseThrowException();
+                            service.assignSeatInEconomy(seatNoInEconomy);
+                            String boardingPass = service.generateBoardingPassFor(name, seatNoInEconomy, "Economy");
+                            System.out.println(boardingPass);
+                            Thread.sleep(10000);
+                            System.out.println("\n".repeat(50));
+                            main();
                         }
                         else{
                             if (responseTwo.equalsIgnoreCase("no")){
@@ -53,7 +59,7 @@ public class AirlineReservationApp {
                             main();
                         }
                     }
-                    catch (AirlineReservationException anotherEx){
+                    catch (AirlineReservationException | InterruptedException anotherEx){
                         System.out.println("No seats are available");
                         System.out.println("Next Flight leaves in 3 hours");
                     }
