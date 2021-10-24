@@ -40,9 +40,9 @@ public class GameEngine {
 
     public static boolean isAStraight(Card[] playerHand) {
         List<Integer> faceValues=
-                Arrays.stream(playerHand).map(card -> card.getCardFace().getFaceValue()).distinct()
+                Arrays.stream(playerHand).map(card -> card.getCardFace().getFaceValue())
                         .sorted(Comparator.naturalOrder()).collect(Collectors.toList());
-        return (faceValues.get(faceValues.size() - 1) - faceValues.get(0) == 4)&&(faceValues.size()==5);
+        return faceValues.get(faceValues.size() - 1) - faceValues.get(0) == 4;
     }
 
     public static boolean isAFullHouse(Card[] playerHand) {

@@ -62,16 +62,9 @@ public class DeckOfCards {
             }
             hands[i] = playerHand;
         }
-        return hands;
-    }
 
-    public void deal(Player[] players, int numberOfCardsToDeal){
-        shuffle();
-        for (Player player: players) {
-            for (int j = 0; j < numberOfCardsToDeal; j++) {
-                player.getPlayerHand()[j] = deckOfCards[j];
-            }
-        }
+
+        return hands;
     }
 
     public HashMap<Player, List<Card>> dealCards(Player[] players, int numberOfCards){

@@ -1,6 +1,5 @@
 package chapterSeven.gameOfCards;
 
-import java.util.EnumMap;
 import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Map;
@@ -32,9 +31,9 @@ public enum CardFace {
         return this.faceValue;
     }
 
-//    public CardFace getCardFace(int cardFaceValue){
-//        return cardFaceMap.get(cardFaceValue);
-//    }
+    public CardFace getCardFace(int cardFaceValue){
+        return cardFaceMap.get(cardFaceValue);
+    }
 
 
     private final int faceValue;

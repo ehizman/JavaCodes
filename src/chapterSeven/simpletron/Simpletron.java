@@ -1,96 +1,72 @@
 package chapterSeven.simpletron;
 public class Simpletron {
     private Byte accumulator = Byte.valueOf("0");
-    private Word[] memory = new Word[100];
+    private Byte[] memory = new Byte[100];
 
-    public void readStatement(Word word) throws InvalidStatementException, Word.InvalidWordFormatException {
+    public void readStatement(Word word, String data) throws InvalidStatementException {
         Instruction instruction = Instruction.getInstructionMap().get(word.getInstruction());
         switch(instruction){
-            case READ -> readInput(word.getData());
-            case WRITE -> writeToConsole(word.getData());
-            case LOAD -> loadToAccumulator(word.getData());
-            case STORE -> storeIntoMemory(word.getData());
-            case ADD -> addToAccumulator(word.getData());
-            case SUBTRACT -> subtractFromAccumulator(word.getData());
-            case DIVIDE -> divideWithValueInAccumulator(word.getData());
-            case MULTIPLY -> multiply(word.getData());
-            case BRANCH -> branch(word.getData());
-            case BRANCH_NEG -> branchNeg(word.getData());
-            case BRANCH_ZERO -> branchZero(word.getData());
+            case READ -> readInput(word.getData(), data);
+            case WRITE -> writeToConsole();
+            case LOAD -> loadToAccumulator();
+            case STORE -> storeIntoMemory();
+            case ADD -> addToAccumulator();
+            case SUBTRACT -> subtractFromAccumulator();
+            case DIVIDE -> divideWithValueInAccumulator();
+            case MULTIPLY -> multiply();
+            case BRANCH -> branch();
+            case BRANCH_NEG -> branchNeg();
+            case BRANCH_ZERO -> branchZero();
             case HALT -> halt();
             default -> throw new InvalidStatementException();
         }
+
     }
 
     private void halt() {
-        System.exit(0);
     }
 
-    private void branchZero(String memoryLocation) throws InvalidStatementException, Word.InvalidWordFormatException {
-        if (accumulator.intValue() == 0){
-            Word statement = memory[Integer.parseInt(memoryLocation)];
-            readStatement(statement);
-        }
+    private void branchZero() {
     }
 
-    private void branchNeg(String memoryLocation) throws InvalidStatementException, Word.InvalidWordFormatException {
-        if (accumulator.intValue() < 0){
-            Word statement = memory[Integer.parseInt(memoryLocation)];
-            readStatement(statement);
-        }
+    private void branchNeg() {
     }
 
-    private void branch(String memoryLocation) throws InvalidStatementException, Word.InvalidWordFormatException {
-        Word statement = memory[Integer.parseInt(memoryLocation)];
-        readStatement(statement);
+    private void branch() {
     }
 
-    private void multiply(String memoryLocation) {
-        double result = accumulator.doubleValue() * Double.parseDouble(memory[Integer.parseInt(memoryLocation)].getValue());
-        accumulator = Byte.valueOf(String.valueOf(result));
+    private void multiply() {
     }
 
-    private void divideWithValueInAccumulator(String memoryLocation) {
-        double result = accumulator.doubleValue() / Double.parseDouble(memory[Integer.parseInt(memoryLocation)].getValue());
-        accumulator = Byte.valueOf(String.valueOf(result));
+    private void divideWithValueInAccumulator() {
     }
 
-    private void subtractFromAccumulator(String memoryLocation) {
-        int result = accumulator.intValue() - Integer.parseInt(memory[Integer.parseInt(memoryLocation)].getValue());
-        accumulator = Byte.valueOf(String.valueOf(result));
+    private void subtractFromAccumulator() {
     }
 
-    private void addToAccumulator(String memoryLocation) {
-        int result = accumulator.intValue() + Integer.parseInt(memory[Integer.parseInt(memoryLocation)].getValue());
-        accumulator = Byte.valueOf(String.valueOf(result));
+    private void addToAccumulator() {
     }
 
-    private void storeIntoMemory(String memoryLocation) throws Word.InvalidWordFormatException {
-        memory[Integer.parseInt(memoryLocation)] = new Word(String.format("0%4s", accumulator.toString()));
+    private void storeIntoMemory() {
     }
 
-    private void loadToAccumulator(String data) {
-        accumulator = Byte.valueOf(memory[Integer.parseInt(data)].getValue());
+    private void loadToAccumulator() {
     }
 
-    private void writeToConsole(String index) {
-        System.out.println(memory[Integer.parseInt(index)]);
+    private void writeToConsole() {
     }
 
-    private void readInput(String memoryLocation) {
+    private void readInput(String memoryLocation, String data) {
         int cellIndex = Integer.parseInt(memoryLocation);
+        memory[cellIndex] = Byte.parseByte(data);
     }
 
     public byte getAccumulator() {
         return accumulator;
     }
 
-    public Word[] getMemory() {
+    public Byte[] getMemory() {
         return memory;
-    }
-
-    public void readInput(String data, String memoryLocation) {
-        readInput("07");
     }
 
     static class InvalidStatementException extends Exception {
