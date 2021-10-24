@@ -68,8 +68,8 @@ class GameEngineTest {
     @Test
     void straight(){
         Card firstCard = new Card(CardFace.THREE, CardSuit.CLUBS);
-        Card secondCard = new Card(CardFace.FOUR, CardSuit.CLUBS);
-        Card thirdCard = new Card(CardFace.DEUCE, CardSuit.SPADES);
+        Card secondCard = new Card(CardFace.THREE, CardSuit.CLUBS);
+        Card thirdCard = new Card(CardFace.SEVEN, CardSuit.SPADES);
         Card fourthCard = new Card(CardFace.FIVE, CardSuit.HEARTS);
         Card fifthCard = new Card(CardFace.SIX, CardSuit.DIAMONDS);
         Card[] playerHand = new Card[]{firstCard, secondCard, thirdCard, fourthCard, fifthCard};
