@@ -105,5 +105,18 @@ class EmployeeStreamOperations{
             System.out.println(department);
             System.out.println(count);
         });
+
+        Double sumOfSalaries = Arrays.stream(employees)
+                .mapToDouble(Employee::getSalary)
+                .sum();
+        System.out.printf("Total sum of employees salary is %.2f", sumOfSalaries);
+
+        Double averageSalary = Arrays.stream(employees)
+                .mapToDouble(Employee::getSalary)
+                .average()
+                .orElse(0.0);
+
+        System.out.printf("Employees average Salary is %.2f%n", averageSalary);
+
     }
 }
