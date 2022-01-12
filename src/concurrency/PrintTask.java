@@ -1,4 +1,4 @@
-package chapter20;
+package concurrency;
 
 import java.security.SecureRandom;
 
