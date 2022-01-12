@@ -4,9 +4,9 @@ import java.security.SecureRandom;
 
 public class Producer implements Runnable{
     private SecureRandom secureRandom = new SecureRandom();
-    private UnsychronizedBuffer buffer;
+    private Buffer buffer;
 
-    public Producer(UnsychronizedBuffer buffer) {
+    public Producer(Buffer buffer) {
         this.buffer = buffer;
     }
 

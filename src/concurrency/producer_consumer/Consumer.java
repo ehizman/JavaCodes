@@ -4,9 +4,9 @@ import java.security.SecureRandom;
 
 public class Consumer implements Runnable{
     private SecureRandom secureRandom = new SecureRandom();
-    private UnsychronizedBuffer buffer;
+    private Buffer buffer;
 
-    public Consumer(UnsychronizedBuffer buffer) {
+    public Consumer(Buffer buffer) {
         this.buffer = buffer;
     }
 
