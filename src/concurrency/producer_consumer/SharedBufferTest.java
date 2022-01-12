@@ -7,7 +7,7 @@ import java.util.concurrent.TimeUnit;
 public class SharedBufferTest{
     public static void main(String[] args) {
         ExecutorService executorService = Executors.newCachedThreadPool();
-        Buffer sharedBuffer = new SychronizedBuffer();
+        Buffer sharedBuffer = new SynchronizedBuffer();
 
         Producer producer = new Producer(sharedBuffer);
         Consumer consumer = new Consumer(sharedBuffer);

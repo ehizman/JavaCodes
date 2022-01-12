@@ -1,9 +1,9 @@
 package concurrency.producer_consumer;
 
-public class UnsychronizedBuffer implements Buffer {
+public class UnsynchronizedBuffer implements Buffer {
     private int bufferValue;
 
-    public UnsychronizedBuffer() {
+    public UnsynchronizedBuffer() {
         this.bufferValue = 0;
     }
 

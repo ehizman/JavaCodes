@@ -2,11 +2,11 @@ package concurrency.producer_consumer;
 
 import java.util.concurrent.ArrayBlockingQueue;
 
-public class SychronizedBuffer implements Buffer{
+public class SynchronizedBuffer implements Buffer{
 
         private ArrayBlockingQueue<Integer> arrayBlockingQueue;
 
-        public SychronizedBuffer() {
+        public SynchronizedBuffer() {
             this.arrayBlockingQueue = new ArrayBlockingQueue<>(1);
         }
 
